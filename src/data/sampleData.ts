@@ -59,7 +59,7 @@ function makeReadings(
     };
 
     for (const [key, val] of Object.entries(baseValues)) {
-      (reading as Record<string, unknown>)[key] = jitter(val, 0.04);
+      (reading as unknown as Record<string, unknown>)[key] = jitter(val, 0.04);
     }
 
     readings.push(reading);

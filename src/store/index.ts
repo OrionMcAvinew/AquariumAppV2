@@ -2,7 +2,10 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { v4 as uuidv4 } from 'uuid';
 import { addDays, formatISO, parseISO } from 'date-fns';
-import { Tank, WaterReading, MaintenanceTask, AppAlert } from '../types';
+import {
+  Tank, WaterReading, MaintenanceTask, AppAlert,
+  FishInstance, FeedingSchedule, FeedingLog, Equipment,
+} from '../types';
 import { SAMPLE_TANKS, SAMPLE_READINGS, SAMPLE_TASKS } from '../data/sampleData';
 import { getRangesForTankType, getParameterStatus, PARAMETER_LABELS, PARAMETER_UNITS } from '../utils/parameterRanges';
 
@@ -12,6 +15,13 @@ interface AppState {
   maintenanceTasks: MaintenanceTask[];
   alerts: AppAlert[];
   seeded: boolean;
+
+  // New state
+  fishInstances: FishInstance[];
+  feedingSchedules: FeedingSchedule[];
+  feedingLogs: FeedingLog[];
+  equipment: Equipment[];
+  anthropicApiKey: string;
 
   // Tank actions
   addTank: (tank: Omit<Tank, 'id'>) => string;
@@ -33,6 +43,27 @@ interface AppState {
   generateAlerts: () => void;
   clearDismissedAlerts: () => void;
 
+  // Fish instance actions
+  addFishInstance: (instance: Omit<FishInstance, 'id'>) => string;
+  updateFishInstance: (id: string, updates: Partial<FishInstance>) => void;
+  deleteFishInstance: (id: string) => void;
+
+  // Feeding actions
+  addFeedingSchedule: (schedule: Omit<FeedingSchedule, 'id'>) => string;
+  updateFeedingSchedule: (id: string, updates: Partial<FeedingSchedule>) => void;
+  deleteFeedingSchedule: (id: string) => void;
+  logFeeding: (log: Omit<FeedingLog, 'id'>) => void;
+  deleteFeedingLog: (id: string) => void;
+
+  // Equipment actions
+  addEquipment: (item: Omit<Equipment, 'id'>) => string;
+  updateEquipment: (id: string, updates: Partial<Equipment>) => void;
+  deleteEquipment: (id: string) => void;
+  completeEquipmentMaintenance: (id: string) => void;
+
+  // API key
+  setApiKey: (key: string) => void;
+
   // Seeding
   seedData: () => void;
 
@@ -42,6 +73,11 @@ interface AppState {
   getTankTasks: (tankId: string) => MaintenanceTask[];
   getOverdueTasks: () => MaintenanceTask[];
   getActiveAlerts: () => AppAlert[];
+  getTankFishInstances: (tankId: string) => FishInstance[];
+  getTankFeedingSchedules: (tankId: string) => FeedingSchedule[];
+  getTankFeedingLogs: (tankId: string) => FeedingLog[];
+  getTankEquipment: (tankId: string) => Equipment[];
+  getOverdueEquipment: () => Equipment[];
 }
 
 export const useStore = create<AppState>()(
@@ -52,6 +88,11 @@ export const useStore = create<AppState>()(
       maintenanceTasks: [],
       alerts: [],
       seeded: false,
+      fishInstances: [],
+      feedingSchedules: [],
+      feedingLogs: [],
+      equipment: [],
+      anthropicApiKey: '',
 
       addTank: (tank) => {
         const id = uuidv4();
@@ -70,6 +111,10 @@ export const useStore = create<AppState>()(
           waterReadings: state.waterReadings.filter((r) => r.tankId !== id),
           maintenanceTasks: state.maintenanceTasks.filter((t) => t.tankId !== id),
           alerts: state.alerts.filter((a) => a.tankId !== id),
+          fishInstances: state.fishInstances.filter((f) => f.tankId !== id),
+          feedingSchedules: state.feedingSchedules.filter((s) => s.tankId !== id),
+          feedingLogs: state.feedingLogs.filter((l) => l.tankId !== id),
+          equipment: state.equipment.filter((e) => e.tankId !== id),
         })),
 
       addReading: (reading) => {
@@ -77,7 +122,6 @@ export const useStore = create<AppState>()(
         set((state) => ({
           waterReadings: [...state.waterReadings, { ...reading, id }],
         }));
-        // Generate alerts after adding a reading
         setTimeout(() => get().generateAlerts(), 0);
       },
 
@@ -158,7 +202,6 @@ export const useStore = create<AppState>()(
             const status = getParameterStatus(param, value, tank.type);
             if (status === 'safe') continue;
 
-            // Check if we already have an active (non-dismissed) alert for this
             const existingAlert = get().alerts.find(
               (a) => a.tankId === tank.id && a.parameter === param && !a.dismissed
             );
@@ -187,6 +230,84 @@ export const useStore = create<AppState>()(
           set((state) => ({ alerts: [...state.alerts, ...newAlerts] }));
         }
       },
+
+      // Fish instance actions
+      addFishInstance: (instance) => {
+        const id = uuidv4();
+        set((state) => ({ fishInstances: [...state.fishInstances, { ...instance, id }] }));
+        return id;
+      },
+
+      updateFishInstance: (id, updates) =>
+        set((state) => ({
+          fishInstances: state.fishInstances.map((f) => f.id === id ? { ...f, ...updates } : f),
+        })),
+
+      deleteFishInstance: (id) =>
+        set((state) => ({
+          fishInstances: state.fishInstances.filter((f) => f.id !== id),
+        })),
+
+      // Feeding actions
+      addFeedingSchedule: (schedule) => {
+        const id = uuidv4();
+        set((state) => ({ feedingSchedules: [...state.feedingSchedules, { ...schedule, id }] }));
+        return id;
+      },
+
+      updateFeedingSchedule: (id, updates) =>
+        set((state) => ({
+          feedingSchedules: state.feedingSchedules.map((s) => s.id === id ? { ...s, ...updates } : s),
+        })),
+
+      deleteFeedingSchedule: (id) =>
+        set((state) => ({
+          feedingSchedules: state.feedingSchedules.filter((s) => s.id !== id),
+        })),
+
+      logFeeding: (log) => {
+        const id = uuidv4();
+        set((state) => ({ feedingLogs: [...state.feedingLogs, { ...log, id }] }));
+      },
+
+      deleteFeedingLog: (id) =>
+        set((state) => ({
+          feedingLogs: state.feedingLogs.filter((l) => l.id !== id),
+        })),
+
+      // Equipment actions
+      addEquipment: (item) => {
+        const id = uuidv4();
+        set((state) => ({ equipment: [...state.equipment, { ...item, id }] }));
+        return id;
+      },
+
+      updateEquipment: (id, updates) =>
+        set((state) => ({
+          equipment: state.equipment.map((e) => e.id === id ? { ...e, ...updates } : e),
+        })),
+
+      deleteEquipment: (id) =>
+        set((state) => ({
+          equipment: state.equipment.filter((e) => e.id !== id),
+        })),
+
+      completeEquipmentMaintenance: (id) =>
+        set((state) => ({
+          equipment: state.equipment.map((e) => {
+            if (e.id !== id) return e;
+            const now = new Date();
+            return {
+              ...e,
+              lastMaintained: formatISO(now),
+              nextMaintenance: e.maintenanceFrequencyDays > 0
+                ? formatISO(addDays(now, e.maintenanceFrequencyDays))
+                : null,
+            };
+          }),
+        })),
+
+      setApiKey: (key) => set({ anthropicApiKey: key }),
 
       seedData: () => {
         if (get().seeded) return;
@@ -221,6 +342,27 @@ export const useStore = create<AppState>()(
 
       getActiveAlerts: () =>
         get().alerts.filter((a) => !a.dismissed),
+
+      getTankFishInstances: (tankId) =>
+        get().fishInstances.filter((f) => f.tankId === tankId),
+
+      getTankFeedingSchedules: (tankId) =>
+        get().feedingSchedules.filter((s) => s.tankId === tankId),
+
+      getTankFeedingLogs: (tankId) =>
+        get()
+          .feedingLogs.filter((l) => l.tankId === tankId)
+          .sort((a, b) => parseISO(b.timestamp).getTime() - parseISO(a.timestamp).getTime()),
+
+      getTankEquipment: (tankId) =>
+        get().equipment.filter((e) => e.tankId === tankId),
+
+      getOverdueEquipment: () => {
+        const now = new Date();
+        return get().equipment.filter(
+          (e) => e.status === 'active' && e.nextMaintenance && parseISO(e.nextMaintenance) < now
+        );
+      },
     }),
     {
       name: 'aquarium-app-storage',

@@ -112,3 +112,72 @@ export interface ParameterRange {
 }
 
 export type ParameterRangeMap = Record<string, ParameterRange>;
+
+// Individual fish living in a tank (distinct from Fish species in database)
+export type FishHealthStatus = 'healthy' | 'sick' | 'quarantine' | 'deceased';
+
+export interface FishInstance {
+  id: string;
+  tankId: string;
+  speciesId: string; // references Fish.id from fishDatabase
+  nickname: string;
+  dateAdded: string;
+  healthStatus: FishHealthStatus;
+  notes: string;
+}
+
+// Feeding
+export interface FeedingSchedule {
+  id: string;
+  tankId: string;
+  foodType: string;
+  amount: string;
+  timesPerDay: number;
+  notes: string;
+}
+
+export interface FeedingLog {
+  id: string;
+  tankId: string;
+  timestamp: string;
+  foodType: string;
+  amount: string;
+  notes: string;
+}
+
+// Equipment
+export type EquipmentType =
+  | 'filter'
+  | 'heater'
+  | 'light'
+  | 'pump'
+  | 'skimmer'
+  | 'co2'
+  | 'uv_sterilizer'
+  | 'powerhead'
+  | 'other';
+
+export type EquipmentStatus = 'active' | 'inactive' | 'replaced';
+
+export interface Equipment {
+  id: string;
+  tankId: string | null;
+  name: string;
+  type: EquipmentType;
+  brand: string;
+  model: string;
+  purchaseDate: string;
+  maintenanceFrequencyDays: number;
+  lastMaintained: string | null;
+  nextMaintenance: string | null;
+  notes: string;
+  status: EquipmentStatus;
+}
+
+// AI Chat
+export interface ChatMessage {
+  id: string;
+  role: 'user' | 'assistant';
+  content: string;
+  timestamp: string;
+}

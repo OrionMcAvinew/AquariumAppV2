@@ -16,16 +16,17 @@ import {
   ArrowLeftIcon,
   PlusIcon,
   TrashIcon,
-  PencilSquareIcon,
   BeakerIcon,
   WrenchScrewdriverIcon,
   CheckCircleIcon,
   ClockIcon,
+  HeartIcon,
 } from '@heroicons/react/24/outline';
 import { format, parseISO, isPast } from 'date-fns';
-import { WaterReading } from '../types';
+import { WaterReading, FishHealthStatus } from '../types';
 import clsx from 'clsx';
 import { useState } from 'react';
+import { FISH_DATABASE as fishDatabase } from '../data/fishDatabase';
 
 const PARAM_KEYS: Array<keyof Omit<WaterReading, 'id' | 'tankId' | 'timestamp' | 'notes'>> = [
   'ph', 'ammonia', 'nitrite', 'nitrate', 'temperature', 'salinity', 'gh', 'kh', 'phosphate', 'dissolvedOxygen',
@@ -42,7 +43,24 @@ export default function TankDetail() {
   const deleteTask = useStore((s) => s.deleteTask);
   const activeAlerts = useStore((s) => s.getActiveAlerts());
   const [confirmDelete, setConfirmDelete] = useState(false);
-  const [activeTab, setActiveTab] = useState<'overview' | 'charts' | 'tasks' | 'inhabitants'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'charts' | 'tasks' | 'livestock' | 'feeding'>('overview');
+
+  // Livestock state
+  const fishInstances = useStore((s) => s.getTankFishInstances(tankId!));
+  const addFishInstance = useStore((s) => s.addFishInstance);
+  const updateFishInstance = useStore((s) => s.updateFishInstance);
+  const deleteFishInstance = useStore((s) => s.deleteFishInstance);
+  const [showAddFish, setShowAddFish] = useState(false);
+  const [fishForm, setFishForm] = useState({ speciesId: '', nickname: '', dateAdded: new Date().toISOString().slice(0,10), healthStatus: 'healthy' as FishHealthStatus, notes: '' });
+
+  // Feeding state
+  const feedingSchedules = useStore((s) => s.getTankFeedingSchedules(tankId!));
+  const feedingLogs = useStore((s) => s.getTankFeedingLogs(tankId!));
+  const addFeedingSchedule = useStore((s) => s.addFeedingSchedule);
+  const deleteFeedingSchedule = useStore((s) => s.deleteFeedingSchedule);
+  const logFeeding = useStore((s) => s.logFeeding);
+  const [showAddSchedule, setShowAddSchedule] = useState(false);
+  const [scheduleForm, setScheduleForm] = useState({ foodType: '', amount: '', timesPerDay: 2, notes: '' });
 
   const tank = tanks.find((t) => t.id === tankId);
   if (!tank) {
@@ -165,13 +183,13 @@ export default function TankDetail() {
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-1 bg-slate-100 p-1 rounded-xl">
-          {(['overview', 'charts', 'tasks', 'inhabitants'] as const).map((tab) => (
+        <div className="flex gap-1 bg-slate-100 p-1 rounded-xl overflow-x-auto">
+          {(['overview', 'charts', 'tasks', 'livestock', 'feeding'] as const).map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
               className={clsx(
-                'flex-1 text-sm font-semibold py-2 rounded-lg capitalize transition-all',
+                'shrink-0 flex-1 text-sm font-semibold py-2 px-3 rounded-lg capitalize transition-all',
                 activeTab === tab
                   ? 'bg-white text-ocean-600 shadow-sm'
                   : 'text-slate-500 hover:text-slate-700'
@@ -335,15 +353,160 @@ export default function TankDetail() {
           </div>
         )}
 
-        {/* Tab: Inhabitants */}
-        {activeTab === 'inhabitants' && (
+        {/* Tab: Livestock */}
+        {activeTab === 'livestock' && (
           <div className="space-y-4">
+            {/* Individual fish instances */}
             <div className="card">
-              <h3 className="section-title mb-3">Fish ({fish.length})</h3>
-              {fish.length === 0 ? (
-                <p className="text-slate-400 text-sm">No fish added to this tank.</p>
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="section-title">Individual Fish ({fishInstances.length})</h3>
+                <button onClick={() => setShowAddFish(!showAddFish)} className="btn-primary text-xs py-1.5">
+                  <PlusIcon className="w-3.5 h-3.5" />
+                  Track Fish
+                </button>
+              </div>
+
+              {showAddFish && (
+                <form
+                  className="bg-slate-50 rounded-xl p-4 mb-4 space-y-3"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    if (!fishForm.speciesId) return;
+                    addFishInstance({ ...fishForm, tankId: tank.id });
+                    setFishForm({ speciesId: '', nickname: '', dateAdded: new Date().toISOString().slice(0,10), healthStatus: 'healthy', notes: '' });
+                    setShowAddFish(false);
+                  }}
+                >
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="col-span-2">
+                      <label className="block text-xs font-semibold text-slate-500 mb-1">Species *</label>
+                      <select
+                        required
+                        value={fishForm.speciesId}
+                        onChange={(e) => setFishForm((p) => ({ ...p, speciesId: e.target.value }))}
+                        className="input text-sm"
+                      >
+                        <option value="">Select species...</option>
+                        {fishDatabase.map((f) => (
+                          <option key={f.id} value={f.id}>{f.emoji} {f.name}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-500 mb-1">Nickname</label>
+                      <input
+                        type="text"
+                        value={fishForm.nickname}
+                        onChange={(e) => setFishForm((p) => ({ ...p, nickname: e.target.value }))}
+                        placeholder="e.g. Nemo"
+                        className="input text-sm"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-500 mb-1">Date Added</label>
+                      <input
+                        type="date"
+                        value={fishForm.dateAdded}
+                        onChange={(e) => setFishForm((p) => ({ ...p, dateAdded: e.target.value }))}
+                        className="input text-sm"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-500 mb-1">Health</label>
+                      <select
+                        value={fishForm.healthStatus}
+                        onChange={(e) => setFishForm((p) => ({ ...p, healthStatus: e.target.value as FishHealthStatus }))}
+                        className="input text-sm"
+                      >
+                        <option value="healthy">Healthy</option>
+                        <option value="sick">Sick</option>
+                        <option value="quarantine">Quarantine</option>
+                        <option value="deceased">Deceased</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-500 mb-1">Notes</label>
+                      <input
+                        type="text"
+                        value={fishForm.notes}
+                        onChange={(e) => setFishForm((p) => ({ ...p, notes: e.target.value }))}
+                        placeholder="Optional"
+                        className="input text-sm"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex gap-2">
+                    <button type="submit" className="btn-primary text-sm">Add Fish</button>
+                    <button type="button" onClick={() => setShowAddFish(false)} className="btn-secondary text-sm">Cancel</button>
+                  </div>
+                </form>
+              )}
+
+              {fishInstances.length === 0 ? (
+                <p className="text-slate-400 text-sm">No individual fish tracked yet. Click "Track Fish" to add one.</p>
               ) : (
-                <div className="space-y-3">
+                <div className="space-y-2">
+                  {fishInstances.map((fi) => {
+                    const species = getFishById(fi.speciesId);
+                    return (
+                      <div key={fi.id} className="flex items-center gap-3 p-3 bg-slate-50 rounded-xl">
+                        <span className="text-xl">{species?.emoji || '🐟'}</span>
+                        <div className="flex-1 min-w-0">
+                          <p className="font-semibold text-slate-800 text-sm">
+                            {fi.nickname || species?.name || 'Unknown'}
+                          </p>
+                          {fi.nickname && species && (
+                            <p className="text-xs text-slate-400">{species.name}</p>
+                          )}
+                          <div className="flex items-center gap-2 mt-1">
+                            <span className={clsx(
+                              'text-xs px-2 py-0.5 rounded-full font-medium flex items-center gap-1',
+                              fi.healthStatus === 'healthy' && 'bg-emerald-100 text-emerald-700',
+                              fi.healthStatus === 'sick' && 'bg-red-100 text-red-700',
+                              fi.healthStatus === 'quarantine' && 'bg-amber-100 text-amber-700',
+                              fi.healthStatus === 'deceased' && 'bg-slate-200 text-slate-500',
+                            )}>
+                              <HeartIcon className="w-3 h-3" />
+                              {fi.healthStatus}
+                            </span>
+                            <span className="text-xs text-slate-400">
+                              Since {format(parseISO(fi.dateAdded), 'MMM d, yyyy')}
+                            </span>
+                          </div>
+                          {fi.notes && <p className="text-xs text-slate-400 mt-0.5 truncate">{fi.notes}</p>}
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <select
+                            value={fi.healthStatus}
+                            onChange={(e) => updateFishInstance(fi.id, { healthStatus: e.target.value as FishHealthStatus })}
+                            className="text-xs border border-slate-200 rounded-lg px-1.5 py-1 bg-white focus:outline-none"
+                          >
+                            <option value="healthy">Healthy</option>
+                            <option value="sick">Sick</option>
+                            <option value="quarantine">Quarantine</option>
+                            <option value="deceased">Deceased</option>
+                          </select>
+                          <button
+                            onClick={() => deleteFishInstance(fi.id)}
+                            className="text-slate-300 hover:text-red-400 transition-colors p-1"
+                          >
+                            <TrashIcon className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+
+            {/* Species in tank */}
+            <div className="card">
+              <h3 className="section-title mb-3">Species ({fish.length})</h3>
+              {fish.length === 0 ? (
+                <p className="text-slate-400 text-sm">No fish species in this tank.</p>
+              ) : (
+                <div className="space-y-2">
                   {fish.map((f) => f && (
                     <div key={f.id} className="flex items-start gap-3 p-3 bg-slate-50 rounded-xl">
                       <span className="text-2xl">{f.emoji}</span>
@@ -368,12 +531,13 @@ export default function TankDetail() {
               )}
             </div>
 
+            {/* Plants */}
             <div className="card">
               <h3 className="section-title mb-3">Plants ({plants.length})</h3>
               {plants.length === 0 ? (
-                <p className="text-slate-400 text-sm">No plants added to this tank.</p>
+                <p className="text-slate-400 text-sm">No plants in this tank.</p>
               ) : (
-                <div className="space-y-3">
+                <div className="space-y-2">
                   {plants.map((p) => p && (
                     <div key={p.id} className="flex items-start gap-3 p-3 bg-slate-50 rounded-xl">
                       <span className="text-2xl">{p.emoji}</span>
@@ -402,6 +566,170 @@ export default function TankDetail() {
                 </div>
               )}
             </div>
+          </div>
+        )}
+
+        {/* Tab: Feeding */}
+        {activeTab === 'feeding' && (
+          <div className="space-y-4">
+            {/* Schedules */}
+            <div className="card">
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="section-title">Feeding Schedules ({feedingSchedules.length})</h3>
+                <button onClick={() => setShowAddSchedule(!showAddSchedule)} className="btn-primary text-xs py-1.5">
+                  <PlusIcon className="w-3.5 h-3.5" />
+                  Add Schedule
+                </button>
+              </div>
+
+              {showAddSchedule && (
+                <form
+                  className="bg-slate-50 rounded-xl p-4 mb-4 space-y-3"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    addFeedingSchedule({ ...scheduleForm, tankId: tank.id });
+                    setScheduleForm({ foodType: '', amount: '', timesPerDay: 2, notes: '' });
+                    setShowAddSchedule(false);
+                  }}
+                >
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-500 mb-1">Food Type *</label>
+                      <input
+                        required
+                        type="text"
+                        value={scheduleForm.foodType}
+                        onChange={(e) => setScheduleForm((p) => ({ ...p, foodType: e.target.value }))}
+                        placeholder="e.g. Flake, Pellet, Frozen"
+                        className="input text-sm"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-500 mb-1">Amount</label>
+                      <input
+                        type="text"
+                        value={scheduleForm.amount}
+                        onChange={(e) => setScheduleForm((p) => ({ ...p, amount: e.target.value }))}
+                        placeholder="e.g. A pinch"
+                        className="input text-sm"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-500 mb-1">Times Per Day</label>
+                      <input
+                        type="number"
+                        min={1}
+                        max={6}
+                        value={scheduleForm.timesPerDay}
+                        onChange={(e) => setScheduleForm((p) => ({ ...p, timesPerDay: parseInt(e.target.value) || 1 }))}
+                        className="input text-sm"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-500 mb-1">Notes</label>
+                      <input
+                        type="text"
+                        value={scheduleForm.notes}
+                        onChange={(e) => setScheduleForm((p) => ({ ...p, notes: e.target.value }))}
+                        placeholder="Optional"
+                        className="input text-sm"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex gap-2">
+                    <button type="submit" className="btn-primary text-sm">Add Schedule</button>
+                    <button type="button" onClick={() => setShowAddSchedule(false)} className="btn-secondary text-sm">Cancel</button>
+                  </div>
+                </form>
+              )}
+
+              {feedingSchedules.length === 0 ? (
+                <p className="text-slate-400 text-sm">No feeding schedules set up.</p>
+              ) : (
+                <div className="space-y-2">
+                  {feedingSchedules.map((s) => (
+                    <div key={s.id} className="flex items-center gap-3 p-3 bg-slate-50 rounded-xl">
+                      <span className="text-xl">🍽️</span>
+                      <div className="flex-1">
+                        <p className="font-semibold text-slate-800 text-sm">{s.foodType}</p>
+                        <p className="text-xs text-slate-500">
+                          {s.amount && `${s.amount} · `}
+                          {s.timesPerDay}× per day
+                          {s.notes && ` · ${s.notes}`}
+                        </p>
+                      </div>
+                      <button
+                        onClick={() => logFeeding({
+                          tankId: tank.id,
+                          timestamp: new Date().toISOString(),
+                          foodType: s.foodType,
+                          amount: s.amount,
+                          notes: '',
+                        })}
+                        className="text-xs bg-emerald-500 hover:bg-emerald-400 text-white px-3 py-1.5 rounded-lg font-semibold transition-colors shrink-0"
+                      >
+                        Log Fed
+                      </button>
+                      <button
+                        onClick={() => deleteFeedingSchedule(s.id)}
+                        className="text-slate-300 hover:text-red-400 transition-colors p-1"
+                      >
+                        <TrashIcon className="w-4 h-4" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Quick log */}
+            <div className="card">
+              <h3 className="section-title mb-3">Quick Log Feeding</h3>
+              <form
+                className="flex gap-2"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const fd = new FormData(e.currentTarget);
+                  const foodType = fd.get('foodType') as string;
+                  if (!foodType.trim()) return;
+                  logFeeding({
+                    tankId: tank.id,
+                    timestamp: new Date().toISOString(),
+                    foodType,
+                    amount: fd.get('amount') as string || '',
+                    notes: '',
+                  });
+                  (e.target as HTMLFormElement).reset();
+                }}
+              >
+                <input name="foodType" type="text" placeholder="Food type" className="input text-sm flex-1" required />
+                <input name="amount" type="text" placeholder="Amount" className="input text-sm w-24" />
+                <button type="submit" className="btn-primary text-sm shrink-0">Log</button>
+              </form>
+            </div>
+
+            {/* Feeding history */}
+            {feedingLogs.length > 0 && (
+              <div className="card p-0 overflow-hidden">
+                <div className="px-5 py-4 border-b border-slate-100">
+                  <h3 className="section-title">Feeding History</h3>
+                </div>
+                <div className="divide-y divide-slate-50">
+                  {feedingLogs.slice(0, 20).map((log) => (
+                    <div key={log.id} className="flex items-center gap-3 px-5 py-3">
+                      <span className="text-base">🍽️</span>
+                      <div className="flex-1">
+                        <p className="text-sm font-medium text-slate-700">{log.foodType}</p>
+                        {log.amount && <p className="text-xs text-slate-400">{log.amount}</p>}
+                      </div>
+                      <p className="text-xs text-slate-400 shrink-0">
+                        {format(parseISO(log.timestamp), 'MMM d, h:mm a')}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>

@@ -3,8 +3,8 @@ import Sidebar from './Sidebar';
 import {
   HomeIcon,
   WrenchScrewdriverIcon,
-  BookOpenIcon,
-  ChartBarIcon,
+  SparklesIcon,
+  WrenchIcon,
   Cog6ToothIcon,
 } from '@heroicons/react/24/outline';
 import { useStore } from '../store';
@@ -12,8 +12,8 @@ import { useStore } from '../store';
 const MOBILE_NAV = [
   { to: '/dashboard', label: 'Home', icon: HomeIcon },
   { to: '/maintenance', label: 'Tasks', icon: WrenchScrewdriverIcon },
-  { to: '/database', label: 'Database', icon: BookOpenIcon },
-  { to: '/analytics', label: 'Charts', icon: ChartBarIcon },
+  { to: '/equipment', label: 'Equipment', icon: WrenchIcon },
+  { to: '/ai', label: 'AI', icon: SparklesIcon },
   { to: '/settings', label: 'Settings', icon: Cog6ToothIcon },
 ];
 

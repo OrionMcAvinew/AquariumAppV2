@@ -8,14 +8,18 @@ import {
   Cog6ToothIcon,
   PlusIcon,
   BellIcon,
+  SparklesIcon,
+  WrenchIcon,
 } from '@heroicons/react/24/outline';
 import { useStore } from '../store';
 
 const NAV_ITEMS = [
   { to: '/dashboard', label: 'Dashboard', icon: HomeIcon },
   { to: '/maintenance', label: 'Maintenance', icon: WrenchScrewdriverIcon },
+  { to: '/equipment', label: 'Equipment', icon: WrenchIcon },
   { to: '/database', label: 'Database', icon: BookOpenIcon },
   { to: '/analytics', label: 'Analytics', icon: ChartBarIcon },
+  { to: '/ai', label: 'AI Advisor', icon: SparklesIcon },
   { to: '/settings', label: 'Settings', icon: Cog6ToothIcon },
 ];
 

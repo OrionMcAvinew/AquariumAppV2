@@ -85,7 +85,7 @@ export default function TankCard({ tank, latestReading }: Props) {
                         status === 'critical' && 'text-red-600',
                         status === 'unknown' && 'text-slate-600',
                       )}>
-                        {value.toFixed(param === 'ph' || param === 'salinity' ? 2 : 1)}{unit}
+                        {value.toFixed((['ph', 'salinity'] as string[]).includes(param) ? 2 : 1)}{unit}
                       </p>
                     </div>
                   );

@@ -9,6 +9,8 @@ import Maintenance from './pages/Maintenance';
 import Database from './pages/Database';
 import Analytics from './pages/Analytics';
 import Settings from './pages/Settings';
+import AIAdvisor from './pages/AIAdvisor';
+import Equipment from './pages/Equipment';
 import { useStore } from './store';
 
 export default function App() {
@@ -31,8 +33,10 @@ export default function App() {
           <Route path="tanks/:tankId" element={<TankDetail />} />
           <Route path="tanks/:tankId/log" element={<AddParameter />} />
           <Route path="maintenance" element={<Maintenance />} />
+          <Route path="equipment" element={<Equipment />} />
           <Route path="database" element={<Database />} />
           <Route path="analytics" element={<Analytics />} />
+          <Route path="ai" element={<AIAdvisor />} />
           <Route path="settings" element={<Settings />} />
         </Route>
       </Routes>
