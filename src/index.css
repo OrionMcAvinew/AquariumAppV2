@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-slate-100;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-400;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white rounded-2xl shadow-sm border border-slate-100 p-5;
+  }
+
+  .btn-primary {
+    @apply bg-ocean-500 hover:bg-ocean-600 text-white font-semibold px-4 py-2 rounded-xl transition-colors duration-150 inline-flex items-center gap-2;
+  }
+
+  .btn-secondary {
+    @apply bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-4 py-2 rounded-xl transition-colors duration-150 inline-flex items-center gap-2;
+  }
+
+  .btn-danger {
+    @apply bg-red-500 hover:bg-red-600 text-white font-semibold px-4 py-2 rounded-xl transition-colors duration-150 inline-flex items-center gap-2;
+  }
+
+  .badge-safe {
+    @apply bg-emerald-100 text-emerald-800 text-xs font-semibold px-2.5 py-0.5 rounded-full;
+  }
+
+  .badge-warning {
+    @apply bg-amber-100 text-amber-800 text-xs font-semibold px-2.5 py-0.5 rounded-full;
+  }
+
+  .badge-critical {
+    @apply bg-red-100 text-red-800 text-xs font-semibold px-2.5 py-0.5 rounded-full;
+  }
+
+  .badge-unknown {
+    @apply bg-slate-100 text-slate-600 text-xs font-semibold px-2.5 py-0.5 rounded-full;
+  }
+
+  .input-field {
+    @apply w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-ocean-400 focus:border-transparent transition-all bg-white;
+  }
+
+  .label {
+    @apply block text-sm font-semibold text-slate-700 mb-1.5;
+  }
+
+  .page-title {
+    @apply text-2xl font-bold text-slate-900;
+  }
+
+  .section-title {
+    @apply text-lg font-semibold text-slate-800;
+  }
+}
+
+/* Gradient tank card backgrounds */
+.tank-gradient-freshwater {
+  background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 50%, #14b8a6 100%);
+}
+
+.tank-gradient-saltwater {
+  background: linear-gradient(135deg, #1e40af 0%, #2563eb 50%, #0ea5e9 100%);
+}
+
+.tank-gradient-reef {
+  background: linear-gradient(135deg, #7c3aed 0%, #2563eb 50%, #0891b2 100%);
+}
+
+.tank-gradient-planted {
+  background: linear-gradient(135deg, #059669 0%, #0d9488 50%, #0ea5e9 100%);
+}
+
+.tank-gradient-brackish {
+  background: linear-gradient(135deg, #b45309 0%, #0284c7 100%);
+}
+
+/* Water animation for health score */
+@keyframes waterRise {
+  from { height: 0%; }
+  to { height: var(--target-height); }
+}
+
+.water-animation {
+  animation: waterRise 1s ease-out forwards;
+}
