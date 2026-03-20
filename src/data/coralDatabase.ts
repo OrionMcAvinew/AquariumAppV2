@@ -405,6 +405,102 @@ export const CORAL_DATABASE: Coral[] = [
     emoji: '⚔️',
   },
   {
+    id: 'zoa-nuclear-green',
+    name: 'Nuclear Green Zoas',
+    scientificName: 'Zoanthus sp.',
+    coralType: 'soft',
+    difficulty: 'beginner',
+    lightRequirement: 'medium',
+    flowRequirement: 'medium',
+    placement: 'middle',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'Intensely fluorescent lime-green polyps that almost appear to glow under any lighting. One of the most eye-catching single-color morphs in the hobby.',
+    careNotes:
+      'Fast spreader — can carpet a rock quickly. Florescence is best under blue-heavy lighting. Very forgiving of parameter swings. A great "filler" zoa to add movement and color to empty rock.',
+    emoji: '☢️',
+  },
+  {
+    id: 'zoa-ice-torchys',
+    name: "Ice Torch Zoas",
+    scientificName: 'Zoanthus sp.',
+    coralType: 'soft',
+    difficulty: 'beginner',
+    lightRequirement: 'medium',
+    flowRequirement: 'medium',
+    placement: 'middle',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'Cool-toned morph with a pale blue-white skirt, icy blue ring, and white center — one of the few truly "cold" colored zoa morphs available.',
+    careNotes:
+      'Moderate grower. Blue and white tones are most vivid under blue-dominant spectrum. Avoid high nitrates which cause pigment loss. A popular choice for blue-themed reef builds.',
+    emoji: '🧊',
+  },
+  {
+    id: 'zoa-tubbs-blue',
+    name: "Tubb's Blue Zoas",
+    scientificName: 'Zoanthus sp.',
+    coralType: 'soft',
+    difficulty: 'beginner',
+    lightRequirement: 'medium',
+    flowRequirement: 'medium',
+    placement: 'middle',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'Deep royal-blue skirt with a contrasting lighter blue or white center. One of the most sought-after true-blue zoa morphs and a staple of collector tanks.',
+    careNotes:
+      'Tends to grow slower than green or brown morphs. Water clarity and low nutrients preserve the blue pigmentation. Often fragged and traded at premium; protect from faster-spreading neighbors.',
+    emoji: '💙',
+  },
+  {
+    id: 'zoa-whammin-watermelon',
+    name: 'Whammin Watermelon Zoas',
+    scientificName: 'Zoanthus sp.',
+    coralType: 'soft',
+    difficulty: 'beginner',
+    lightRequirement: 'medium',
+    flowRequirement: 'medium',
+    placement: 'middle',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'Green-striped outer skirt with a pink-to-red center that mimics the colors of a watermelon. A fun, bold morph that is instantly recognizable.',
+    careNotes:
+      'Hardy and reliable spreader. The pink center is most vibrant under mixed white/blue lighting. One of the easier premium morphs to keep — a good starting point for named morph collecting.',
+    emoji: '🍉',
+  },
+  {
+    id: 'zoa-candy-apple-reds',
+    name: 'Candy Apple Red Zoas',
+    scientificName: 'Zoanthus sp.',
+    coralType: 'soft',
+    difficulty: 'beginner',
+    lightRequirement: 'medium',
+    flowRequirement: 'medium',
+    placement: 'middle',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'Solid deep-red polyps with a slightly orange hue — like a lacquered candy apple. One of the richest red morphs available in the hobby.',
+    careNotes:
+      'Red pigments can fade under very high PAR — moderate lighting is ideal. Spreads at a medium pace. Visually pairs well with green morphs for high contrast. Palytoxin precautions apply.',
+    emoji: '🍎',
+  },
+  {
+    id: 'zoa-purple-monster',
+    name: 'Purple Monster Zoas',
+    scientificName: 'Zoanthus sp.',
+    coralType: 'soft',
+    difficulty: 'beginner',
+    lightRequirement: 'medium',
+    flowRequirement: 'medium',
+    placement: 'middle',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'Rich purple skirt with a contrasting green center — a large-polyped morph that makes a dramatic statement in any reef tank.',
+    careNotes:
+      'Slower grower befitting its large polyp size. Purple color is most vibrant under mixed spectrum lighting. Feeds well on broadcast reef foods, which speeds colony growth noticeably.',
+    emoji: '🟣',
+  },
+  {
     id: 'palythoa-grandis',
     name: 'Grandis Palythoa',
     scientificName: 'Palythoa grandis',
@@ -419,6 +515,22 @@ export const CORAL_DATABASE: Coral[] = [
     careNotes:
       'CAUTION: Contains high concentrations of palytoxin — always use gloves and eye protection. Tolerates low light very well. Spreads across rock surfaces by runners. Extremely durable once established.',
     emoji: '🟤',
+  },
+  {
+    id: 'sinularia',
+    name: 'Finger Leather Coral',
+    scientificName: 'Sinularia sp.',
+    coralType: 'soft',
+    difficulty: 'beginner',
+    lightRequirement: 'medium',
+    flowRequirement: 'medium',
+    placement: 'middle',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'Upright finger-like projections that sway with the current, coloured cream to yellow-tan. One of the most common and recognizable soft corals in the hobby.',
+    careNotes:
+      'Extremely hardy — often recommended as a first coral. Periodically retracts and sheds a waxy film (normal behaviour). Releases terpenoids that can irritate sensitive corals; run carbon if placing near LPS or SPS.',
+    emoji: '🫵',
   },
   {
     id: 'devil-finger',
@@ -532,6 +644,22 @@ export const CORAL_DATABASE: Coral[] = [
     careNotes:
       'Aggressive — releases long sweeper tentacles at night that can sting neighbors 3–4 inches away. Give adequate spacing. Tolerates moderate to high lighting. Hardy once established; target feed monthly.',
     emoji: '🔴',
+  },
+  {
+    id: 'favia-coral',
+    name: 'Favia Brain Coral',
+    scientificName: 'Favia sp.',
+    coralType: 'lps',
+    difficulty: 'beginner',
+    lightRequirement: 'medium',
+    flowRequirement: 'medium',
+    placement: 'bottom',
+    aggressiveness: 'aggressive',
+    description:
+      'Classic dome-shaped brain coral with tightly packed corallites in bold color combinations — greens, reds, and multicolors are common. A staple of the reef hobby.',
+    careNotes:
+      'Extends long mesenterial filaments at night to digest or sting neighboring corals — give 4–6 inch clearance. Very tolerant of varied lighting and flow. One of the hardier LPS brain corals available.',
+    emoji: '🧠',
   },
   {
     id: 'lobo-coral',

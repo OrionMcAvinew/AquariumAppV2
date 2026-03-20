@@ -343,6 +343,67 @@ export const INVERTEBRATE_DATABASE: Invertebrate[] = [
     emoji: '⭐',
   },
   {
+    id: 'bumblebee-shrimp',
+    name: 'Bumblebee Shrimp',
+    scientificName: 'Gnathophyllum americanum',
+    invertType: 'shrimp',
+    tankType: ['saltwater', 'reef'],
+    difficulty: 'intermediate',
+    minTankSize: 10,
+    temperatureRange: [72, 78],
+    description:
+      'Tiny, boldly striped white-and-brown shrimp that feed on the tube feet of echinoderms such as sea urchins and starfish. One of the most striking nano reef invertebrates.',
+    careNotes:
+      'Do not keep with urchins or starfish — they will be harmed. Best in a species-only nano tank or with fish only. Requires pristine water quality. Feed with meaty microfoods if no echinoderms are present.',
+    emoji: '🐝',
+  },
+  {
+    id: 'harlequin-shrimp',
+    name: 'Harlequin Shrimp',
+    scientificName: 'Hymenocera picta',
+    invertType: 'shrimp',
+    tankType: ['saltwater', 'reef'],
+    difficulty: 'advanced',
+    minTankSize: 20,
+    temperatureRange: [72, 78],
+    description:
+      'Stunning white shrimp with large blue-edged pink spots. One of the most beautiful marine invertebrates — and one of the most specialized, feeding exclusively on starfish.',
+    careNotes:
+      'SPECIALIST FEEDER: requires a steady supply of starfish (chocolate chip, sand sifting, or Linckia). Usually kept as a mated pair. Not reef-safe with any starfish. Keep species-only; their beauty commands a dedicated setup.',
+    emoji: '🎭',
+  },
+  {
+    id: 'porcelain-crab',
+    name: 'Porcelain Anemone Crab',
+    scientificName: 'Neopetrolisthes ohshimai',
+    invertType: 'crab',
+    tankType: ['saltwater', 'reef'],
+    difficulty: 'beginner',
+    minTankSize: 10,
+    temperatureRange: [72, 78],
+    description:
+      'Flat, white-and-red spotted crabs that live symbiotically within anemones, using large fan-like appendages to filter food from the water. Completely reef-safe and fascinating to watch.',
+    careNotes:
+      'Best kept with a host anemone (bubble tip, carpet, or sebae). Will coexist peacefully with clownfish. Filter-feeds on plankton and particulate food — broadcast feeding helps. Extremely docile and reef-safe.',
+    cleaningRole: 'Filter-feeder; removes suspended organics and fine particulate from water column.',
+    emoji: '🦀',
+  },
+  {
+    id: 'mantis-shrimp',
+    name: 'Peacock Mantis Shrimp',
+    scientificName: 'Odontodactylus scyllarus',
+    invertType: 'other',
+    tankType: ['saltwater'],
+    difficulty: 'intermediate',
+    minTankSize: 30,
+    temperatureRange: [72, 80],
+    description:
+      'Spectacular stomatopod with iridescent green, red, and blue coloring. Highly intelligent, with the most complex eyes in the animal kingdom. A species-only display animal.',
+    careNotes:
+      'SPECIES ONLY — will kill all fish, invertebrates, and corals. Can break aquarium glass with its powerful strike if housed in thin tanks. Requires a species tank with a secure lid. Despite their aggression, they are personable and recognize their owners.',
+    emoji: '🦐',
+  },
+  {
     id: 'sand-sifting-star',
     name: 'Sand Sifting Starfish',
     scientificName: 'Astropecten polycanthus',
