@@ -343,6 +343,83 @@ export const INVERTEBRATE_DATABASE: Invertebrate[] = [
     emoji: '⭐',
   },
   {
+    id: 'sand-sifting-star',
+    name: 'Sand Sifting Starfish',
+    scientificName: 'Astropecten polycanthus',
+    invertType: 'starfish',
+    tankType: ['saltwater', 'reef'],
+    difficulty: 'intermediate',
+    minTankSize: 30,
+    temperatureRange: [72, 78],
+    description:
+      'Cream and tan patterned starfish that spends most of its time buried beneath the sandbed, sifting through substrate for worms, small mollusks, and organic matter.',
+    careNotes:
+      'Needs a deep (3"+) sand bed to burrow in — will slowly starve in tanks with thin substrate. Can deplete sandbed microfauna over time in small tanks; best in larger systems. Drip-acclimate carefully. Do not expose to air.',
+    cleaningRole: 'Deep sandbed sifter — turns substrate and consumes buried detritus and pests.',
+    emoji: '🌟',
+  },
+  {
+    id: 'fiddler-crab',
+    name: 'Fiddler Crab',
+    scientificName: 'Uca sp.',
+    invertType: 'crab',
+    tankType: ['brackish'],
+    difficulty: 'beginner',
+    minTankSize: 10,
+    temperatureRange: [72, 84],
+    description:
+      'Semi-terrestrial crabs recognizable by the male\'s one oversized "fiddle" claw used for display and combat. An entertaining and personable brackish species.',
+    careNotes:
+      'Requires both water and dry land — a paludarium or low-water brackish setup with a beach area is ideal. Feed sinking pellets and blanched vegetables. Males will fight; keep one male per tank.',
+    emoji: '🎻',
+  },
+  {
+    id: 'red-claw-crab',
+    name: 'Red Claw Crab',
+    scientificName: 'Perisesarma bidens',
+    invertType: 'crab',
+    tankType: ['brackish'],
+    difficulty: 'beginner',
+    minTankSize: 10,
+    temperatureRange: [70, 82],
+    description:
+      'Small, vivid red-clawed crabs that thrive in brackish paludarium setups with access to land. Active and inquisitive — one of the most personality-filled invertebrates.',
+    careNotes:
+      'Omnivorous — will eat plants, fish, and other invertebrates if given the chance. Best kept species-only or with fast-moving fish. Needs brackish water (SG 1.005–1.010) and a land area. Escape artists — secure the lid.',
+    emoji: '🔴',
+  },
+  {
+    id: 'dwarf-crayfish',
+    name: 'Dwarf Crayfish (CPO)',
+    scientificName: 'Cambarellus patzcuarensis',
+    invertType: 'other',
+    tankType: ['freshwater'],
+    difficulty: 'beginner',
+    minTankSize: 10,
+    temperatureRange: [65, 77],
+    description:
+      'Tiny orange crayfish (CPO = Cambarellus Patzcuarensis Orange) that stay under 2 inches. Unlike large crayfish, they are mostly safe with small fish and shrimp.',
+    careNotes:
+      'One of the few crayfish suitable for community tanks. Provide caves and hiding spots — they will claim a territory. May occasionally grab a slow fish; avoid keeping with very small or slow-moving fish. Feed sinking pellets and blanched veg.',
+    emoji: '🦞',
+  },
+  {
+    id: 'malaysian-trumpet-snail',
+    name: 'Malaysian Trumpet Snail',
+    scientificName: 'Melanoides tuberculata',
+    invertType: 'snail',
+    tankType: ['freshwater', 'planted'],
+    difficulty: 'beginner',
+    minTankSize: 5,
+    temperatureRange: [68, 84],
+    description:
+      'Elongated, cone-shaped freshwater snails that spend the day buried and emerge at night to scavenge. Often considered a pest, but provide genuine benefits when population is managed.',
+    careNotes:
+      'Populations can explode if the tank is overfed. Controlled numbers (10–20 per 10 gal) are beneficial — excess food triggers exponential growth. Assassin snails provide natural population control. Aerating burrowing prevents sandbed anaerobic pockets.',
+    cleaningRole: 'Nocturnal sandbed aerator; consumes detritus and uneaten food.',
+    emoji: '🌪️',
+  },
+  {
     id: 'chocolate-chip-star',
     name: 'Chocolate Chip Starfish',
     scientificName: 'Protoreaster nodosus',

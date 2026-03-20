@@ -309,6 +309,102 @@ export const CORAL_DATABASE: Coral[] = [
     emoji: '☀️',
   },
   {
+    id: 'zoa-king-midas',
+    name: 'King Midas Zoas',
+    scientificName: 'Zoanthus sp.',
+    coralType: 'soft',
+    difficulty: 'beginner',
+    lightRequirement: 'medium',
+    flowRequirement: 'medium',
+    placement: 'middle',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'All-gold zoa morph with rich yellow-to-orange coloring across the entire polyp. Named for the mythical king whose touch turned everything to gold.',
+    careNotes:
+      'Color is most saturated under moderate to high PAR. One of the faster-spreading gold morphs. Keep on a separate frag plug if you want to prevent it from overrunning other zoas.',
+    emoji: '👑',
+  },
+  {
+    id: 'zoa-people-eater',
+    name: "People Eater Zoas",
+    scientificName: 'Zoanthus sp.',
+    coralType: 'soft',
+    difficulty: 'beginner',
+    lightRequirement: 'medium',
+    flowRequirement: 'medium',
+    placement: 'middle',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'Dark purple-to-black skirt with a vivid green center and bright orange mouth. One of the most striking high-contrast zoa morphs in the hobby.',
+    careNotes:
+      'Slower grower than simpler morphs — patience pays off. Stable parameters and occasional feeding keep the color vivid. Highly sought-after; colonies command a premium so frag carefully.',
+    emoji: '😈',
+  },
+  {
+    id: 'zoa-gorilla-nipples',
+    name: 'Gorilla Nipple Zoas',
+    scientificName: 'Zoanthus sp.',
+    coralType: 'soft',
+    difficulty: 'beginner',
+    lightRequirement: 'medium',
+    flowRequirement: 'medium',
+    placement: 'middle',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'Chunky, large-bodied zoa with a brownish-pink skirt and bright orange-red center. Named for their distinctive bumpy, rounded polyp shape.',
+    careNotes:
+      'Very hardy and fast-spreading. One of the most forgiving named morphs — tolerates a wider range of lighting and flow than premium morphs. Great gateway into the zoa collecting hobby.',
+    emoji: '🦍',
+  },
+  {
+    id: 'zoa-pink-panther',
+    name: 'Pink Panther Zoas',
+    scientificName: 'Zoanthus sp.',
+    coralType: 'soft',
+    difficulty: 'beginner',
+    lightRequirement: 'medium',
+    flowRequirement: 'medium',
+    placement: 'middle',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'Soft pink to rose-colored polyps with a lighter pink or white center. Subtle and elegant compared to flashier morphs — popular for pastel-themed reef builds.',
+    careNotes:
+      'Moderate grower. Colors are best under blue-heavy or mixed lighting. Works well as a carpet zoa between more colorful morphs. Palytoxin precautions apply as with all zoas.',
+    emoji: '🌸',
+  },
+  {
+    id: 'zoa-armor-of-god',
+    name: 'Armor of God Zoas',
+    scientificName: 'Zoanthus sp.',
+    coralType: 'soft',
+    difficulty: 'beginner',
+    lightRequirement: 'medium',
+    flowRequirement: 'medium',
+    placement: 'middle',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'Bold morph with a metallic blue-green skirt, orange ring, and green center. Under actinic lighting the metallic shimmer is extraordinary — a true showpiece morph.',
+    careNotes:
+      'Slower to spread than many morphs but worth the wait. High-quality water and stable parameters keep the metallic sheen vivid. Fragging produces premium trade value.',
+    emoji: '🛡️',
+  },
+  {
+    id: 'zoa-darth-maul',
+    name: 'Darth Maul Zoas',
+    scientificName: 'Zoanthus sp.',
+    coralType: 'soft',
+    difficulty: 'beginner',
+    lightRequirement: 'medium',
+    flowRequirement: 'medium',
+    placement: 'middle',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'Red-and-black morph with a vivid blood-red skirt and contrasting dark center — directly inspired by the Star Wars villain. One of the most recognizable named morphs in the hobby.',
+    careNotes:
+      'Hardy and consistent spreader. Red pigmentation is most intense under moderate white-blue spectrum lighting. A popular morph for Star Wars-themed reef builds and new collectors alike.',
+    emoji: '⚔️',
+  },
+  {
     id: 'palythoa-grandis',
     name: 'Grandis Palythoa',
     scientificName: 'Palythoa grandis',
@@ -406,6 +502,22 @@ export const CORAL_DATABASE: Coral[] = [
     emoji: '🥏',
   },
   {
+    id: 'goniopora',
+    name: 'Goniopora (Flowerpot Coral)',
+    scientificName: 'Goniopora stokesi',
+    coralType: 'lps',
+    difficulty: 'intermediate',
+    lightRequirement: 'medium',
+    flowRequirement: 'low',
+    placement: 'bottom',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'Masses of long-stalked polyps that extend dramatically during the day, giving the colony a lush, flower-garden appearance. Green and brown morphs are most common.',
+    careNotes:
+      'Historically finicky but captive-raised specimens are much hardier. Needs low, indirect flow — direct current damages extending polyps. Benefits greatly from weekly target feeding with copepods or reef roids.',
+    emoji: '🌸',
+  },
+  {
     id: 'war-coral',
     name: 'War Coral',
     scientificName: 'Favites sp.',
@@ -501,6 +613,22 @@ export const CORAL_DATABASE: Coral[] = [
     careNotes:
       'One of the more forgiving branching SPS corals — a good entry point into keeping SPS. Tolerates slightly elevated nutrients compared to Acropora. Still requires stable alkalinity and calcium. High, varied flow is important.',
     emoji: '🌵',
+  },
+  {
+    id: 'acropora-tenuis',
+    name: 'Acropora Tenuis',
+    scientificName: 'Acropora tenuis',
+    coralType: 'sps',
+    difficulty: 'advanced',
+    lightRequirement: 'very-high',
+    flowRequirement: 'high',
+    placement: 'top',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'A table or branching Acropora with thin, uniform branches and vivid coloration — available in blue, yellow, and green morphs. Highly collectible and a flagship SPS species.',
+    careNotes:
+      'Extremely parameter-sensitive. Requires NSW-level water quality. Dose two-part or run a calcium reactor. Any brown-out is usually a sign of high nutrients or insufficient light. High, chaotic flow is essential.',
+    emoji: '🌊',
   },
   {
     id: 'pocillopora',
