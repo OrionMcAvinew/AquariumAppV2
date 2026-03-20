@@ -1,17 +1,39 @@
 import { useState } from 'react';
 import { FISH_DATABASE } from '../data/fishDatabase';
 import { PLANT_DATABASE } from '../data/plantDatabase';
-import { Fish, Plant, Difficulty } from '../types';
+import { CORAL_DATABASE } from '../data/coralDatabase';
+import { INVERTEBRATE_DATABASE } from '../data/invertebrateDatabase';
+import { Fish, Plant, Coral, Invertebrate, Difficulty } from '../types';
 import { MagnifyingGlassIcon, BookOpenIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 
-type ActiveTab = 'fish' | 'plants';
+type ActiveTab = 'fish' | 'plants' | 'corals' | 'inverts';
 
 const DIFFICULTY_COLORS: Record<Difficulty, string> = {
   beginner: 'bg-emerald-100 text-emerald-700',
   intermediate: 'bg-amber-100 text-amber-700',
   advanced: 'bg-red-100 text-red-700',
 };
+
+function SpeciesImage({ src, alt, emoji, className }: { src?: string; alt: string; emoji: string; className?: string }) {
+  const [failed, setFailed] = useState(false);
+
+  if (src && !failed) {
+    return (
+      <img
+        src={src}
+        alt={alt}
+        className={clsx('object-cover rounded-lg', className)}
+        onError={() => setFailed(true)}
+      />
+    );
+  }
+  return (
+    <span className={clsx('flex items-center justify-center text-3xl rounded-lg bg-slate-100', className)}>
+      {emoji}
+    </span>
+  );
+}
 
 function FishCard({ fish }: { fish: Fish }) {
   const [expanded, setExpanded] = useState(false);
@@ -22,7 +44,12 @@ function FishCard({ fish }: { fish: Fish }) {
       onClick={() => setExpanded(!expanded)}
     >
       <div className="flex items-start gap-3">
-        <span className="text-3xl shrink-0">{fish.emoji}</span>
+        <SpeciesImage
+          src={fish.imageUrl}
+          alt={fish.name}
+          emoji={fish.emoji}
+          className="w-14 h-14 shrink-0"
+        />
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2">
             <div>
@@ -113,10 +140,11 @@ function FishCard({ fish }: { fish: Fish }) {
 function PlantCard({ plant }: { plant: Plant }) {
   const [expanded, setExpanded] = useState(false);
 
-  const lightColor = {
+  const lightColor: Record<string, string> = {
     low: 'bg-slate-100 text-slate-600',
     medium: 'bg-yellow-100 text-yellow-700',
     high: 'bg-orange-100 text-orange-700',
+    'very-high': 'bg-red-100 text-red-700',
   };
 
   const growthColor = {
@@ -131,7 +159,12 @@ function PlantCard({ plant }: { plant: Plant }) {
       onClick={() => setExpanded(!expanded)}
     >
       <div className="flex items-start gap-3">
-        <span className="text-3xl shrink-0">{plant.emoji}</span>
+        <SpeciesImage
+          src={plant.imageUrl}
+          alt={plant.name}
+          emoji={plant.emoji}
+          className="w-14 h-14 shrink-0"
+        />
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2">
             <div>
@@ -185,11 +218,164 @@ function PlantCard({ plant }: { plant: Plant }) {
   );
 }
 
+const CORAL_TYPE_COLORS: Record<Coral['coralType'], string> = {
+  soft: 'bg-purple-100 text-purple-700',
+  lps: 'bg-orange-100 text-orange-700',
+  sps: 'bg-pink-100 text-pink-700',
+};
+
+const AGGRESSION_COLORS: Record<Coral['aggressiveness'], string> = {
+  peaceful: 'bg-emerald-100 text-emerald-700',
+  'semi-aggressive': 'bg-amber-100 text-amber-700',
+  aggressive: 'bg-red-100 text-red-700',
+};
+
+function CoralCard({ coral }: { coral: Coral }) {
+  const [expanded, setExpanded] = useState(false);
+
+  const lightColor: Record<string, string> = {
+    low: 'bg-slate-100 text-slate-600',
+    medium: 'bg-yellow-100 text-yellow-700',
+    high: 'bg-orange-100 text-orange-700',
+    'very-high': 'bg-red-100 text-red-700',
+  };
+
+  return (
+    <div
+      className={clsx('card cursor-pointer hover:shadow-md transition-all duration-200', expanded && 'ring-1 ring-purple-200')}
+      onClick={() => setExpanded(!expanded)}
+    >
+      <div className="flex items-start gap-3">
+        <SpeciesImage
+          src={coral.imageUrl}
+          alt={coral.name}
+          emoji={coral.emoji}
+          className="w-14 h-14 shrink-0"
+        />
+        <div className="flex-1 min-w-0">
+          <div className="flex items-start justify-between gap-2">
+            <div>
+              <h3 className="font-bold text-slate-900">{coral.name}</h3>
+              <p className="text-xs text-slate-400 italic">{coral.scientificName}</p>
+            </div>
+            <span className={clsx('text-xs px-2 py-1 rounded-full font-semibold shrink-0 uppercase', CORAL_TYPE_COLORS[coral.coralType])}>
+              {coral.coralType}
+            </span>
+          </div>
+
+          <div className="flex flex-wrap gap-2 mt-2">
+            <span className={clsx('text-xs px-2 py-0.5 rounded-full font-medium', DIFFICULTY_COLORS[coral.difficulty])}>
+              {coral.difficulty}
+            </span>
+            <span className={clsx('text-xs px-2 py-0.5 rounded-full font-medium', lightColor[coral.lightRequirement])}>
+              {coral.lightRequirement} light
+            </span>
+            <span className="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full font-medium">
+              {coral.flowRequirement} flow
+            </span>
+            <span className={clsx('text-xs px-2 py-0.5 rounded-full font-medium capitalize', AGGRESSION_COLORS[coral.aggressiveness])}>
+              {coral.aggressiveness}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {expanded && (
+        <div className="mt-4 pt-4 border-t border-slate-100 space-y-3">
+          <p className="text-sm text-slate-600">{coral.description}</p>
+          <div className="bg-purple-50 rounded-xl p-3">
+            <p className="text-xs font-semibold text-purple-700 mb-1">💡 Care Notes</p>
+            <p className="text-sm text-slate-600">{coral.careNotes}</p>
+          </div>
+          <div className="bg-slate-50 rounded-xl p-3">
+            <p className="text-xs text-slate-400 font-medium">Placement</p>
+            <p className="text-sm font-semibold text-slate-700 mt-0.5 capitalize">{coral.placement} of tank</p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+const INVERT_TYPE_COLORS: Record<Invertebrate['invertType'], string> = {
+  shrimp: 'bg-pink-100 text-pink-700',
+  snail: 'bg-amber-100 text-amber-700',
+  crab: 'bg-orange-100 text-orange-700',
+  urchin: 'bg-purple-100 text-purple-700',
+  starfish: 'bg-blue-100 text-blue-700',
+  other: 'bg-slate-100 text-slate-600',
+};
+
+function InvertCard({ invert }: { invert: Invertebrate }) {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <div
+      className={clsx('card cursor-pointer hover:shadow-md transition-all duration-200', expanded && 'ring-1 ring-amber-200')}
+      onClick={() => setExpanded(!expanded)}
+    >
+      <div className="flex items-start gap-3">
+        <SpeciesImage
+          src={invert.imageUrl}
+          alt={invert.name}
+          emoji={invert.emoji}
+          className="w-14 h-14 shrink-0"
+        />
+        <div className="flex-1 min-w-0">
+          <div className="flex items-start justify-between gap-2">
+            <div>
+              <h3 className="font-bold text-slate-900">{invert.name}</h3>
+              <p className="text-xs text-slate-400 italic">{invert.scientificName}</p>
+            </div>
+            <span className={clsx('text-xs px-2 py-1 rounded-full font-semibold shrink-0 capitalize', INVERT_TYPE_COLORS[invert.invertType])}>
+              {invert.invertType}
+            </span>
+          </div>
+
+          <div className="flex flex-wrap gap-2 mt-2">
+            <span className={clsx('text-xs px-2 py-0.5 rounded-full font-medium', DIFFICULTY_COLORS[invert.difficulty])}>
+              {invert.difficulty}
+            </span>
+            <span className="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full font-medium">
+              Min {invert.minTankSize} gal
+            </span>
+            <span className="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full font-medium">
+              {invert.temperatureRange[0]}–{invert.temperatureRange[1]}°F
+            </span>
+            {invert.tankType.map((type) => (
+              <span key={type} className="text-xs bg-ocean-100 text-ocean-700 px-2 py-0.5 rounded-full font-medium capitalize">
+                {type}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {expanded && (
+        <div className="mt-4 pt-4 border-t border-slate-100 space-y-3">
+          <p className="text-sm text-slate-600">{invert.description}</p>
+          {invert.cleaningRole && (
+            <div className="bg-emerald-50 rounded-xl p-3">
+              <p className="text-xs font-semibold text-emerald-700 mb-1">🧹 Cleaning Role</p>
+              <p className="text-sm text-slate-600">{invert.cleaningRole}</p>
+            </div>
+          )}
+          <div className="bg-amber-50 rounded-xl p-3">
+            <p className="text-xs font-semibold text-amber-700 mb-1">💡 Care Notes</p>
+            <p className="text-sm text-slate-600">{invert.careNotes}</p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function Database() {
   const [activeTab, setActiveTab] = useState<ActiveTab>('fish');
   const [search, setSearch] = useState('');
   const [difficultyFilter, setDifficultyFilter] = useState<Difficulty | 'all'>('all');
   const [tankTypeFilter, setTankTypeFilter] = useState('all');
+  const [coralTypeFilter, setCoralTypeFilter] = useState<'all' | 'soft' | 'lps' | 'sps'>('all');
 
   const filteredFish = FISH_DATABASE.filter((f) => {
     const matchSearch =
@@ -209,6 +395,31 @@ export default function Database() {
     return matchSearch && matchDifficulty;
   });
 
+  const filteredCorals = CORAL_DATABASE.filter((c) => {
+    const matchSearch =
+      c.name.toLowerCase().includes(search.toLowerCase()) ||
+      c.scientificName.toLowerCase().includes(search.toLowerCase());
+    const matchDifficulty = difficultyFilter === 'all' || c.difficulty === difficultyFilter;
+    const matchType = coralTypeFilter === 'all' || c.coralType === coralTypeFilter;
+    return matchSearch && matchDifficulty && matchType;
+  });
+
+  const filteredInverts = INVERTEBRATE_DATABASE.filter((i) => {
+    const matchSearch =
+      i.name.toLowerCase().includes(search.toLowerCase()) ||
+      i.scientificName.toLowerCase().includes(search.toLowerCase());
+    const matchDifficulty = difficultyFilter === 'all' || i.difficulty === difficultyFilter;
+    const matchType = tankTypeFilter === 'all' || i.tankType.includes(tankTypeFilter as never);
+    return matchSearch && matchDifficulty && matchType;
+  });
+
+  const tabs: { id: ActiveTab; label: string; icon: string; count: number }[] = [
+    { id: 'fish', label: 'Fish', icon: '🐠', count: FISH_DATABASE.length },
+    { id: 'plants', label: 'Plants', icon: '🌿', count: PLANT_DATABASE.length },
+    { id: 'corals', label: 'Corals', icon: '🪸', count: CORAL_DATABASE.length },
+    { id: 'inverts', label: 'Inverts', icon: '🦐', count: INVERTEBRATE_DATABASE.length },
+  ];
+
   return (
     <div className="p-6 max-w-3xl mx-auto">
       {/* Header */}
@@ -218,22 +429,24 @@ export default function Database() {
           <h1 className="page-title">Database</h1>
         </div>
         <p className="text-slate-500 text-sm">
-          {FISH_DATABASE.length} fish · {PLANT_DATABASE.length} plants
+          {FISH_DATABASE.length} fish · {PLANT_DATABASE.length} plants · {CORAL_DATABASE.length} corals · {INVERTEBRATE_DATABASE.length} invertebrates
         </p>
       </div>
 
       {/* Tabs */}
       <div className="flex gap-1 bg-slate-100 p-1 rounded-xl mb-4">
-        {(['fish', 'plants'] as ActiveTab[]).map((tab) => (
+        {tabs.map((tab) => (
           <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
             className={clsx(
-              'flex-1 text-sm font-semibold py-2 rounded-lg capitalize transition-all',
-              activeTab === tab ? 'bg-white text-ocean-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'
+              'flex-1 text-xs font-semibold py-2 rounded-lg capitalize transition-all flex items-center justify-center gap-1',
+              activeTab === tab.id ? 'bg-white text-ocean-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'
             )}
           >
-            {tab === 'fish' ? '🐠' : '🌿'} {tab}
+            <span>{tab.icon}</span>
+            <span className="hidden sm:inline">{tab.label}</span>
+            <span className="text-xs opacity-60">({tab.count})</span>
           </button>
         ))}
       </div>
@@ -260,7 +473,7 @@ export default function Database() {
           <option value="intermediate">Intermediate</option>
           <option value="advanced">Advanced</option>
         </select>
-        {activeTab === 'fish' && (
+        {(activeTab === 'fish' || activeTab === 'inverts') && (
           <select
             value={tankTypeFilter}
             onChange={(e) => setTankTypeFilter(e.target.value)}
@@ -274,26 +487,41 @@ export default function Database() {
             <option value="brackish">Brackish</option>
           </select>
         )}
+        {activeTab === 'corals' && (
+          <select
+            value={coralTypeFilter}
+            onChange={(e) => setCoralTypeFilter(e.target.value as typeof coralTypeFilter)}
+            className="input-field w-auto"
+          >
+            <option value="all">All types</option>
+            <option value="soft">Soft</option>
+            <option value="lps">LPS</option>
+            <option value="sps">SPS</option>
+          </select>
+        )}
       </div>
 
       {/* Results */}
       <div className="space-y-3">
-        {activeTab === 'fish' ? (
-          filteredFish.length === 0 ? (
-            <div className="card text-center py-10">
-              <p className="text-slate-400">No fish match your search.</p>
-            </div>
-          ) : (
-            filteredFish.map((fish) => <FishCard key={fish.id} fish={fish} />)
-          )
-        ) : (
-          filteredPlants.length === 0 ? (
-            <div className="card text-center py-10">
-              <p className="text-slate-400">No plants match your search.</p>
-            </div>
-          ) : (
-            filteredPlants.map((plant) => <PlantCard key={plant.id} plant={plant} />)
-          )
+        {activeTab === 'fish' && (
+          filteredFish.length === 0
+            ? <div className="card text-center py-10"><p className="text-slate-400">No fish match your search.</p></div>
+            : filteredFish.map((fish) => <FishCard key={fish.id} fish={fish} />)
+        )}
+        {activeTab === 'plants' && (
+          filteredPlants.length === 0
+            ? <div className="card text-center py-10"><p className="text-slate-400">No plants match your search.</p></div>
+            : filteredPlants.map((plant) => <PlantCard key={plant.id} plant={plant} />)
+        )}
+        {activeTab === 'corals' && (
+          filteredCorals.length === 0
+            ? <div className="card text-center py-10"><p className="text-slate-400">{CORAL_DATABASE.length === 0 ? 'Coral database loading...' : 'No corals match your search.'}</p></div>
+            : filteredCorals.map((coral) => <CoralCard key={coral.id} coral={coral} />)
+        )}
+        {activeTab === 'inverts' && (
+          filteredInverts.length === 0
+            ? <div className="card text-center py-10"><p className="text-slate-400">{INVERTEBRATE_DATABASE.length === 0 ? 'Invertebrate database loading...' : 'No invertebrates match your search.'}</p></div>
+            : filteredInverts.map((invert) => <InvertCard key={invert.id} invert={invert} />)
         )}
       </div>
     </div>

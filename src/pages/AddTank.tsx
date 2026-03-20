@@ -7,6 +7,7 @@ import { PLANT_DATABASE } from '../data/plantDatabase';
 import { ArrowLeftIcon, PlusIcon } from '@heroicons/react/24/outline';
 import { formatISO } from 'date-fns';
 import clsx from 'clsx';
+import ImageUpload from '../components/ImageUpload';
 
 const TANK_TYPES: { value: TankType; label: string; description: string; emoji: string }[] = [
   { value: 'freshwater', label: 'Freshwater', description: 'Community or species tank', emoji: '💧' },
@@ -38,6 +39,7 @@ export default function AddTank() {
   const [addDefaultTasks, setAddDefaultTasks] = useState(true);
   const [step, setStep] = useState(1);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [photoUrl, setPhotoUrl] = useState<string | undefined>(undefined);
 
   const compatibleFish = FISH_DATABASE.filter((f) =>
     f.tankType.includes(form.type)
@@ -72,6 +74,7 @@ export default function AddTank() {
       fishIds: selectedFish,
       plantIds: selectedPlants,
       emoji: form.emoji,
+      photoUrl,
     };
 
     const tankId = addTank(newTank);
@@ -249,6 +252,14 @@ export default function AddTank() {
                   value={form.description}
                   onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))}
                   className="input-field resize-none"
+                />
+              </div>
+
+              <div>
+                <label className="label">Tank Photo (optional)</label>
+                <ImageUpload
+                  currentPhotoUrl={photoUrl}
+                  onPhotoChange={setPhotoUrl}
                 />
               </div>
             </div>

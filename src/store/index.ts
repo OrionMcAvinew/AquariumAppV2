@@ -26,6 +26,7 @@ interface AppState {
   // Tank actions
   addTank: (tank: Omit<Tank, 'id'>) => string;
   updateTank: (id: string, updates: Partial<Tank>) => void;
+  updateTankPhoto: (id: string, photoUrl: string | undefined) => void;
   deleteTank: (id: string) => void;
 
   // Reading actions
@@ -103,6 +104,11 @@ export const useStore = create<AppState>()(
       updateTank: (id, updates) =>
         set((state) => ({
           tanks: state.tanks.map((t) => (t.id === id ? { ...t, ...updates } : t)),
+        })),
+
+      updateTankPhoto: (id, photoUrl) =>
+        set((state) => ({
+          tanks: state.tanks.map((t) => (t.id === id ? { ...t, photoUrl } : t)),
         })),
 
       deleteTank: (id) =>
@@ -190,6 +196,7 @@ export const useStore = create<AppState>()(
           const paramKeys = [
             'ph', 'ammonia', 'nitrite', 'nitrate', 'temperature',
             'salinity', 'gh', 'kh', 'phosphate', 'dissolvedOxygen',
+            'calcium', 'magnesium',
           ] as const;
 
           for (const param of paramKeys) {

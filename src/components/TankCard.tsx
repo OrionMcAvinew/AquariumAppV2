@@ -44,9 +44,19 @@ export default function TankCard({ tank, latestReading }: Props) {
   return (
     <Link to={`/tanks/${tank.id}`} className="block group">
       <div className="card p-0 overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
-        {/* Header gradient */}
-        <div className={clsx('relative p-5 text-white', getTankGradientClass(tank.type))}>
-          <div className="flex items-start justify-between">
+        {/* Header — photo or gradient */}
+        <div className={clsx('relative p-5 text-white overflow-hidden', !tank.photoUrl && getTankGradientClass(tank.type))}>
+          {tank.photoUrl && (
+            <>
+              <img
+                src={tank.photoUrl}
+                alt={tank.name}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/40" />
+            </>
+          )}
+          <div className="relative flex items-start justify-between">
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <span className="text-2xl">{tank.emoji}</span>
