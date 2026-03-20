@@ -212,6 +212,37 @@ export const INVERTEBRATE_DATABASE: Invertebrate[] = [
     cleaningRole: 'Algae grazer and upper sandbed disturber; scavenges detritus.',
     emoji: '🎃',
   },
+  {
+    id: 'snowball-shrimp',
+    name: 'Snowball Shrimp',
+    scientificName: 'Neocaridina zhangjiajiensis',
+    invertType: 'shrimp',
+    tankType: ['freshwater', 'planted'],
+    difficulty: 'beginner',
+    minTankSize: 5,
+    temperatureRange: [65, 78],
+    description:
+      'White to translucent shrimp that carry large, round white eggs earning them the "snowball" name. A Neocaridina variant that shares the same hardiness as cherry shrimp.',
+    careNotes:
+      'As hardy as cherry shrimp — tolerates a wide range of water parameters. Avoid copper-based medications. Breed readily; eggs are clearly visible through the translucent body. Great for nano planted tanks.',
+    cleaningRole: 'Grazes biofilm, algae, and detritus from all surfaces.',
+    emoji: '⚪',
+  },
+  {
+    id: 'vampire-shrimp',
+    name: 'Vampire Shrimp',
+    scientificName: 'Atya gabonensis',
+    invertType: 'shrimp',
+    tankType: ['freshwater'],
+    difficulty: 'intermediate',
+    minTankSize: 20,
+    temperatureRange: [74, 82],
+    description:
+      'Large, fan-feeding shrimp that filter particles from the water column using specialized fan-like appendages. Found in blue, grey, and white color forms — despite the name, completely peaceful.',
+    careNotes:
+      'Needs moderate current to position itself and feed from the flow. Requires fine particulate food (powdered foods, phytoplankton) in the water column. Very peaceful — safe with all fish and shrimp. Shy; provide caves or driftwood.',
+    emoji: '🦟',
+  },
   // ── Snails (additional) ───────────────────────────────────────────────────
   {
     id: 'cerith-snail',
@@ -244,6 +275,38 @@ export const INVERTEBRATE_DATABASE: Invertebrate[] = [
       'One of the best all-around reef snails. Can right itself when knocked over (a big advantage over turbos). Grazes film algae efficiently. Tolerates a range of temperatures and salinities.',
     cleaningRole: 'Film algae and diatom grazer on glass and rock; also consumes cyanobacteria.',
     emoji: '🔺',
+  },
+  {
+    id: 'ramshorn-snail',
+    name: 'Ramshorn Snail',
+    scientificName: 'Planorbarius corneus',
+    invertType: 'snail',
+    tankType: ['freshwater', 'planted'],
+    difficulty: 'beginner',
+    minTankSize: 5,
+    temperatureRange: [65, 80],
+    description:
+      'Flat, coiled snails resembling a rams horn, available in red, pink, and spotted forms. A common but useful freshwater cleanup crew member.',
+    careNotes:
+      'Can reproduce rapidly and become a pest if overfed. Populations are easily controlled by limiting excess food. Assassin snails will keep numbers in check. Safe with plants — prefers algae and decaying matter.',
+    cleaningRole: 'Consumes algae, decaying plant matter, and uneaten fish food.',
+    emoji: '🐏',
+  },
+  {
+    id: 'assassin-snail',
+    name: 'Assassin Snail',
+    scientificName: 'Clea helena',
+    invertType: 'snail',
+    tankType: ['freshwater'],
+    difficulty: 'beginner',
+    minTankSize: 10,
+    temperatureRange: [65, 80],
+    description:
+      'Striking yellow-and-brown striped snails that hunt and eat other snails. The go-to solution for controlling pest snail populations like Malaysian trumpet snails or bladder snails.',
+    careNotes:
+      'Will not harm fish or shrimp unless they are molting/dying. Breed slowly — populations stay manageable. Will also scavenge meaty foods and fish food. Can live for 2–3 years. Good burrowers in soft substrate.',
+    cleaningRole: 'Pest snail control; also scavenges meaty detritus.',
+    emoji: '🗡️',
   },
   // ── Urchins (additional) ─────────────────────────────────────────────────
   {

@@ -211,10 +211,11 @@ export const CORAL_DATABASE: Coral[] = [
       'One of the most colorful soft corals available. Tolerates low light but shows best color under moderate lighting. Dislikes strong direct flow. Reproduces by splitting — a healthy specimen will slowly multiply.',
     emoji: '🟢',
   },
+  // ── Zoanthids / Palythoa morphs ──────────────────────────────────────────
   {
-    id: 'palythoa',
-    name: 'Palythoa / Zoa',
-    scientificName: 'Palythoa grandis',
+    id: 'zoa-rasta',
+    name: 'Rasta Zoas',
+    scientificName: 'Zoanthus sp.',
     coralType: 'soft',
     difficulty: 'beginner',
     lightRequirement: 'medium',
@@ -222,10 +223,106 @@ export const CORAL_DATABASE: Coral[] = [
     placement: 'middle',
     aggressiveness: 'semi-aggressive',
     description:
-      'Colonial polyps that form dense mats across rock surfaces, available in an astonishing variety of color morphs. Among the most traded and collected corals in the reef hobby.',
+      'Iconic zoa morph with a bright green center surrounded by red-and-orange tentacles — inspired by Rastafarian colors. One of the most recognizable named morphs in the hobby.',
     careNotes:
-      'CAUTION: Palythoa contain palytoxin — wear gloves and eye protection when handling and never heat or cut dry. Hardy and fast-spreading once established. Excellent starter coral for reef color.',
-    emoji: '🌈',
+      'Very hardy and one of the fastest-spreading zoas. Tolerates a range of lighting from moderate to high. Separate from other zoa morphs you want to keep pure — they can overgrow neighbors. Palytoxin precautions apply.',
+    emoji: '🟢',
+  },
+  {
+    id: 'zoa-eagle-eye',
+    name: 'Eagle Eye Zoas',
+    scientificName: 'Zoanthus sp.',
+    coralType: 'soft',
+    difficulty: 'beginner',
+    lightRequirement: 'medium',
+    flowRequirement: 'medium',
+    placement: 'middle',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'Striking morph with a vivid green skirt and a contrasting red or orange center eye. The bright color contrast makes them stand out under any lighting.',
+    careNotes:
+      'Hardy and fast-growing once established. Medium lighting brings out the best color contrast. Keep flow moderate — too much flow causes polyps to remain closed. Feed with reef roids or similar coral foods for faster spreading.',
+    emoji: '👁️',
+  },
+  {
+    id: 'zoa-utter-chaos',
+    name: 'Utter Chaos Zoas',
+    scientificName: 'Zoanthus sp.',
+    coralType: 'soft',
+    difficulty: 'beginner',
+    lightRequirement: 'medium',
+    flowRequirement: 'medium',
+    placement: 'middle',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'A kaleidoscopic morph featuring swirling patterns of pink, orange, and green — aptly named for its chaotic but beautiful coloration. A highly sought-after collector morph.',
+    careNotes:
+      'Grows at a moderate pace compared to simpler morphs. Stable water parameters preserve the vivid coloration. Under actinic lighting the fluorescence is spectacular. Worth keeping on an isolated frag plug to protect the morph.',
+    emoji: '🌀',
+  },
+  {
+    id: 'zoa-space-monster',
+    name: 'Space Monster Zoas',
+    scientificName: 'Zoanthus sp.',
+    coralType: 'soft',
+    difficulty: 'beginner',
+    lightRequirement: 'medium',
+    flowRequirement: 'medium',
+    placement: 'middle',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'Large-polyped zoa with a teal-to-aqua body and contrasting purple or pink ring around a green center. One of the most vivid fluorescent morphs available.',
+    careNotes:
+      'Larger polyps than most zoas — they need a bit more space on the frag plug. Excellent color under actinic or blue-heavy lighting. Hardy once settled; new frags may stay closed for days before opening fully.',
+    emoji: '👾',
+  },
+  {
+    id: 'zoa-fruit-loops',
+    name: 'Fruit Loops Zoas',
+    scientificName: 'Zoanthus sp.',
+    coralType: 'soft',
+    difficulty: 'beginner',
+    lightRequirement: 'medium',
+    flowRequirement: 'medium',
+    placement: 'middle',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'Multicolored morph with a yellow-to-orange center, pink skirt, and green tentacle tips — resembling the cereal of the same name. A bright, cheerful addition to any reef.',
+    careNotes:
+      'Fast spreader under good conditions. Colors are most vivid under moderate blue-heavy lighting. Occasional feeding with reef roids or oyster feast helps colonies spread quickly. Palytoxin precautions apply.',
+    emoji: '🍭',
+  },
+  {
+    id: 'zoa-sunny-ds',
+    name: "Sunny D's Zoas",
+    scientificName: 'Zoanthus sp.',
+    coralType: 'soft',
+    difficulty: 'beginner',
+    lightRequirement: 'medium',
+    flowRequirement: 'medium',
+    placement: 'middle',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'Bright orange-and-yellow zoa with a vivid yellow center that glows like a small sun in the tank. One of the most popular "warm-toned" named morphs.',
+    careNotes:
+      'Best color under higher lighting — will appear more muted under low par. Hardy and spreads at a steady pace. Keep iron, magnesium, and alkalinity stable for consistent coloration.',
+    emoji: '☀️',
+  },
+  {
+    id: 'palythoa-grandis',
+    name: 'Grandis Palythoa',
+    scientificName: 'Palythoa grandis',
+    coralType: 'soft',
+    difficulty: 'beginner',
+    lightRequirement: 'low',
+    flowRequirement: 'medium',
+    placement: 'bottom',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'Large-polyped palythoa with brown-to-olive bodies and subtle green fluorescence. One of the biggest palythoa species, with polyps reaching over an inch in diameter.',
+    careNotes:
+      'CAUTION: Contains high concentrations of palytoxin — always use gloves and eye protection. Tolerates low light very well. Spreads across rock surfaces by runners. Extremely durable once established.',
+    emoji: '🟤',
   },
   {
     id: 'devil-finger',
@@ -243,7 +340,7 @@ export const CORAL_DATABASE: Coral[] = [
       'Very hardy and tolerant. Like other leathers, periodically sheds a waxy coat and retracts for a day or two — completely normal. Releases toxins that can inhibit LPS and SPS; run activated carbon when fragging.',
     emoji: '✋',
   },
-  // ── LPS Corals (additional) ───────────────────────────────────────────────
+  // ── LPS Corals (additional) ──────────────────────────────────────────────
   {
     id: 'blastomussa',
     name: 'Blastomussa',
@@ -307,6 +404,38 @@ export const CORAL_DATABASE: Coral[] = [
     careNotes:
       'Must be placed on the sandbed — never prop it on rock. If flipped over, it can right itself given time; assist if it appears distressed. Target feed weekly; it inflates noticeably after eating.',
     emoji: '🥏',
+  },
+  {
+    id: 'war-coral',
+    name: 'War Coral',
+    scientificName: 'Favites sp.',
+    coralType: 'lps',
+    difficulty: 'beginner',
+    lightRequirement: 'medium',
+    flowRequirement: 'medium',
+    placement: 'bottom',
+    aggressiveness: 'aggressive',
+    description:
+      'Encrusting brain-like LPS with vivid contrasting colors — typically reds, greens, and oranges arranged in a maze-like pattern. Highly collectible for its bold appearance.',
+    careNotes:
+      'Aggressive — releases long sweeper tentacles at night that can sting neighbors 3–4 inches away. Give adequate spacing. Tolerates moderate to high lighting. Hardy once established; target feed monthly.',
+    emoji: '🔴',
+  },
+  {
+    id: 'lobo-coral',
+    name: 'Lobophyllia',
+    scientificName: 'Lobophyllia hemprichii',
+    coralType: 'lps',
+    difficulty: 'beginner',
+    lightRequirement: 'medium',
+    flowRequirement: 'low',
+    placement: 'bottom',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'Large-fleshed, ridged LPS that sits on the sandbed in colors ranging from dull brown to vivid red, pink, and green. Related to brain corals but with a more open structure.',
+    careNotes:
+      'Very forgiving and one of the best beginner LPS corals. Prefers placement on the sandbed or a low rock shelf. Low to moderate flow. Feeds readily on meaty foods placed directly on the polyp.',
+    emoji: '🧬',
   },
   // ── SPS Corals ───────────────────────────────────────────────────────────
   {
