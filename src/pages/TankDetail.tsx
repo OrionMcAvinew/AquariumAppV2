@@ -29,7 +29,7 @@ import { useState } from 'react';
 import { FISH_DATABASE as fishDatabase } from '../data/fishDatabase';
 
 const PARAM_KEYS: Array<keyof Omit<WaterReading, 'id' | 'tankId' | 'timestamp' | 'notes'>> = [
-  'ph', 'ammonia', 'nitrite', 'nitrate', 'temperature', 'salinity', 'gh', 'kh', 'phosphate', 'dissolvedOxygen',
+  'ph', 'ammonia', 'nitrite', 'nitrate', 'temperature', 'salinity', 'gh', 'kh', 'phosphate', 'dissolvedOxygen', 'calcium', 'magnesium',
 ];
 
 export default function TankDetail() {

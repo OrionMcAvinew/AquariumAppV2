@@ -10,7 +10,7 @@ type ParamKey = keyof Omit<WaterReading, 'id' | 'tankId' | 'timestamp' | 'notes'
 
 const PARAM_KEYS: ParamKey[] = [
   'ph', 'ammonia', 'nitrite', 'nitrate', 'temperature',
-  'salinity', 'gh', 'kh', 'phosphate', 'dissolvedOxygen',
+  'salinity', 'gh', 'kh', 'phosphate', 'dissolvedOxygen', 'calcium', 'magnesium',
 ];
 
 const TIME_RANGES = [

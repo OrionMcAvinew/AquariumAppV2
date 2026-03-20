@@ -6,7 +6,7 @@ import { getRangesForTankType, PARAMETER_LABELS } from '../utils/parameterRanges
 import { formatISO } from 'date-fns';
 import clsx from 'clsx';
 
-type ParamKey = 'ph' | 'ammonia' | 'nitrite' | 'nitrate' | 'temperature' | 'salinity' | 'gh' | 'kh' | 'phosphate' | 'dissolvedOxygen';
+type ParamKey = 'ph' | 'ammonia' | 'nitrite' | 'nitrate' | 'temperature' | 'salinity' | 'gh' | 'kh' | 'phosphate' | 'dissolvedOxygen' | 'calcium' | 'magnesium';
 
 const ALL_PARAMS: { key: ParamKey; placeholder: string; step: string }[] = [
   { key: 'ph', placeholder: '7.0', step: '0.1' },
@@ -16,9 +16,11 @@ const ALL_PARAMS: { key: ParamKey; placeholder: string; step: string }[] = [
   { key: 'temperature', placeholder: '78', step: '0.1' },
   { key: 'salinity', placeholder: '1.025', step: '0.001' },
   { key: 'gh', placeholder: '8', step: '0.5' },
-  { key: 'kh', placeholder: '6', step: '0.5' },
+  { key: 'kh', placeholder: '8', step: '0.5' },
   { key: 'phosphate', placeholder: '0.1', step: '0.01' },
   { key: 'dissolvedOxygen', placeholder: '7.0', step: '0.1' },
+  { key: 'calcium', placeholder: '420', step: '1' },
+  { key: 'magnesium', placeholder: '1300', step: '5' },
 ];
 
 export default function AddParameter() {
