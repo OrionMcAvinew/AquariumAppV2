@@ -4,6 +4,7 @@ import { calculateTankHealthScore, getParameterStatus, PARAMETER_LABELS, PARAMET
 import { format, parseISO } from 'date-fns';
 import HealthScore from './HealthScore';
 import clsx from 'clsx';
+import { PlusIcon } from '@heroicons/react/24/outline';
 
 interface Props {
   tank: Tank;
@@ -42,7 +43,8 @@ export default function TankCard({ tank, latestReading }: Props) {
   const typeLabel = tank.type.charAt(0).toUpperCase() + tank.type.slice(1);
 
   return (
-    <Link to={`/tanks/${tank.id}`} className="block group">
+    <div className="group relative">
+      <Link to={`/tanks/${tank.id}`} className="block">
       <div className="card p-0 overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
         {/* Header — photo or gradient */}
         <div className={clsx('relative p-5 text-white overflow-hidden', !tank.photoUrl && getTankGradientClass(tank.type))}>
@@ -113,6 +115,17 @@ export default function TankCard({ tank, latestReading }: Props) {
           )}
         </div>
       </div>
-    </Link>
+      </Link>
+      {/* Quick-Log button — sits outside the card Link so it doesn't navigate to tank detail */}
+      <Link
+        to={`/tanks/${tank.id}/log`}
+        onClick={(e) => e.stopPropagation()}
+        className="absolute bottom-3 right-3 flex items-center gap-1 bg-ocean-500 hover:bg-ocean-400 text-white text-xs font-semibold px-2.5 py-1.5 rounded-lg shadow-md transition-colors z-10"
+        title="Log water reading"
+      >
+        <PlusIcon className="w-3.5 h-3.5" />
+        Log
+      </Link>
+    </div>
   );
 }

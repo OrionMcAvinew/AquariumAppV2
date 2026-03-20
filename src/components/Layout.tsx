@@ -4,7 +4,8 @@ import {
   HomeIcon,
   WrenchScrewdriverIcon,
   SparklesIcon,
-  WrenchIcon,
+  ShieldCheckIcon,
+  CalculatorIcon,
   Cog6ToothIcon,
 } from '@heroicons/react/24/outline';
 import { useStore } from '../store';
@@ -12,9 +13,9 @@ import { useStore } from '../store';
 const MOBILE_NAV = [
   { to: '/dashboard', label: 'Home', icon: HomeIcon },
   { to: '/maintenance', label: 'Tasks', icon: WrenchScrewdriverIcon },
-  { to: '/equipment', label: 'Equipment', icon: WrenchIcon },
+  { to: '/compatibility', label: 'Compat', icon: ShieldCheckIcon },
+  { to: '/calculators', label: 'Calc', icon: CalculatorIcon },
   { to: '/ai', label: 'AI', icon: SparklesIcon },
-  { to: '/settings', label: 'Settings', icon: Cog6ToothIcon },
 ];
 
 export default function Layout() {

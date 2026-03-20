@@ -11,6 +11,8 @@ import Analytics from './pages/Analytics';
 import Settings from './pages/Settings';
 import AIAdvisor from './pages/AIAdvisor';
 import Equipment from './pages/Equipment';
+import Compatibility from './pages/Compatibility';
+import Calculators from './pages/Calculators';
 import { useStore } from './store';
 
 export default function App() {
@@ -36,6 +38,8 @@ export default function App() {
           <Route path="equipment" element={<Equipment />} />
           <Route path="database" element={<Database />} />
           <Route path="analytics" element={<Analytics />} />
+          <Route path="compatibility" element={<Compatibility />} />
+          <Route path="calculators" element={<Calculators />} />
           <Route path="ai" element={<AIAdvisor />} />
           <Route path="settings" element={<Settings />} />
         </Route>

@@ -10,6 +10,8 @@ import {
   BellIcon,
   SparklesIcon,
   WrenchIcon,
+  ShieldCheckIcon,
+  CalculatorIcon,
 } from '@heroicons/react/24/outline';
 import { useStore } from '../store';
 
@@ -17,6 +19,8 @@ const NAV_ITEMS = [
   { to: '/dashboard', label: 'Dashboard', icon: HomeIcon },
   { to: '/maintenance', label: 'Maintenance', icon: WrenchScrewdriverIcon },
   { to: '/equipment', label: 'Equipment', icon: WrenchIcon },
+  { to: '/compatibility', label: 'Compatibility', icon: ShieldCheckIcon },
+  { to: '/calculators', label: 'Calculators', icon: CalculatorIcon },
   { to: '/database', label: 'Database', icon: BookOpenIcon },
   { to: '/analytics', label: 'Analytics', icon: ChartBarIcon },
   { to: '/ai', label: 'AI Advisor', icon: SparklesIcon },
