@@ -343,6 +343,68 @@ export const INVERTEBRATE_DATABASE: Invertebrate[] = [
     emoji: '⭐',
   },
   {
+    id: 'tiger-pistol-shrimp',
+    name: 'Tiger Pistol Shrimp',
+    scientificName: 'Alpheus bellulus',
+    invertType: 'shrimp',
+    tankType: ['saltwater', 'reef'],
+    difficulty: 'beginner',
+    minTankSize: 20,
+    temperatureRange: [72, 80],
+    description:
+      'Sandy-colored shrimp with brown tiger stripes that pair symbiotically with watchman gobies — the shrimp digs and maintains a shared burrow while the goby stands guard.',
+    careNotes:
+      'Best kept with a paired watchman goby (e.g., Yellow Watchman). The symbiotic pair is one of the most entertaining displays in the hobby. Nearly blind — relies on the goby for predator warning. Reef-safe.',
+    emoji: '🐯',
+  },
+  {
+    id: 'sexy-shrimp',
+    name: 'Sexy Shrimp',
+    scientificName: 'Thor amboinensis',
+    invertType: 'shrimp',
+    tankType: ['saltwater', 'reef'],
+    difficulty: 'beginner',
+    minTankSize: 10,
+    temperatureRange: [72, 78],
+    description:
+      'Tiny, vivid orange shrimp with bright white spots that constantly wave their abdomen in a dancing motion — earning the name "sexy shrimp." Often kept in groups with anemones.',
+    careNotes:
+      'Reef-safe. Best kept in groups of 3 or more for natural behavior. Will associate with anemones, corals, and even large polyp LPS for shelter. Very small — avoid fish large enough to eat them. Feed fine meaty foods.',
+    emoji: '💃',
+  },
+  {
+    id: 'fire-shrimp',
+    name: 'Blood Red Fire Shrimp',
+    scientificName: 'Lysmata debelius',
+    invertType: 'shrimp',
+    tankType: ['saltwater', 'reef'],
+    difficulty: 'beginner',
+    minTankSize: 20,
+    temperatureRange: [72, 78],
+    description:
+      'Stunning blood-red body with white spots and long white antennae. One of the most striking and recognizable reef invertebrates. Like cleaners, they establish cleaning stations.',
+    careNotes:
+      'Reef-safe. Shy — provide rocky overhangs and caves. Can be kept with cleaner shrimp. Acclimate slowly. Feed meaty foods a few times a week. Tends to be more reclusive than cleaner shrimp.',
+    cleaningRole: 'Establishes cleaning stations; removes parasites and dead tissue from fish.',
+    emoji: '❤️',
+  },
+  {
+    id: 'blue-velvet-nudibranch',
+    name: 'Blue Velvet Nudibranch',
+    scientificName: 'Chelidonura varians',
+    invertType: 'other',
+    tankType: ['saltwater', 'reef'],
+    difficulty: 'advanced',
+    minTankSize: 10,
+    temperatureRange: [72, 78],
+    description:
+      'Striking jet-black nudibranch with vivid electric-blue lines. Kept specifically to eliminate flatworm infestations — they eat planaria flatworms voraciously.',
+    careNotes:
+      'SPECIALIST: feeds exclusively on planaria flatworms. Once flatworms are eliminated, the nudibranch will starve — rehome or transfer to another infected tank. Short-term solution only. Do not keep long-term.',
+    cleaningRole: 'Eliminates planaria flatworm infestations rapidly.',
+    emoji: '💙',
+  },
+  {
     id: 'bumblebee-shrimp',
     name: 'Bumblebee Shrimp',
     scientificName: 'Gnathophyllum americanum',

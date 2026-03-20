@@ -501,6 +501,102 @@ export const CORAL_DATABASE: Coral[] = [
     emoji: '🟣',
   },
   {
+    id: 'zoa-fire-and-ice',
+    name: 'Fire and Ice Zoas',
+    scientificName: 'Zoanthus sp.',
+    coralType: 'soft',
+    difficulty: 'beginner',
+    lightRequirement: 'medium',
+    flowRequirement: 'medium',
+    placement: 'middle',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'Half blue-white, half red-orange polyps that live up to their name with a dramatic temperature contrast in coloration. A showpiece morph for mixed zoa gardens.',
+    careNotes:
+      'Moderate grower. Mixed-spectrum lighting (50/50 white and blue) brings out both the warm and cool tones simultaneously. Keep parameters stable to prevent color shifting toward one end of the spectrum.',
+    emoji: '🔥',
+  },
+  {
+    id: 'zoa-blue-hornets',
+    name: 'Blue Hornet Zoas',
+    scientificName: 'Zoanthus sp.',
+    coralType: 'soft',
+    difficulty: 'beginner',
+    lightRequirement: 'medium',
+    flowRequirement: 'medium',
+    placement: 'middle',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'Electric blue skirt with a contrasting yellow or orange center — one of the most vibrant blue morphs available. The high-contrast coloring makes them pop even in a crowded tank.',
+    careNotes:
+      'Blue pigment is sensitive to high nutrients — keep nitrates below 10 ppm for best color. Moderate grower. Widely traded and one of the most requested morphs by new collectors.',
+    emoji: '🐝',
+  },
+  {
+    id: 'zoa-maul',
+    name: 'Rainbow Maul Zoas',
+    scientificName: 'Zoanthus sp.',
+    coralType: 'soft',
+    difficulty: 'beginner',
+    lightRequirement: 'medium',
+    flowRequirement: 'medium',
+    placement: 'middle',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'Multicolored polyps shifting from yellow at the skirt edge through orange and into a red or pink center — a true gradient rainbow in a single polyp.',
+    careNotes:
+      'One of the more demanding morphs to keep colors vivid — stable alk, mag, and calcium are important. Grows steadily once settled. A highlight of any mixed zoa frag display.',
+    emoji: '🌈',
+  },
+  {
+    id: 'zoa-scrambled-eggs',
+    name: 'Scrambled Eggs Zoas',
+    scientificName: 'Zoanthus sp.',
+    coralType: 'soft',
+    difficulty: 'beginner',
+    lightRequirement: 'medium',
+    flowRequirement: 'medium',
+    placement: 'middle',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'Bright yellow polyps with an irregular orange blotch center that resembles scrambled eggs. A cheerful, beginner-friendly morph that is hardy and fast-spreading.',
+    careNotes:
+      'One of the easier named morphs — growth rate is fast even under moderate conditions. Yellow tones intensify under higher PAR. A great addition to a warm-toned zoa rock.',
+    emoji: '🍳',
+  },
+  {
+    id: 'zoa-wwc-jesus',
+    name: 'WWC Jesus Zoas',
+    scientificName: 'Zoanthus sp.',
+    coralType: 'soft',
+    difficulty: 'beginner',
+    lightRequirement: 'medium',
+    flowRequirement: 'medium',
+    placement: 'middle',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'Distinctive morph with a bright orange skirt, green ring, and contrasting red center — originally named and popularized by World Wide Corals (WWC). A hobby classic.',
+    careNotes:
+      'Named morphs from large vendors like WWC command recognition and trade value. Hardy and spreads reliably. Colors hold well under a range of parameter conditions. Palytoxin precautions apply.',
+    emoji: '✝️',
+  },
+  {
+    id: 'zoa-black-widows',
+    name: 'Black Widow Zoas',
+    scientificName: 'Zoanthus sp.',
+    coralType: 'soft',
+    difficulty: 'beginner',
+    lightRequirement: 'medium',
+    flowRequirement: 'medium',
+    placement: 'middle',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'Deep black to dark brown skirt with a vivid red hourglass-shaped center marking — the dark base makes the red center appear to glow under blue lighting.',
+    careNotes:
+      'Dark morphs like this are slower growers than bright-colored variants. PAR of 100–200 is ideal. A popular collector morph; frequently traded at frag swaps. Keep records of your frag lineage.',
+    emoji: '🕷️',
+  },
+  {
     id: 'palythoa-grandis',
     name: 'Grandis Palythoa',
     scientificName: 'Palythoa grandis',
@@ -515,6 +611,22 @@ export const CORAL_DATABASE: Coral[] = [
     careNotes:
       'CAUTION: Contains high concentrations of palytoxin — always use gloves and eye protection. Tolerates low light very well. Spreads across rock surfaces by runners. Extremely durable once established.',
     emoji: '🟤',
+  },
+  {
+    id: 'gorgonian',
+    name: 'Sea Fan Gorgonian',
+    scientificName: 'Gorgonia ventalina',
+    coralType: 'soft',
+    difficulty: 'advanced',
+    lightRequirement: 'medium',
+    flowRequirement: 'high',
+    placement: 'middle',
+    aggressiveness: 'peaceful',
+    description:
+      'Fan-shaped colonies of thin interconnected branches that sway dramatically in strong current. Purple and yellow morphs are common. A stunning architectural coral.',
+    careNotes:
+      'Photosynthetic gorgonians need strong, chaotic flow and moderate light. Needs supplemental feeding with phytoplankton and copepods several times a week. Prone to algae overgrowth in high-nutrient tanks — keep nutrients low.',
+    emoji: '🪭',
   },
   {
     id: 'sinularia',
@@ -644,6 +756,38 @@ export const CORAL_DATABASE: Coral[] = [
     careNotes:
       'Aggressive — releases long sweeper tentacles at night that can sting neighbors 3–4 inches away. Give adequate spacing. Tolerates moderate to high lighting. Hardy once established; target feed monthly.',
     emoji: '🔴',
+  },
+  {
+    id: 'hammer-wall',
+    name: 'Wall Hammer Coral',
+    scientificName: 'Euphyllia parancora',
+    coralType: 'lps',
+    difficulty: 'intermediate',
+    lightRequirement: 'medium',
+    flowRequirement: 'medium',
+    placement: 'bottom',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'A wall-forming Euphyllia that grows in a linear ridge rather than individual branches. Same hammer-shaped polyp tips as branching hammer but on a solid skeleton base.',
+    careNotes:
+      'Same care as branching hammer coral. Wall forms grow slower but are more structurally stable and less prone to losing branches. Compatible with other Euphyllia species.',
+    emoji: '🧱',
+  },
+  {
+    id: 'acanthophyllia',
+    name: 'Acanthophyllia (Donut Coral)',
+    scientificName: 'Acanthophyllia deshayesiana',
+    coralType: 'lps',
+    difficulty: 'beginner',
+    lightRequirement: 'low',
+    flowRequirement: 'low',
+    placement: 'bottom',
+    aggressiveness: 'peaceful',
+    description:
+      'Single large circular polyp with ruffled tissue in vivid reds, greens, and multicolor morphs — resembling a fleshy donut. One of the most colorful and visually impressive LPS corals.',
+    careNotes:
+      'Place on the sandbed in a low-flow area. Very sensitive to being touched or stressed — give it space. Feeds on meaty foods placed directly on the oral disc. Does not require high light; does well in lower areas of the tank.',
+    emoji: '🍩',
   },
   {
     id: 'favia-coral',
