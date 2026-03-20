@@ -20,6 +20,8 @@ export const SALTWATER_RANGES: ParameterRangeMap = {
   temperature: { min: 75, max: 80, criticalMin: 72, criticalMax: 84, unit: '°F', name: 'Temperature' },
   salinity: { min: 1.023, max: 1.026, criticalMin: 1.020, criticalMax: 1.028, unit: 'SG', name: 'Salinity' },
   phosphate: { min: 0, max: 0.05, criticalMax: 0.25, unit: 'ppm', name: 'Phosphate' },
+  calcium: { min: 380, max: 450, criticalMin: 350, criticalMax: 480, unit: 'ppm', name: 'Calcium' },
+  magnesium: { min: 1250, max: 1350, criticalMin: 1100, criticalMax: 1450, unit: 'ppm', name: 'Magnesium' },
   dissolvedOxygen: { min: 6, max: 14, criticalMin: 4, unit: 'mg/L', name: 'Dissolved O₂' },
 };
 
@@ -31,6 +33,9 @@ export const REEF_RANGES: ParameterRangeMap = {
   temperature: { min: 76, max: 80, criticalMin: 74, criticalMax: 83, unit: '°F', name: 'Temperature' },
   salinity: { min: 1.025, max: 1.026, criticalMin: 1.023, criticalMax: 1.028, unit: 'SG', name: 'Salinity' },
   phosphate: { min: 0, max: 0.03, criticalMax: 0.1, unit: 'ppm', name: 'Phosphate' },
+  calcium: { min: 400, max: 450, criticalMin: 350, criticalMax: 480, unit: 'ppm', name: 'Calcium' },
+  magnesium: { min: 1280, max: 1350, criticalMin: 1150, criticalMax: 1450, unit: 'ppm', name: 'Magnesium' },
+  kh: { min: 8, max: 12, criticalMin: 6, criticalMax: 14, unit: 'dKH', name: 'Alkalinity (dKH)' },
 };
 
 export const PLANTED_RANGES: ParameterRangeMap = {
@@ -118,6 +123,8 @@ export const PARAMETER_LABELS: Record<string, string> = {
   kh: 'Alkalinity (KH)',
   phosphate: 'Phosphate',
   dissolvedOxygen: 'Dissolved O₂',
+  calcium: 'Calcium',
+  magnesium: 'Magnesium',
 };
 
 export const PARAMETER_UNITS: Record<string, string> = {
@@ -131,4 +138,6 @@ export const PARAMETER_UNITS: Record<string, string> = {
   kh: 'dKH',
   phosphate: 'ppm',
   dissolvedOxygen: 'mg/L',
+  calcium: 'ppm',
+  magnesium: 'ppm',
 };

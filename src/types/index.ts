@@ -9,9 +9,12 @@ export type TaskType =
   | 'gravel_vacuum'
   | 'glass_clean'
   | 'custom';
-export type LightRequirement = 'low' | 'medium' | 'high';
+export type LightRequirement = 'low' | 'medium' | 'high' | 'very-high';
 export type GrowthRate = 'slow' | 'medium' | 'fast';
 export type PlantPlacement = 'foreground' | 'midground' | 'background' | 'floating';
+export type CoralType = 'soft' | 'lps' | 'sps';
+export type FlowRequirement = 'low' | 'medium' | 'high';
+export type InvertType = 'shrimp' | 'snail' | 'crab' | 'urchin' | 'starfish' | 'other';
 
 export interface Tank {
   id: string;
@@ -24,6 +27,7 @@ export interface Tank {
   fishIds: string[];
   plantIds: string[];
   emoji: string;
+  photoUrl?: string;
 }
 
 export interface WaterReading {
@@ -40,6 +44,8 @@ export interface WaterReading {
   kh?: number;
   phosphate?: number;
   dissolvedOxygen?: number;
+  calcium?: number;
+  magnesium?: number;
   notes?: string;
 }
 
@@ -71,6 +77,7 @@ export interface Fish {
   maxSize: string;
   lifespan: string;
   emoji: string;
+  imageUrl?: string;
 }
 
 export interface Plant {
@@ -87,6 +94,39 @@ export interface Plant {
   description: string;
   careNotes: string;
   emoji: string;
+  imageUrl?: string;
+}
+
+export interface Coral {
+  id: string;
+  name: string;
+  scientificName: string;
+  coralType: CoralType;
+  difficulty: Difficulty;
+  lightRequirement: LightRequirement;
+  flowRequirement: FlowRequirement;
+  placement: 'bottom' | 'middle' | 'top';
+  aggressiveness: 'peaceful' | 'semi-aggressive' | 'aggressive';
+  description: string;
+  careNotes: string;
+  emoji: string;
+  imageUrl?: string;
+}
+
+export interface Invertebrate {
+  id: string;
+  name: string;
+  scientificName: string;
+  invertType: InvertType;
+  tankType: TankType[];
+  difficulty: Difficulty;
+  minTankSize: number;
+  temperatureRange: [number, number];
+  description: string;
+  careNotes: string;
+  cleaningRole?: string;
+  emoji: string;
+  imageUrl?: string;
 }
 
 export interface AppAlert {
