@@ -196,6 +196,72 @@ export const INVERTEBRATE_DATABASE: Invertebrate[] = [
     cleaningRole: 'Grazes coralline algae, turf algae, and encrusting organisms from rock surfaces.',
     emoji: '⭕',
   },
+  {
+    id: 'halloween-hermit',
+    name: 'Halloween Hermit Crab',
+    scientificName: 'Ciliopagurus strigatus',
+    invertType: 'crab',
+    tankType: ['saltwater', 'reef'],
+    difficulty: 'beginner',
+    minTankSize: 20,
+    temperatureRange: [72, 80],
+    description:
+      'Striking hermit crab with vivid orange-and-white striped legs. Larger than blue-legs, making it effective at disturbing and cleaning the upper sandbed layer.',
+    careNotes:
+      'Reef-safe but will kill snails for their shells — provide plenty of empty shells in graduated sizes. More effective at turning coarse substrate than smaller hermits. Avoid with very small shrimp.',
+    cleaningRole: 'Algae grazer and upper sandbed disturber; scavenges detritus.',
+    emoji: '🎃',
+  },
+  // ── Snails (additional) ───────────────────────────────────────────────────
+  {
+    id: 'cerith-snail',
+    name: 'Cerith Snail',
+    scientificName: 'Cerithium sp.',
+    invertType: 'snail',
+    tankType: ['saltwater', 'reef'],
+    difficulty: 'beginner',
+    minTankSize: 10,
+    temperatureRange: [72, 80],
+    description:
+      'Small, elongated spiral snails that work both on rock surfaces and in the sandbed. One of the most well-rounded reef cleanup crew snails available.',
+    careNotes:
+      'Completely reef-safe. Excellent at consuming cyanobacteria and diatom films. Will burrow into sand to consume detritus and microorganisms. Reproduce in captivity but populations self-regulate.',
+    cleaningRole: 'Eats cyanobacteria, diatoms, and detritus on rock and in sandbed.',
+    emoji: '🌀',
+  },
+  {
+    id: 'trochus-snail',
+    name: 'Trochus Snail',
+    scientificName: 'Trochus sp.',
+    invertType: 'snail',
+    tankType: ['saltwater', 'reef'],
+    difficulty: 'beginner',
+    minTankSize: 10,
+    temperatureRange: [72, 80],
+    description:
+      'Cone-shaped snails with a flat base, allowing them to right themselves if flipped — unlike turbo snails. Excellent algae grazers that work both rock surfaces and glass.',
+    careNotes:
+      'One of the best all-around reef snails. Can right itself when knocked over (a big advantage over turbos). Grazes film algae efficiently. Tolerates a range of temperatures and salinities.',
+    cleaningRole: 'Film algae and diatom grazer on glass and rock; also consumes cyanobacteria.',
+    emoji: '🔺',
+  },
+  // ── Urchins (additional) ─────────────────────────────────────────────────
+  {
+    id: 'long-spine-urchin',
+    name: 'Long Spine Urchin',
+    scientificName: 'Diadema antillarum',
+    invertType: 'urchin',
+    tankType: ['saltwater', 'reef'],
+    difficulty: 'intermediate',
+    minTankSize: 30,
+    temperatureRange: [72, 80],
+    description:
+      'Black urchins with extremely long, sharp spines that can extend up to 12 inches. A powerhouse algae grazer capable of clearing significant hair algae from rockwork.',
+    careNotes:
+      'CAUTION: spines are sharp and can puncture skin — handle with thick gloves or not at all. May knock over frags and dislodge decorations. Powerful graze can damage soft coral if hungry. Provide ample algae or supplement with nori.',
+    cleaningRole: 'Heavy-duty hair algae remover from rockwork — one of the most effective in the hobby.',
+    emoji: '☀️',
+  },
   // ── Starfish ─────────────────────────────────────────────────────────────
   {
     id: 'brittle-star',
@@ -212,6 +278,22 @@ export const INVERTEBRATE_DATABASE: Invertebrate[] = [
       'Largely nocturnal — not often visible. Excellent sandbed scavenger. Acclimate very slowly (drip acclimation for 2+ hours). Avoid exposing to air during handling. Avoid green brittle stars which may catch small fish.',
     cleaningRole: 'Nocturnal sandbed scavenger; cleans detritus from under rocks.',
     emoji: '⭐',
+  },
+  {
+    id: 'chocolate-chip-star',
+    name: 'Chocolate Chip Starfish',
+    scientificName: 'Protoreaster nodosus',
+    invertType: 'starfish',
+    tankType: ['saltwater'],
+    difficulty: 'beginner',
+    minTankSize: 30,
+    temperatureRange: [72, 80],
+    description:
+      'Cream-colored starfish with distinctive dark brown knobs (the "chocolate chips") arranged in rows. A popular, hardy, and easy-to-keep marine invertebrate.',
+    careNotes:
+      'NOT reef-safe — will eat soft corals, clams, and other sessile invertebrates. Best kept in a FOWLR (fish only with live rock) tank. Feeds on sponges and organic detritus. Acclimate slowly; do not expose to air.',
+    cleaningRole: 'Scavenges detritus and uneaten food from the sandbed.',
+    emoji: '🍫',
   },
 ];
 

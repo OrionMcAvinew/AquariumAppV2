@@ -195,6 +195,119 @@ export const CORAL_DATABASE: Coral[] = [
       'Prefers the sandbed with low indirect flow. Sensitive to "elegance coral syndrome" — place away from other corals and avoid sharp rock edges. Regular feeding greatly improves long-term health.',
     emoji: '🌺',
   },
+  {
+    id: 'ricordea-florida',
+    name: 'Ricordea Florida',
+    scientificName: 'Ricordea florida',
+    coralType: 'soft',
+    difficulty: 'beginner',
+    lightRequirement: 'medium',
+    flowRequirement: 'low',
+    placement: 'bottom',
+    aggressiveness: 'peaceful',
+    description:
+      'A colorful mushroom coral covered in tiny bubble-like vesicles (vesicular tentacles) in stunning greens, oranges, purples, and multicolor morphs. Highly prized by collectors.',
+    careNotes:
+      'One of the most colorful soft corals available. Tolerates low light but shows best color under moderate lighting. Dislikes strong direct flow. Reproduces by splitting — a healthy specimen will slowly multiply.',
+    emoji: '🟢',
+  },
+  {
+    id: 'palythoa',
+    name: 'Palythoa / Zoa',
+    scientificName: 'Palythoa grandis',
+    coralType: 'soft',
+    difficulty: 'beginner',
+    lightRequirement: 'medium',
+    flowRequirement: 'medium',
+    placement: 'middle',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'Colonial polyps that form dense mats across rock surfaces, available in an astonishing variety of color morphs. Among the most traded and collected corals in the reef hobby.',
+    careNotes:
+      'CAUTION: Palythoa contain palytoxin — wear gloves and eye protection when handling and never heat or cut dry. Hardy and fast-spreading once established. Excellent starter coral for reef color.',
+    emoji: '🌈',
+  },
+  {
+    id: 'devil-finger',
+    name: "Devil's Hand Leather",
+    scientificName: 'Lobophytum crassum',
+    coralType: 'soft',
+    difficulty: 'beginner',
+    lightRequirement: 'medium',
+    flowRequirement: 'medium',
+    placement: 'bottom',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'A large lobed leather coral with finger-like projections that give it a hand-like silhouette. Tan to cream colored with short polyp extensions.',
+    careNotes:
+      'Very hardy and tolerant. Like other leathers, periodically sheds a waxy coat and retracts for a day or two — completely normal. Releases toxins that can inhibit LPS and SPS; run activated carbon when fragging.',
+    emoji: '✋',
+  },
+  // ── LPS Corals (additional) ───────────────────────────────────────────────
+  {
+    id: 'blastomussa',
+    name: 'Blastomussa',
+    scientificName: 'Blastomussa wellsi',
+    coralType: 'lps',
+    difficulty: 'beginner',
+    lightRequirement: 'low',
+    flowRequirement: 'low',
+    placement: 'bottom',
+    aggressiveness: 'peaceful',
+    description:
+      'Large-polyped colonial coral with round, inflated heads in rich reds, greens, and multicolors. A very forgiving LPS that does well in lower-light parts of the tank.',
+    careNotes:
+      'One of the easiest LPS corals — tolerates a wide range of parameters. Perfect for lower-light placement. Target feed every 1–2 weeks for best growth. Will not sting neighbors aggressively.',
+    emoji: '🔴',
+  },
+  {
+    id: 'acan-lord',
+    name: 'Acan Lord',
+    scientificName: 'Acanthastrea lordhowensis',
+    coralType: 'lps',
+    difficulty: 'beginner',
+    lightRequirement: 'medium',
+    flowRequirement: 'medium',
+    placement: 'bottom',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'Encrusting colonial coral with boldly colored, fleshy polyps in virtually every color combination imaginable. Highly collectible — named morphs can command premium prices.',
+    careNotes:
+      'Hardy and adaptable. Benefits from regular target feeding with meaty foods (mysis, cyclopeeze). Expand slowly to higher light to avoid bleaching. Does not extend sweeper tentacles far so spacing requirements are modest.',
+    emoji: '🎨',
+  },
+  {
+    id: 'chalice-coral',
+    name: 'Chalice Coral',
+    scientificName: 'Echinophyllia aspera',
+    coralType: 'lps',
+    difficulty: 'intermediate',
+    lightRequirement: 'medium',
+    flowRequirement: 'low',
+    placement: 'middle',
+    aggressiveness: 'aggressive',
+    description:
+      'Plating LPS coral with a chalice or bowl-like growth form, available in spectacular multicolor morphs — often showing contrasting eye colors under blue lighting.',
+    careNotes:
+      'Aggressive — produces a sweeping "chalice burn" that can damage neighbors. Lower, indirect placement in the tank is ideal. Avoid high direct flow which can cause tissue recession. Monthly feeding boosts color.',
+    emoji: '🏆',
+  },
+  {
+    id: 'plate-coral',
+    name: 'Short Tentacle Plate Coral',
+    scientificName: 'Fungia sp.',
+    coralType: 'lps',
+    difficulty: 'intermediate',
+    lightRequirement: 'medium',
+    flowRequirement: 'low',
+    placement: 'bottom',
+    aggressiveness: 'semi-aggressive',
+    description:
+      'Free-living circular LPS coral with short, evenly spaced tentacles. One of the few corals capable of slowly moving across the sandbed using its tentacles.',
+    careNotes:
+      'Must be placed on the sandbed — never prop it on rock. If flipped over, it can right itself given time; assist if it appears distressed. Target feed weekly; it inflates noticeably after eating.',
+    emoji: '🥏',
+  },
   // ── SPS Corals ───────────────────────────────────────────────────────────
   {
     id: 'acropora-millepora',
@@ -243,6 +356,38 @@ export const CORAL_DATABASE: Coral[] = [
     careNotes:
       'Very sensitive — fragile branches break easily. Requires high, chaotic (non-laminar) flow. Detritus settling on branches causes rapid tissue necrosis. Pristine water parameters are non-negotiable.',
     emoji: '🐦',
+  },
+  {
+    id: 'stylophora',
+    name: 'Stylophora',
+    scientificName: 'Stylophora pistillata',
+    coralType: 'sps',
+    difficulty: 'intermediate',
+    lightRequirement: 'high',
+    flowRequirement: 'high',
+    placement: 'top',
+    aggressiveness: 'peaceful',
+    description:
+      'Compact, bushy branching SPS coral with blunt club-shaped branch tips. Often called "clubbed finger coral." Available in pink, green, purple, and yellow morphs.',
+    careNotes:
+      'One of the more forgiving branching SPS corals — a good entry point into keeping SPS. Tolerates slightly elevated nutrients compared to Acropora. Still requires stable alkalinity and calcium. High, varied flow is important.',
+    emoji: '🌵',
+  },
+  {
+    id: 'pocillopora',
+    name: 'Cauliflower Coral',
+    scientificName: 'Pocillopora damicornis',
+    coralType: 'sps',
+    difficulty: 'intermediate',
+    lightRequirement: 'high',
+    flowRequirement: 'high',
+    placement: 'top',
+    aggressiveness: 'peaceful',
+    description:
+      'Branching SPS with a cauliflower-like appearance — dense, rounded clumps of small branches. Often green, pink, or tan. A fast grower and common frag trade species.',
+    careNotes:
+      'Hardier than most SPS and a great first branching stony coral. Grows quickly under good conditions. Stable alkalinity (8–9 dKH) is critical for growth. Excellent indicator coral — bleaches early when conditions slip.',
+    emoji: '🥦',
   },
 ];
 
