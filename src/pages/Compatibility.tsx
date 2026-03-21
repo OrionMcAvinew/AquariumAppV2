@@ -16,6 +16,7 @@ import {
   BookmarkIcon,
 } from '@heroicons/react/24/outline';
 import { BookmarkIcon as BookmarkSolid } from '@heroicons/react/24/solid';
+import WikiSpeciesImage from '../components/WikiSpeciesImage';
 
 type Verdict = 'compatible' | 'incompatible' | 'caution' | 'unknown';
 
@@ -126,9 +127,12 @@ function FishResultCard({
       onClick={() => setExpanded((v) => !v)}
     >
       <div className="flex items-start gap-3 p-4">
-        <span className="text-3xl shrink-0 w-12 h-12 flex items-center justify-center bg-white rounded-lg border border-slate-100">
-          {fish.emoji}
-        </span>
+        <WikiSpeciesImage
+          scientificName={fish.scientificName}
+          emoji={fish.emoji}
+          alt={fish.name}
+          className="w-12 h-12 shrink-0"
+        />
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2">
             <div>

@@ -8,6 +8,7 @@ import { MagnifyingGlassIcon, BookOpenIcon, BookmarkIcon } from '@heroicons/reac
 import { BookmarkIcon as BookmarkSolid } from '@heroicons/react/24/solid';
 import clsx from 'clsx';
 import { useStore } from '../store';
+import WikiSpeciesImage from '../components/WikiSpeciesImage';
 
 type ActiveTab = 'fish' | 'plants' | 'corals' | 'inverts';
 
@@ -70,8 +71,9 @@ function FishCard({ fish }: { fish: Fish }) {
       onClick={() => setExpanded(!expanded)}
     >
       <div className="flex items-start gap-3">
-        <SpeciesImage
-          src={fish.imageUrl}
+        <WikiSpeciesImage
+          scientificName={fish.scientificName}
+          staticImageUrl={fish.imageUrl}
           alt={fish.name}
           emoji={fish.emoji}
           className="w-14 h-14 shrink-0"
@@ -188,8 +190,9 @@ function PlantCard({ plant }: { plant: Plant }) {
       onClick={() => setExpanded(!expanded)}
     >
       <div className="flex items-start gap-3">
-        <SpeciesImage
-          src={plant.imageUrl}
+        <WikiSpeciesImage
+          scientificName={plant.scientificName}
+          staticImageUrl={plant.imageUrl}
           alt={plant.name}
           emoji={plant.emoji}
           className="w-14 h-14 shrink-0"
@@ -278,8 +281,9 @@ function CoralCard({ coral }: { coral: Coral }) {
       onClick={() => setExpanded(!expanded)}
     >
       <div className="flex items-start gap-3">
-        <SpeciesImage
-          src={coral.imageUrl}
+        <WikiSpeciesImage
+          scientificName={coral.scientificName}
+          staticImageUrl={coral.imageUrl}
           alt={coral.name}
           emoji={coral.emoji}
           className="w-14 h-14 shrink-0"
@@ -350,8 +354,9 @@ function InvertCard({ invert }: { invert: Invertebrate }) {
       onClick={() => setExpanded(!expanded)}
     >
       <div className="flex items-start gap-3">
-        <SpeciesImage
-          src={invert.imageUrl}
+        <WikiSpeciesImage
+          scientificName={invert.scientificName}
+          staticImageUrl={invert.imageUrl}
           alt={invert.name}
           emoji={invert.emoji}
           className="w-14 h-14 shrink-0"

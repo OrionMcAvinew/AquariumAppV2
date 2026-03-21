@@ -14,6 +14,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { BookmarkSlashIcon } from '@heroicons/react/24/solid';
 import { Link } from 'react-router-dom';
+import WikiSpeciesImage from '../components/WikiSpeciesImage';
 
 type FilterTab = 'all' | WishlistSpeciesType;
 
@@ -150,9 +151,12 @@ export default function Wishlist() {
 
               return (
                 <div key={item.id} className="card flex items-start gap-3">
-                  <span className="text-3xl w-12 h-12 flex items-center justify-center bg-slate-50 rounded-xl shrink-0">
-                    {species.emoji}
-                  </span>
+                  <WikiSpeciesImage
+                    scientificName={'scientificName' in species ? species.scientificName : ''}
+                    emoji={species.emoji}
+                    alt={species.name}
+                    className="w-12 h-12 shrink-0"
+                  />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-2">
                       <div>
