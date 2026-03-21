@@ -221,3 +221,26 @@ export interface ChatMessage {
   content: string;
   timestamp: string;
 }
+
+// Tank Journal
+export type JournalMood = 'great' | 'good' | 'okay' | 'concern';
+
+export interface JournalEntry {
+  id: string;
+  tankId: string;
+  timestamp: string;
+  title: string;
+  content: string;
+  mood: JournalMood;
+}
+
+// Wishlist
+export type WishlistSpeciesType = 'fish' | 'plant' | 'coral' | 'invertebrate';
+
+export interface WishlistItem {
+  id: string;
+  speciesId: string;
+  speciesType: WishlistSpeciesType;
+  addedAt: string;
+  notes: string;
+}

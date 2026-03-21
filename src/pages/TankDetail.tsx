@@ -23,7 +23,7 @@ import {
   HeartIcon,
 } from '@heroicons/react/24/outline';
 import { format, parseISO, isPast } from 'date-fns';
-import { WaterReading, FishHealthStatus } from '../types';
+import { WaterReading, FishHealthStatus, JournalMood } from '../types';
 import clsx from 'clsx';
 import { useState } from 'react';
 import { FISH_DATABASE as fishDatabase } from '../data/fishDatabase';
@@ -43,7 +43,7 @@ export default function TankDetail() {
   const deleteTask = useStore((s) => s.deleteTask);
   const activeAlerts = useStore((s) => s.getActiveAlerts());
   const [confirmDelete, setConfirmDelete] = useState(false);
-  const [activeTab, setActiveTab] = useState<'overview' | 'charts' | 'tasks' | 'livestock' | 'feeding'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'charts' | 'tasks' | 'livestock' | 'feeding' | 'journal'>('overview');
 
   // Livestock state
   const fishInstances = useStore((s) => s.getTankFishInstances(tankId!));
@@ -61,6 +61,12 @@ export default function TankDetail() {
   const logFeeding = useStore((s) => s.logFeeding);
   const [showAddSchedule, setShowAddSchedule] = useState(false);
   const [scheduleForm, setScheduleForm] = useState({ foodType: '', amount: '', timesPerDay: 2, notes: '' });
+
+  // Journal state
+  const journalEntries = useStore((s) => s.getTankJournalEntries(tankId!));
+  const addJournalEntry = useStore((s) => s.addJournalEntry);
+  const deleteJournalEntry = useStore((s) => s.deleteJournalEntry);
+  const [journalForm, setJournalForm] = useState({ title: '', content: '', mood: 'good' as JournalMood });
 
   const tank = tanks.find((t) => t.id === tankId);
   if (!tank) {
@@ -184,7 +190,7 @@ export default function TankDetail() {
 
         {/* Tabs */}
         <div className="flex gap-1 bg-slate-100 p-1 rounded-xl overflow-x-auto">
-          {(['overview', 'charts', 'tasks', 'livestock', 'feeding'] as const).map((tab) => (
+          {(['overview', 'charts', 'tasks', 'livestock', 'feeding', 'journal'] as const).map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
@@ -276,6 +282,41 @@ export default function TankDetail() {
                 </div>
               </div>
             )}
+          {/* Stocking Level */}
+          {(() => {
+            const instances = fishInstances.filter((fi) => fi.healthStatus !== 'deceased');
+            if (instances.length === 0) return null;
+            const totalInches = instances.reduce((sum, fi) => {
+              const species = fishDatabase.find((f) => f.id === fi.speciesId);
+              if (!species) return sum;
+              const match = species.maxSize.match(/[\d.]+/);
+              return sum + (match ? parseFloat(match[0]) : 2);
+            }, 0);
+            const tankGal = tank.volumeUnit === 'liters' ? tank.volume / 3.785 : tank.volume;
+            const ratio = totalInches / tankGal;
+            const pct = Math.min(ratio / 2, 1) * 100;
+            const { label, color, bg } =
+              ratio < 0.5 ? { label: 'Understocked', color: 'bg-blue-400', bg: 'text-blue-700' } :
+              ratio < 1   ? { label: 'Lightly Stocked', color: 'bg-emerald-400', bg: 'text-emerald-700' } :
+              ratio < 1.5 ? { label: 'Moderately Stocked', color: 'bg-amber-400', bg: 'text-amber-700' } :
+              ratio < 2   ? { label: 'Heavily Stocked', color: 'bg-orange-500', bg: 'text-orange-700' } :
+                            { label: 'Overstocked', color: 'bg-red-500', bg: 'text-red-700' };
+            return (
+              <div className="card">
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="section-title">Stocking Level</h3>
+                  <span className={`text-xs font-bold ${bg}`}>{label}</span>
+                </div>
+                <div className="w-full bg-slate-100 rounded-full h-3 overflow-hidden mb-2">
+                  <div className={`h-3 rounded-full transition-all ${color}`} style={{ width: `${pct}%` }} />
+                </div>
+                <p className="text-xs text-slate-500">
+                  ~{totalInches.toFixed(1)}" of fish in {tankGal.toFixed(0)} gal tank
+                  {' '}· Based on simplified inch-per-gallon guideline
+                </p>
+              </div>
+            );
+          })()}
           </div>
         )}
 
@@ -728,6 +769,105 @@ export default function TankDetail() {
                     </div>
                   ))}
                 </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Tab: Journal */}
+        {activeTab === 'journal' && (
+          <div className="space-y-4">
+            {/* New entry form */}
+            <div className="card space-y-3">
+              <h3 className="section-title">New Entry</h3>
+              <div className="flex gap-2">
+                {([
+                  { mood: 'great' as JournalMood, emoji: '🌟', label: 'Great' },
+                  { mood: 'good' as JournalMood, emoji: '😊', label: 'Good' },
+                  { mood: 'okay' as JournalMood, emoji: '😐', label: 'Okay' },
+                  { mood: 'concern' as JournalMood, emoji: '⚠️', label: 'Concern' },
+                ]).map(({ mood, emoji, label }) => (
+                  <button
+                    key={mood}
+                    onClick={() => setJournalForm((f) => ({ ...f, mood }))}
+                    className={clsx(
+                      'flex-1 flex flex-col items-center gap-0.5 py-2 rounded-xl border text-xs font-medium transition-all',
+                      journalForm.mood === mood
+                        ? 'border-ocean-400 bg-ocean-50 text-ocean-700'
+                        : 'border-slate-200 text-slate-500 hover:border-slate-300'
+                    )}
+                  >
+                    <span className="text-lg">{emoji}</span>
+                    {label}
+                  </button>
+                ))}
+              </div>
+              <input
+                type="text"
+                placeholder="Title (optional)"
+                value={journalForm.title}
+                onChange={(e) => setJournalForm((f) => ({ ...f, title: e.target.value }))}
+                className="input text-sm"
+              />
+              <textarea
+                placeholder="What's happening with your tank today?"
+                value={journalForm.content}
+                onChange={(e) => setJournalForm((f) => ({ ...f, content: e.target.value }))}
+                rows={3}
+                className="input text-sm resize-none"
+              />
+              <button
+                onClick={() => {
+                  if (!journalForm.content.trim()) return;
+                  addJournalEntry({
+                    tankId: tank.id,
+                    timestamp: new Date().toISOString(),
+                    title: journalForm.title,
+                    content: journalForm.content,
+                    mood: journalForm.mood,
+                  });
+                  setJournalForm({ title: '', content: '', mood: 'good' });
+                }}
+                disabled={!journalForm.content.trim()}
+                className="btn-primary text-sm self-end disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                Save Entry
+              </button>
+            </div>
+
+            {/* Entries */}
+            {journalEntries.length === 0 ? (
+              <div className="card text-center py-10">
+                <p className="text-3xl mb-2">📓</p>
+                <p className="text-slate-500 text-sm">No journal entries yet.</p>
+                <p className="text-slate-400 text-xs mt-1">Document your tank's journey — observations, milestones, and changes.</p>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {journalEntries.map((entry) => {
+                  const moodEmoji = { great: '🌟', good: '😊', okay: '😐', concern: '⚠️' }[entry.mood];
+                  const moodBg = { great: 'bg-yellow-50 border-yellow-200', good: 'bg-emerald-50 border-emerald-200', okay: 'bg-slate-50 border-slate-200', concern: 'bg-amber-50 border-amber-200' }[entry.mood];
+                  return (
+                    <div key={entry.id} className={`border rounded-xl p-4 ${moodBg}`}>
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="flex items-center gap-2">
+                          <span className="text-xl">{moodEmoji}</span>
+                          <div>
+                            {entry.title && <p className="font-semibold text-slate-800 text-sm">{entry.title}</p>}
+                            <p className="text-xs text-slate-400">{format(parseISO(entry.timestamp), 'MMM d, yyyy · h:mm a')}</p>
+                          </div>
+                        </div>
+                        <button
+                          onClick={() => deleteJournalEntry(entry.id)}
+                          className="text-slate-300 hover:text-red-400 transition-colors shrink-0"
+                        >
+                          <TrashIcon className="w-4 h-4" />
+                        </button>
+                      </div>
+                      <p className="text-sm text-slate-700 mt-2 whitespace-pre-wrap">{entry.content}</p>
+                    </div>
+                  );
+                })}
               </div>
             )}
           </div>

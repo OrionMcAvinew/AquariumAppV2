@@ -13,7 +13,9 @@ import {
   ChevronDownIcon,
   ChevronUpIcon,
   BeakerIcon,
+  BookmarkIcon,
 } from '@heroicons/react/24/outline';
+import { BookmarkIcon as BookmarkSolid } from '@heroicons/react/24/solid';
 
 type Verdict = 'compatible' | 'incompatible' | 'caution' | 'unknown';
 
@@ -109,6 +111,10 @@ function FishResultCard({
   const [expanded, setExpanded] = useState(false);
   const cfg = result ? VERDICT_CONFIG[result.verdict] : null;
   const Icon = cfg?.icon ?? QuestionMarkCircleIcon;
+  const isInWishlist = useStore((s) => s.isInWishlist(fish.id, 'fish'));
+  const addToWishlist = useStore((s) => s.addToWishlist);
+  const removeFromWishlist = useStore((s) => s.removeFromWishlist);
+  const wishlistItems = useStore((s) => s.wishlistItems);
 
   return (
     <div
@@ -129,12 +135,29 @@ function FishResultCard({
               <h3 className="font-bold text-slate-900 leading-tight">{fish.name}</h3>
               <p className="text-xs text-slate-400 italic">{fish.scientificName}</p>
             </div>
-            {cfg && (
-              <div className={clsx('flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold shrink-0', cfg.badge)}>
-                <Icon className={clsx('w-3.5 h-3.5', cfg.iconColor)} />
-                {cfg.label}
-              </div>
-            )}
+            <div className="flex items-center gap-1.5 shrink-0">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (isInWishlist) {
+                    const item = wishlistItems.find((w) => w.speciesId === fish.id && w.speciesType === 'fish');
+                    if (item) removeFromWishlist(item.id);
+                  } else {
+                    addToWishlist({ speciesId: fish.id, speciesType: 'fish', addedAt: new Date().toISOString(), notes: '' });
+                  }
+                }}
+                className={clsx('p-1.5 rounded-lg transition-colors', isInWishlist ? 'text-violet-600' : 'text-slate-300 hover:text-violet-500')}
+                title={isInWishlist ? 'Remove from wishlist' : 'Save to wishlist'}
+              >
+                {isInWishlist ? <BookmarkSolid className="w-4 h-4" /> : <BookmarkIcon className="w-4 h-4" />}
+              </button>
+              {cfg && (
+                <div className={clsx('flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold', cfg.badge)}>
+                  <Icon className={clsx('w-3.5 h-3.5', cfg.iconColor)} />
+                  {cfg.label}
+                </div>
+              )}
+            </div>
           </div>
           <div className="flex flex-wrap gap-2 mt-2">
             <span className="text-xs bg-white/70 border border-slate-200 rounded-full px-2 py-0.5 text-slate-600">

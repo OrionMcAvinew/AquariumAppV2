@@ -4,8 +4,10 @@ import { PLANT_DATABASE } from '../data/plantDatabase';
 import { CORAL_DATABASE } from '../data/coralDatabase';
 import { INVERTEBRATE_DATABASE } from '../data/invertebrateDatabase';
 import { Fish, Plant, Coral, Invertebrate, Difficulty } from '../types';
-import { MagnifyingGlassIcon, BookOpenIcon } from '@heroicons/react/24/outline';
+import { MagnifyingGlassIcon, BookOpenIcon, BookmarkIcon } from '@heroicons/react/24/outline';
+import { BookmarkIcon as BookmarkSolid } from '@heroicons/react/24/solid';
 import clsx from 'clsx';
+import { useStore } from '../store';
 
 type ActiveTab = 'fish' | 'plants' | 'corals' | 'inverts';
 
@@ -35,6 +37,30 @@ function SpeciesImage({ src, alt, emoji, className }: { src?: string; alt: strin
   );
 }
 
+function WishlistButton({ speciesId, speciesType }: { speciesId: string; speciesType: 'fish' | 'plant' | 'coral' | 'invertebrate' }) {
+  const isInWishlist = useStore((s) => s.isInWishlist(speciesId, speciesType));
+  const addToWishlist = useStore((s) => s.addToWishlist);
+  const removeFromWishlist = useStore((s) => s.removeFromWishlist);
+  const wishlistItems = useStore((s) => s.wishlistItems);
+  return (
+    <button
+      onClick={(e) => {
+        e.stopPropagation();
+        if (isInWishlist) {
+          const item = wishlistItems.find((w) => w.speciesId === speciesId && w.speciesType === speciesType);
+          if (item) removeFromWishlist(item.id);
+        } else {
+          addToWishlist({ speciesId, speciesType, addedAt: new Date().toISOString(), notes: '' });
+        }
+      }}
+      title={isInWishlist ? 'Remove from wishlist' : 'Save to wishlist'}
+      className={clsx('p-1.5 rounded-lg transition-colors shrink-0', isInWishlist ? 'text-violet-600 hover:text-violet-400' : 'text-slate-300 hover:text-violet-500')}
+    >
+      {isInWishlist ? <BookmarkSolid className="w-4 h-4" /> : <BookmarkIcon className="w-4 h-4" />}
+    </button>
+  );
+}
+
 function FishCard({ fish }: { fish: Fish }) {
   const [expanded, setExpanded] = useState(false);
 
@@ -56,9 +82,12 @@ function FishCard({ fish }: { fish: Fish }) {
               <h3 className="font-bold text-slate-900">{fish.name}</h3>
               <p className="text-xs text-slate-400 italic">{fish.scientificName}</p>
             </div>
-            <span className={clsx('text-xs px-2 py-1 rounded-full font-semibold shrink-0', DIFFICULTY_COLORS[fish.difficulty])}>
-              {fish.difficulty}
-            </span>
+            <div className="flex items-center gap-1 shrink-0">
+              <WishlistButton speciesId={fish.id} speciesType="fish" />
+              <span className={clsx('text-xs px-2 py-1 rounded-full font-semibold', DIFFICULTY_COLORS[fish.difficulty])}>
+                {fish.difficulty}
+              </span>
+            </div>
           </div>
 
           <div className="flex flex-wrap gap-2 mt-2">
@@ -171,9 +200,12 @@ function PlantCard({ plant }: { plant: Plant }) {
               <h3 className="font-bold text-slate-900">{plant.name}</h3>
               <p className="text-xs text-slate-400 italic">{plant.scientificName}</p>
             </div>
-            <span className={clsx('text-xs px-2 py-1 rounded-full font-semibold shrink-0', DIFFICULTY_COLORS[plant.difficulty])}>
-              {plant.difficulty}
-            </span>
+            <div className="flex items-center gap-1 shrink-0">
+              <WishlistButton speciesId={plant.id} speciesType="plant" />
+              <span className={clsx('text-xs px-2 py-1 rounded-full font-semibold', DIFFICULTY_COLORS[plant.difficulty])}>
+                {plant.difficulty}
+              </span>
+            </div>
           </div>
 
           <div className="flex flex-wrap gap-2 mt-2">
@@ -258,9 +290,12 @@ function CoralCard({ coral }: { coral: Coral }) {
               <h3 className="font-bold text-slate-900">{coral.name}</h3>
               <p className="text-xs text-slate-400 italic">{coral.scientificName}</p>
             </div>
-            <span className={clsx('text-xs px-2 py-1 rounded-full font-semibold shrink-0 uppercase', CORAL_TYPE_COLORS[coral.coralType])}>
-              {coral.coralType}
-            </span>
+            <div className="flex items-center gap-1 shrink-0">
+              <WishlistButton speciesId={coral.id} speciesType="coral" />
+              <span className={clsx('text-xs px-2 py-1 rounded-full font-semibold uppercase', CORAL_TYPE_COLORS[coral.coralType])}>
+                {coral.coralType}
+              </span>
+            </div>
           </div>
 
           <div className="flex flex-wrap gap-2 mt-2">
@@ -327,9 +362,12 @@ function InvertCard({ invert }: { invert: Invertebrate }) {
               <h3 className="font-bold text-slate-900">{invert.name}</h3>
               <p className="text-xs text-slate-400 italic">{invert.scientificName}</p>
             </div>
-            <span className={clsx('text-xs px-2 py-1 rounded-full font-semibold shrink-0 capitalize', INVERT_TYPE_COLORS[invert.invertType])}>
-              {invert.invertType}
-            </span>
+            <div className="flex items-center gap-1 shrink-0">
+              <WishlistButton speciesId={invert.id} speciesType="invertebrate" />
+              <span className={clsx('text-xs px-2 py-1 rounded-full font-semibold capitalize', INVERT_TYPE_COLORS[invert.invertType])}>
+                {invert.invertType}
+              </span>
+            </div>
           </div>
 
           <div className="flex flex-wrap gap-2 mt-2">

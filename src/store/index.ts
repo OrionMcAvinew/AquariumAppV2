@@ -5,6 +5,7 @@ import { addDays, formatISO, parseISO } from 'date-fns';
 import {
   Tank, WaterReading, MaintenanceTask, AppAlert,
   FishInstance, FeedingSchedule, FeedingLog, Equipment,
+  JournalEntry, WishlistItem,
 } from '../types';
 import { SAMPLE_TANKS, SAMPLE_READINGS, SAMPLE_TASKS } from '../data/sampleData';
 import { getRangesForTankType, getParameterStatus, PARAMETER_LABELS, PARAMETER_UNITS } from '../utils/parameterRanges';
@@ -65,6 +66,18 @@ interface AppState {
   // API key
   setApiKey: (key: string) => void;
 
+  // Journal
+  journalEntries: JournalEntry[];
+  addJournalEntry: (entry: Omit<JournalEntry, 'id'>) => void;
+  deleteJournalEntry: (id: string) => void;
+  getTankJournalEntries: (tankId: string) => JournalEntry[];
+
+  // Wishlist
+  wishlistItems: WishlistItem[];
+  addToWishlist: (item: Omit<WishlistItem, 'id'>) => void;
+  removeFromWishlist: (id: string) => void;
+  isInWishlist: (speciesId: string, speciesType: string) => boolean;
+
   // Seeding
   seedData: () => void;
 
@@ -94,6 +107,8 @@ export const useStore = create<AppState>()(
       feedingLogs: [],
       equipment: [],
       anthropicApiKey: '',
+      journalEntries: [],
+      wishlistItems: [],
 
       addTank: (tank) => {
         const id = uuidv4();
@@ -121,6 +136,7 @@ export const useStore = create<AppState>()(
           feedingSchedules: state.feedingSchedules.filter((s) => s.tankId !== id),
           feedingLogs: state.feedingLogs.filter((l) => l.tankId !== id),
           equipment: state.equipment.filter((e) => e.tankId !== id),
+          journalEntries: state.journalEntries.filter((j) => j.tankId !== id),
         })),
 
       addReading: (reading) => {
@@ -315,6 +331,26 @@ export const useStore = create<AppState>()(
         })),
 
       setApiKey: (key) => set({ anthropicApiKey: key }),
+
+      // Journal
+      addJournalEntry: (entry) => {
+        const id = uuidv4();
+        set((state) => ({ journalEntries: [{ ...entry, id }, ...state.journalEntries] }));
+      },
+      deleteJournalEntry: (id) =>
+        set((state) => ({ journalEntries: state.journalEntries.filter((j) => j.id !== id) })),
+      getTankJournalEntries: (tankId) =>
+        get().journalEntries.filter((j) => j.tankId === tankId),
+
+      // Wishlist
+      addToWishlist: (item) => {
+        const id = uuidv4();
+        set((state) => ({ wishlistItems: [...state.wishlistItems, { ...item, id }] }));
+      },
+      removeFromWishlist: (id) =>
+        set((state) => ({ wishlistItems: state.wishlistItems.filter((w) => w.id !== id) })),
+      isInWishlist: (speciesId, speciesType) =>
+        get().wishlistItems.some((w) => w.speciesId === speciesId && w.speciesType === speciesType),
 
       seedData: () => {
         if (get().seeded) return;

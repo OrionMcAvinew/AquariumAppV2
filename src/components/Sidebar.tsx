@@ -12,6 +12,7 @@ import {
   WrenchIcon,
   ShieldCheckIcon,
   CalculatorIcon,
+  BookmarkIcon,
 } from '@heroicons/react/24/outline';
 import { useStore } from '../store';
 
@@ -21,6 +22,7 @@ const NAV_ITEMS = [
   { to: '/equipment', label: 'Equipment', icon: WrenchIcon },
   { to: '/compatibility', label: 'Compatibility', icon: ShieldCheckIcon },
   { to: '/calculators', label: 'Calculators', icon: CalculatorIcon },
+  { to: '/wishlist', label: 'Wishlist', icon: BookmarkIcon },
   { to: '/database', label: 'Database', icon: BookOpenIcon },
   { to: '/analytics', label: 'Analytics', icon: ChartBarIcon },
   { to: '/ai', label: 'AI Advisor', icon: SparklesIcon },
