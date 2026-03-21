@@ -18,6 +18,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '1.5 inches',
     lifespan: '5-8 years',
     emoji: '🐟',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Neonsalmler_Paracheirodon_innesi.jpg/640px-Neonsalmler_Paracheirodon_innesi.jpg',
   },
   {
     id: 'cardinal-tetra',
@@ -36,6 +37,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '2 inches',
     lifespan: '4-5 years',
     emoji: '🐟',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Paracheirodon_cardinalis.JPG/640px-Paracheirodon_cardinalis.JPG',
   },
   {
     id: 'guppy',
@@ -54,6 +56,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '2.5 inches',
     lifespan: '2-3 years',
     emoji: '🐠',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Guppy_Poecilia_reticulata.jpg/640px-Guppy_Poecilia_reticulata.jpg',
   },
   {
     id: 'betta',
@@ -72,6 +75,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '3 inches',
     lifespan: '3-5 years',
     emoji: '🐡',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Betta_splendens_male.jpg/640px-Betta_splendens_male.jpg',
   },
   {
     id: 'angelfish',
@@ -90,6 +94,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '6 inches',
     lifespan: '10-12 years',
     emoji: '🐠',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Pterophyllum_scalare.jpg/640px-Pterophyllum_scalare.jpg',
   },
   {
     id: 'corydoras',
@@ -108,6 +113,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '2.5 inches',
     lifespan: '5-10 years',
     emoji: '🐟',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corydoras_aeneus_head.JPG/640px-Corydoras_aeneus_head.JPG',
   },
   {
     id: 'danio',
@@ -126,6 +132,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '2.5 inches',
     lifespan: '3-5 years',
     emoji: '🐟',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Danio_rerio.JPG/640px-Danio_rerio.JPG',
   },
   {
     id: 'platy',
@@ -144,6 +151,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '3 inches',
     lifespan: '3-5 years',
     emoji: '🐠',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Xiphophorus_maculatus_in_aqarium.JPG/640px-Xiphophorus_maculatus_in_aqarium.JPG',
   },
   {
     id: 'molly',
@@ -162,6 +170,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '4.5 inches',
     lifespan: '3-5 years',
     emoji: '🐟',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Poecilia_sphenops.jpg/640px-Poecilia_sphenops.jpg',
   },
   {
     id: 'oscar',
@@ -180,6 +189,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '14 inches',
     lifespan: '10-20 years',
     emoji: '🐡',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Astronotus_ocellatus.jpg/640px-Astronotus_ocellatus.jpg',
   },
   {
     id: 'goldfish',
@@ -198,6 +208,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '12+ inches',
     lifespan: '15-30 years',
     emoji: '🐟',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Goldfish3.jpg/640px-Goldfish3.jpg',
   },
   {
     id: 'clownfish',
@@ -216,6 +227,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '4 inches',
     lifespan: '6-10 years',
     emoji: '🐠',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Anemone_fish_davies_reef.jpg/640px-Anemone_fish_davies_reef.jpg',
   },
   {
     id: 'blue-tang',
@@ -234,6 +246,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '12 inches',
     lifespan: '8-20 years',
     emoji: '🐡',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Paracanthurus_hepatus_2.jpg/640px-Paracanthurus_hepatus_2.jpg',
   },
   {
     id: 'royal-gramma',
@@ -252,6 +265,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '3 inches',
     lifespan: '5+ years',
     emoji: '🐠',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Grammatidae_-_Gramma_loreto.JPG/640px-Grammatidae_-_Gramma_loreto.JPG',
   },
   {
     id: 'firefish-goby',
@@ -270,6 +284,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '3 inches',
     lifespan: '3-5 years',
     emoji: '🐟',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Nemateleotris_magnifica.jpg/640px-Nemateleotris_magnifica.jpg',
   },
   {
     id: 'green-chromis',
@@ -288,6 +303,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '3.5 inches',
     lifespan: '8+ years',
     emoji: '🐠',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Chromis_viridis.jpg/640px-Chromis_viridis.jpg',
   },
   {
     id: 'mandarin-dragonet',
@@ -306,6 +322,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '3 inches',
     lifespan: '4-7 years',
     emoji: '🐡',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Synchiropus_splendidus_2_Luc_Viatour.jpg/640px-Synchiropus_splendidus_2_Luc_Viatour.jpg',
   },
   {
     id: 'dwarf-gourami',
@@ -324,6 +341,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '3.5 inches',
     lifespan: '4-6 years',
     emoji: '🐠',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Colisa_lalia.jpg/640px-Colisa_lalia.jpg',
   },
   {
     id: 'cherry-barb',
@@ -342,6 +360,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '2 inches',
     lifespan: '5-7 years',
     emoji: '🐟',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Puntius_titteya.jpg/640px-Puntius_titteya.jpg',
   },
   {
     id: 'discus',
@@ -360,6 +379,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '8 inches',
     lifespan: '10-15 years',
     emoji: '🐡',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Symphysodon_aequifasciata_axelrodi_-_Disc_fish.jpg/640px-Symphysodon_aequifasciata_axelrodi_-_Disc_fish.jpg',
   },
   // ── Freshwater ──────────────────────────────────────────────────────────────
   {
@@ -379,6 +399,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '4 inches',
     lifespan: '5-8 years',
     emoji: '🌈',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Melanotaenia_boesemani.jpg/640px-Melanotaenia_boesemani.jpg',
   },
   {
     id: 'kuhli-loach',
@@ -397,6 +418,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '4 inches',
     lifespan: '10+ years',
     emoji: '🐍',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Pangio_kuhlii.jpg/640px-Pangio_kuhlii.jpg',
   },
   {
     id: 'electric-blue-ram',
@@ -415,6 +437,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '3 inches',
     lifespan: '3-4 years',
     emoji: '💙',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Mikrogeophagus_ramirezi.jpg/640px-Mikrogeophagus_ramirezi.jpg',
   },
   {
     id: 'apistogramma',
@@ -433,6 +456,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '3.5 inches (male)',
     lifespan: '5 years',
     emoji: '🦜',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Apistogramma_cacatuoides.jpg/640px-Apistogramma_cacatuoides.jpg',
   },
   {
     id: 'siamese-algae-eater',
@@ -451,6 +475,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '6 inches',
     lifespan: '10 years',
     emoji: '🌿',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Crossocheilus_oblongus.jpg/640px-Crossocheilus_oblongus.jpg',
   },
   {
     id: 'pearl-gourami',
@@ -469,6 +494,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '4.5 inches',
     lifespan: '4-5 years',
     emoji: '🌟',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Trichogaster_leerii.jpg/640px-Trichogaster_leerii.jpg',
   },
   {
     id: 'black-skirt-tetra',
@@ -487,6 +513,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '3 inches',
     lifespan: '3-5 years',
     emoji: '🖤',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Gymnocorymbus_ternetzi.jpg/640px-Gymnocorymbus_ternetzi.jpg',
   },
   // ── Saltwater ────────────────────────────────────────────────────────────────
   {
@@ -506,6 +533,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '4 inches',
     lifespan: '5-7 years',
     emoji: '👀',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Cryptocentrus_cinctus.jpg/640px-Cryptocentrus_cinctus.jpg',
   },
   {
     id: 'tailspot-blenny',
@@ -524,6 +552,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '2.5 inches',
     lifespan: '4-5 years',
     emoji: '🔴',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Ecsenius_stigmatura.jpg/640px-Ecsenius_stigmatura.jpg',
   },
   {
     id: 'orchid-dottyback',
@@ -542,6 +571,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '3 inches',
     lifespan: '5 years',
     emoji: '🪻',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Pseudochromis_fridmani.JPG/640px-Pseudochromis_fridmani.JPG',
   },
   {
     id: 'bangaii-cardinalfish',
@@ -560,6 +590,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '3 inches',
     lifespan: '5 years',
     emoji: '⚡',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Pterapogon_kauderni.jpg/640px-Pterapogon_kauderni.jpg',
   },
   {
     id: 'six-line-wrasse',
@@ -578,6 +609,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '3 inches',
     lifespan: '4-6 years',
     emoji: '🦓',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Pseudocheilinus_hexataenia.jpg/640px-Pseudocheilinus_hexataenia.jpg',
   },
   // ── Freshwater (cont.) ───────────────────────────────────────────────────────
   {
@@ -597,6 +629,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '1.75 inches',
     lifespan: '5-8 years',
     emoji: '🔷',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Trigonostigma_heteromorpha.jpg/640px-Trigonostigma_heteromorpha.jpg',
   },
   {
     id: 'rummy-nose-tetra',
@@ -615,6 +648,7 @@ export const FISH_DATABASE: Fish[] = [
     maxSize: '2 inches',
     lifespan: '5-6 years',
     emoji: '👃',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Hemigrammus_rhodostomus.jpg/640px-Hemigrammus_rhodostomus.jpg',
   },
   {
     id: 'african-butterfly-cichlid',

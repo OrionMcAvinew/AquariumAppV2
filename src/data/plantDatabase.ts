@@ -15,6 +15,7 @@ export const PLANT_DATABASE: Plant[] = [
     description: 'One of the most popular aquarium plants, extremely hardy and adaptable. Features distinctive dark green leaves with a rugged texture.',
     careNotes: 'Do NOT plant in substrate—attach to rocks or driftwood with thread. Burying the rhizome will kill it. Propagates via plantlets.',
     emoji: '🌿',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Microsorum_pteropus.jpg/640px-Microsorum_pteropus.jpg',
   },
   {
     id: 'anubias',
@@ -30,6 +31,7 @@ export const PLANT_DATABASE: Plant[] = [
     description: 'Robust, slow-growing plants with thick, waxy leaves that resist being eaten. Perfect for cichlid tanks.',
     careNotes: 'Attach rhizome to rocks or wood—never bury. Algae can grow on leaves due to slow growth; keep moderate light.',
     emoji: '🌿',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Anubias_barteri.jpg/640px-Anubias_barteri.jpg',
   },
   {
     id: 'amazon-sword',
@@ -45,6 +47,7 @@ export const PLANT_DATABASE: Plant[] = [
     description: 'A classic aquarium plant with long, sword-shaped leaves. Creates a dramatic background and provides cover for fish.',
     careNotes: 'Benefits from root tabs as a heavy feeder. Can grow very large—trim outer leaves to control size.',
     emoji: '🌿',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Echinodorus_bleheri.jpg/640px-Echinodorus_bleheri.jpg',
   },
   {
     id: 'java-moss',
@@ -60,6 +63,7 @@ export const PLANT_DATABASE: Plant[] = [
     description: 'Extremely versatile moss that can be attached to anything or left to float. Provides excellent hiding spots for fry and shrimp.',
     careNotes: 'Trim regularly to prevent overgrowth. Can be tied to wood/rock to form carpets or moss walls. Very undemanding.',
     emoji: '🌿',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Taxiphyllum_barbieri.jpg/640px-Taxiphyllum_barbieri.jpg',
   },
   {
     id: 'hornwort',
@@ -75,6 +79,7 @@ export const PLANT_DATABASE: Plant[] = [
     description: 'Fast-growing stem plant that excels at absorbing excess nutrients and competing with algae. Great for new tanks.',
     careNotes: 'No roots—can float or be loosely planted. Sheds needles when stressed. Excellent nutrient exporter.',
     emoji: '🌱',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Ceratophyllum_demersum.jpg/640px-Ceratophyllum_demersum.jpg',
   },
   {
     id: 'dwarf-hairgrass',
@@ -90,6 +95,7 @@ export const PLANT_DATABASE: Plant[] = [
     description: 'Creates a stunning lawn-like carpet effect. One of the most popular foreground plants for aquascaping.',
     careNotes: 'Needs high light and CO2 injection for dense carpet growth. Plant in small portions 1cm apart.',
     emoji: '🌾',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Hemianthus_callitrichoides.jpg/640px-Hemianthus_callitrichoides.jpg',
   },
   {
     id: 'vallisneria',
@@ -105,6 +111,7 @@ export const PLANT_DATABASE: Plant[] = [
     description: 'Long, ribbon-like grass that sways in the current, creating a natural, flowing effect. Spreads via runners.',
     careNotes: 'Very adaptable and easy to grow. Spreads quickly via runners. Trim tips if they reach the surface.',
     emoji: '🌿',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Vallisneria_spiralis.jpg/640px-Vallisneria_spiralis.jpg',
   },
   {
     id: 'water-wisteria',
@@ -120,6 +127,7 @@ export const PLANT_DATABASE: Plant[] = [
     description: 'Feathery, decorative stem plant that grows quickly and helps control algae by absorbing nutrients.',
     careNotes: 'Very fast grower—prune regularly. Cuttings root easily. Can be planted or left floating.',
     emoji: '🌿',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Hygrophila_difformis.jpg/640px-Hygrophila_difformis.jpg',
   },
   {
     id: 'ludwigia',
@@ -150,6 +158,7 @@ export const PLANT_DATABASE: Plant[] = [
     description: 'Popular rosette plant available in many color forms. Very hardy once established but prone to "crypt melt" when moved.',
     careNotes: 'May melt when first planted—this is normal. Leave roots in place and new growth will emerge. Do not disturb once established.',
     emoji: '🌿',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Cryptocoryne_wendtii.jpg/640px-Cryptocoryne_wendtii.jpg',
   },
   {
     id: 'rotala',
@@ -210,6 +219,7 @@ export const PLANT_DATABASE: Plant[] = [
     description: 'Creates a beautiful, dense carpet of tiny round leaves. Popular in Dutch and nature aquascaping styles.',
     careNotes: 'Requires high light and CO2 injection for carpet growth. Plant as tissue culture portions, spaced 1cm apart.',
     emoji: '🌱',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Micranthemum_tweediei.jpg/640px-Micranthemum_tweediei.jpg',
   },
   {
     id: 'banana-plant',

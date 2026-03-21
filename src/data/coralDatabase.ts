@@ -17,6 +17,7 @@ export const CORAL_DATABASE: Coral[] = [
     careNotes:
       'Tolerates moderate swings in salinity and lighting. May periodically shrink and shed a waxy coat — this is normal. Keep away from stony corals as its toxins can inhibit their growth.',
     emoji: '🍄',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Sarcophyton_trocheliophorum.jpg/640px-Sarcophyton_trocheliophorum.jpg',
   },
   {
     id: 'kenya-tree',
@@ -33,6 +34,7 @@ export const CORAL_DATABASE: Coral[] = [
     careNotes:
       'Nearly indestructible — tolerates low light and variable flow. Fragging is easy: cut a branch and wedge it into rock rubble. Can outcompete other corals for space, so prune regularly.',
     emoji: '🌳',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Capnella_imbricata.jpg/640px-Capnella_imbricata.jpg',
   },
   {
     id: 'pulsing-xenia',
@@ -49,6 +51,7 @@ export const CORAL_DATABASE: Coral[] = [
     careNotes:
       'Thrives in stable, high-pH water. Can spread rapidly — mount it on an isolated rock so it cannot crawl onto other corals. Iodine levels affect pulse rate. Will crash if water quality deteriorates.',
     emoji: '🌸',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Xenia_elongata.jpg/640px-Xenia_elongata.jpg',
   },
   {
     id: 'green-star-polyps',
@@ -98,6 +101,7 @@ export const CORAL_DATABASE: Coral[] = [
     careNotes:
       'Requires moderate, indirect flow; strong direct flow damages tissue. Allow at least 6 inches clearance from other corals — sweeper tentacles extend up to 6 inches at night. Target feed meaty foods 1–2× per week.',
     emoji: '🔨',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Euphyllia_ancora.jpg/640px-Euphyllia_ancora.jpg',
   },
   {
     id: 'torch-coral',
@@ -114,6 +118,7 @@ export const CORAL_DATABASE: Coral[] = [
     careNotes:
       'Highly aggressive — long sweeper tentacles can damage or kill neighbors. Give ample space. Sensitive to rapid flow changes and temperature swings. Feed meaty foods 1–2× per week.',
     emoji: '🔦',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Euphyllia_glabrescens.jpg/640px-Euphyllia_glabrescens.jpg',
   },
   {
     id: 'frogspawn-coral',
@@ -879,6 +884,7 @@ export const CORAL_DATABASE: Coral[] = [
     careNotes:
       'Demands pristine water: nitrate < 5 ppm, phosphate < 0.05 ppm. Requires intense lighting (PAR 250–400+) and vigorous random flow. Keep 76–78 °F. Dose calcium, alkalinity, and magnesium consistently.',
     emoji: '🌿',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Acropora_millepora.jpg/640px-Acropora_millepora.jpg',
   },
   {
     id: 'montipora-capricornis',
@@ -895,6 +901,7 @@ export const CORAL_DATABASE: Coral[] = [
     careNotes:
       'A good entry-level SPS. Tolerates slightly higher nutrients than Acropora. PAR 150–300 is ideal. Ensure calcium and alkalinity are stable — growth rate is impressive once established.',
     emoji: '🌀',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Montipora_capricornis.jpg/640px-Montipora_capricornis.jpg',
   },
   {
     id: 'seriatopora',

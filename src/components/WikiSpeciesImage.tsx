@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 interface Props {
   scientificName: string;
-  /** Static imageUrl from database (used if present, skips Wikipedia fetch) */
+  /** Pre-verified static URL — tried first, falls back to Wikipedia API on error */
   staticImageUrl?: string;
   emoji: string;
   alt: string;
@@ -12,22 +12,31 @@ interface Props {
 }
 
 /**
- * Shows a real species photo pulled from Wikipedia by scientific name.
- * Falls back to the emoji if the fetch fails or while loading.
- * If `staticImageUrl` is provided it is used directly without fetching.
+ * Image cascade: staticImageUrl → Wikipedia API thumbnail → emoji
+ * The Wikipedia fetch only fires if staticImageUrl is absent or errors.
  */
 export default function WikiSpeciesImage({ scientificName, staticImageUrl, emoji, alt, className }: Props) {
-  const wikiUrl = useWikipediaImage(staticImageUrl ? undefined : scientificName);
-  const src = staticImageUrl ?? wikiUrl;
-  const [failed, setFailed] = useState(false);
+  const [staticFailed, setStaticFailed] = useState(false);
 
-  if (src && !failed) {
+  // Only query Wikipedia when static URL is absent or already failed
+  const wikiUrl = useWikipediaImage(!staticImageUrl || staticFailed ? scientificName : undefined);
+
+  const activeSrc = staticFailed ? wikiUrl : (staticImageUrl ?? wikiUrl);
+  const [wikiFailed, setWikiFailed] = useState(false);
+
+  if (activeSrc && !wikiFailed) {
     return (
       <img
-        src={src}
+        src={activeSrc}
         alt={alt}
         className={clsx('object-cover rounded-lg bg-slate-100', className)}
-        onError={() => setFailed(true)}
+        onError={() => {
+          if (!staticFailed && staticImageUrl) {
+            setStaticFailed(true); // try Wikipedia next
+          } else {
+            setWikiFailed(true);  // give up, show emoji
+          }
+        }}
       />
     );
   }
