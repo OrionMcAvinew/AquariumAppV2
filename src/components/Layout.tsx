@@ -6,16 +6,22 @@ import {
   SparklesIcon,
   ShieldCheckIcon,
   CalculatorIcon,
-  Cog6ToothIcon,
 } from '@heroicons/react/24/outline';
+import {
+  HomeIcon as HomeIconSolid,
+  WrenchScrewdriverIcon as WrenchScrewdriverIconSolid,
+  SparklesIcon as SparklesIconSolid,
+  ShieldCheckIcon as ShieldCheckIconSolid,
+  CalculatorIcon as CalculatorIconSolid,
+} from '@heroicons/react/24/solid';
 import { useStore } from '../store';
 
 const MOBILE_NAV = [
-  { to: '/dashboard', label: 'Home', icon: HomeIcon },
-  { to: '/maintenance', label: 'Tasks', icon: WrenchScrewdriverIcon },
-  { to: '/compatibility', label: 'Compat', icon: ShieldCheckIcon },
-  { to: '/calculators', label: 'Calc', icon: CalculatorIcon },
-  { to: '/ai', label: 'AI', icon: SparklesIcon },
+  { to: '/dashboard',    label: 'Home',   icon: HomeIcon,                 iconActive: HomeIconSolid },
+  { to: '/maintenance',  label: 'Tasks',  icon: WrenchScrewdriverIcon,    iconActive: WrenchScrewdriverIconSolid, badge: true },
+  { to: '/compatibility',label: 'Compat', icon: ShieldCheckIcon,          iconActive: ShieldCheckIconSolid },
+  { to: '/calculators',  label: 'Calc',   icon: CalculatorIcon,           iconActive: CalculatorIconSolid },
+  { to: '/ai',           label: 'AI',     icon: SparklesIcon,             iconActive: SparklesIconSolid },
 ];
 
 export default function Layout() {
@@ -32,26 +38,33 @@ export default function Layout() {
         </div>
 
         {/* Mobile bottom navigation */}
-        <nav className="lg:hidden fixed bottom-0 inset-x-0 bg-white border-t border-slate-200 z-50 safe-area-bottom">
-          <div className="flex items-center justify-around py-2 px-2">
-            {MOBILE_NAV.map(({ to, label, icon: Icon }) => (
+        <nav className="lg:hidden fixed bottom-0 inset-x-0 z-50" style={{
+          background: 'rgba(255,255,255,0.95)',
+          backdropFilter: 'blur(12px)',
+          borderTop: '1px solid rgba(0,0,0,0.08)',
+        }}>
+          <div className="flex items-center justify-around py-2 px-1">
+            {MOBILE_NAV.map(({ to, label, icon: Icon, iconActive: IconActive, badge }) => (
               <NavLink
                 key={to}
                 to={to}
                 className={({ isActive }) =>
-                  `flex flex-col items-center gap-0.5 px-3 py-1 rounded-lg transition-colors relative ${
+                  `relative flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl transition-all ${
                     isActive ? 'text-ocean-600' : 'text-slate-400'
                   }`
                 }
               >
                 {({ isActive }) => (
                   <>
-                    <Icon className={`w-6 h-6 ${isActive ? 'text-ocean-600' : 'text-slate-400'}`} />
-                    <span className={`text-xs font-medium ${isActive ? 'text-ocean-600' : 'text-slate-400'}`}>
+                    {isActive
+                      ? <IconActive className="w-5 h-5 text-ocean-600" />
+                      : <Icon className="w-5 h-5" />
+                    }
+                    <span className={`text-[10px] font-semibold ${isActive ? 'text-ocean-600' : 'text-slate-400'}`}>
                       {label}
                     </span>
-                    {label === 'Tasks' && activeAlerts.length > 0 && (
-                      <span className="absolute top-0 right-1 bg-red-500 text-white text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full">
+                    {badge && activeAlerts.length > 0 && (
+                      <span className="absolute top-1 right-1.5 bg-red-500 text-white text-[9px] font-bold w-3.5 h-3.5 flex items-center justify-center rounded-full">
                         {activeAlerts.length > 9 ? '9+' : activeAlerts.length}
                       </span>
                     )}
@@ -60,6 +73,8 @@ export default function Layout() {
               </NavLink>
             ))}
           </div>
+          {/* iOS safe area */}
+          <div className="h-safe-bottom" />
         </nav>
       </main>
     </div>
