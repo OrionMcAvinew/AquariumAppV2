@@ -32,6 +32,23 @@ const PARAM_KEYS: Array<keyof Omit<WaterReading, 'id' | 'tankId' | 'timestamp' |
   'ph', 'ammonia', 'nitrite', 'nitrate', 'temperature', 'salinity', 'gh', 'kh', 'phosphate', 'dissolvedOxygen', 'calcium', 'magnesium',
 ];
 
+const TANK_GRADIENTS: Record<string, string> = {
+  freshwater: 'linear-gradient(135deg, #0369a1 0%, #0ea5e9 55%, #14b8a6 100%)',
+  saltwater:  'linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 55%, #0ea5e9 100%)',
+  reef:       'linear-gradient(135deg, #6d28d9 0%, #2563eb 55%, #0891b2 100%)',
+  planted:    'linear-gradient(135deg, #065f46 0%, #059669 55%, #0d9488 100%)',
+  brackish:   'linear-gradient(135deg, #78350f 0%, #0369a1 100%)',
+};
+
+const TAB_CONFIG = [
+  { id: 'overview',  label: 'Overview',  emoji: '📊' },
+  { id: 'charts',    label: 'Charts',    emoji: '📈' },
+  { id: 'tasks',     label: 'Tasks',     emoji: '🔧' },
+  { id: 'livestock', label: 'Livestock', emoji: '🐠' },
+  { id: 'feeding',   label: 'Feeding',   emoji: '🍽️' },
+  { id: 'journal',   label: 'Journal',   emoji: '📓' },
+] as const;
+
 export default function TankDetail() {
   const { tankId } = useParams<{ tankId: string }>();
   const navigate = useNavigate();
@@ -104,27 +121,99 @@ export default function TankDetail() {
 
   return (
     <div className="max-w-4xl mx-auto">
-      {/* Header */}
-      <div className="bg-white border-b border-slate-100 px-6 py-4 flex items-center gap-4 sticky top-0 z-10">
-        <button onClick={() => navigate(-1)} className="text-slate-400 hover:text-slate-600 transition-colors">
-          <ArrowLeftIcon className="w-5 h-5" />
-        </button>
-        <span className="text-2xl">{tank.emoji}</span>
-        <div className="flex-1 min-w-0">
-          <h1 className="text-lg font-bold text-slate-900 truncate">{tank.name}</h1>
-          <p className="text-xs text-slate-400">{typeLabel} · {tank.volume} {tank.volumeUnit}</p>
-        </div>
-        <div className="flex items-center gap-2">
-          <Link to={`/tanks/${tank.id}/log`} className="btn-primary text-sm py-1.5">
-            <PlusIcon className="w-4 h-4" />
-            <span className="hidden sm:inline">Log Reading</span>
-          </Link>
-          <button
-            onClick={() => setConfirmDelete(!confirmDelete)}
-            className="text-slate-400 hover:text-red-500 transition-colors p-2"
-          >
-            <TrashIcon className="w-5 h-5" />
-          </button>
+
+      {/* ── Gradient hero header ───────────────────────────────────── */}
+      <div
+        className="relative overflow-hidden sticky top-0 z-10"
+        style={{ background: TANK_GRADIENTS[tank.type] || TANK_GRADIENTS.freshwater }}
+      >
+        {tank.photoUrl && (
+          <>
+            <img src={tank.photoUrl} alt={tank.name} className="absolute inset-0 w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-black/50" />
+          </>
+        )}
+        {/* Subtle texture */}
+        <div className="absolute inset-0 opacity-20"
+          style={{ backgroundImage: 'radial-gradient(ellipse at 80% 30%, rgba(255,255,255,0.4) 0%, transparent 60%)' }}
+        />
+        <div className="relative px-5 py-4">
+          {/* Top row */}
+          <div className="flex items-center gap-3 mb-3">
+            <button onClick={() => navigate(-1)} className="text-white/70 hover:text-white transition-colors">
+              <ArrowLeftIcon className="w-5 h-5" />
+            </button>
+            <span className="text-2xl drop-shadow">{tank.emoji}</span>
+            <div className="flex-1 min-w-0">
+              <h1 className="text-lg font-bold text-white leading-tight truncate drop-shadow-sm">{tank.name}</h1>
+              <p className="text-white/70 text-xs font-medium uppercase tracking-wide">{typeLabel} · {tank.volume} {tank.volumeUnit}</p>
+            </div>
+            <div className="flex items-center gap-2 shrink-0">
+              <Link to={`/tanks/${tank.id}/log`}
+                className="flex items-center gap-1.5 bg-white/20 hover:bg-white/30 active:bg-white/40 text-white text-xs font-semibold px-3 py-1.5 rounded-lg backdrop-blur-sm transition-all">
+                <PlusIcon className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Log</span>
+              </Link>
+              <button
+                onClick={() => setConfirmDelete(!confirmDelete)}
+                className="text-white/60 hover:text-red-300 transition-colors p-1.5"
+              >
+                <TrashIcon className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+
+          {/* Health + param pills */}
+          {latestReading ? (
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-xl px-3 py-2 shrink-0">
+                <HealthScore score={healthScore} size="sm" />
+              </div>
+              <div className="flex gap-1.5 overflow-x-auto pb-1 flex-1">
+                {PARAM_KEYS.map((param) => {
+                  const value = latestReading[param] as number | undefined;
+                  if (!value || !ranges[param]) return null;
+                  const status = getParameterStatus(param as string, value, tank.type);
+                  const unit = PARAMETER_UNITS[param as string] || '';
+                  return (
+                    <span key={param} className={clsx(
+                      'shrink-0 text-xs px-2 py-1 rounded-lg font-semibold backdrop-blur-sm',
+                      status === 'safe'     && 'bg-emerald-500/30 text-emerald-100',
+                      status === 'warning'  && 'bg-amber-500/40 text-amber-100',
+                      status === 'critical' && 'bg-red-500/40 text-red-100',
+                    )}>
+                      {PARAMETER_LABELS[param as string]}: {value.toFixed(1)}{unit}
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+          ) : (
+            <Link to={`/tanks/${tank.id}/log`}
+              className="inline-flex items-center gap-1.5 bg-white/20 hover:bg-white/30 text-white text-xs font-semibold px-3 py-1.5 rounded-lg transition-all">
+              <PlusIcon className="w-3.5 h-3.5" />
+              Log First Reading
+            </Link>
+          )}
+
+          {/* Tabs */}
+          <div className="flex gap-1 mt-4 p-1 rounded-xl" style={{ background: 'rgba(0,0,0,0.2)' }}>
+            {TAB_CONFIG.map(({ id, label, emoji }) => (
+              <button
+                key={id}
+                onClick={() => setActiveTab(id)}
+                className={clsx(
+                  'flex-1 flex flex-col sm:flex-row items-center justify-center gap-1 py-2 px-1 rounded-lg text-xs font-semibold transition-all',
+                  activeTab === id
+                    ? 'bg-white text-slate-800 shadow'
+                    : 'text-white/60 hover:text-white/90 hover:bg-white/10'
+                )}
+              >
+                <span>{emoji}</span>
+                <span className="hidden sm:inline">{label}</span>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -136,75 +225,9 @@ export default function TankDetail() {
         </div>
       )}
 
-      <div className="p-6 space-y-5">
+      <div className="p-5 space-y-5">
         {/* Alerts */}
-        {tankAlerts.length > 0 && (
-          <AlertBanner alerts={tankAlerts} />
-        )}
-
-        {/* Health overview */}
-        <div className="card">
-          <div className="flex items-center gap-6">
-            <HealthScore score={healthScore} size="lg" />
-            <div className="flex-1">
-              <h3 className="font-semibold text-slate-800 mb-1">Tank Health</h3>
-              {latestReading ? (
-                <>
-                  <p className="text-sm text-slate-500 mb-2">
-                    Based on latest reading · {format(parseISO(latestReading.timestamp), 'MMM d, h:mm a')}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {PARAM_KEYS.map((param) => {
-                      const value = latestReading[param] as number | undefined;
-                      if (!value || !ranges[param]) return null;
-                      const status = getParameterStatus(param as string, value, tank.type);
-                      const unit = PARAMETER_UNITS[param as string] || '';
-                      return (
-                        <span
-                          key={param}
-                          className={clsx(
-                            'text-xs px-2 py-1 rounded-lg font-medium',
-                            status === 'safe' && 'bg-emerald-50 text-emerald-700',
-                            status === 'warning' && 'bg-amber-50 text-amber-700',
-                            status === 'critical' && 'bg-red-50 text-red-700',
-                          )}
-                        >
-                          {PARAMETER_LABELS[param as string]}: {value.toFixed(2)}{unit}
-                        </span>
-                      );
-                    })}
-                  </div>
-                </>
-              ) : (
-                <div>
-                  <p className="text-sm text-slate-400 mb-3">No readings logged yet.</p>
-                  <Link to={`/tanks/${tank.id}/log`} className="btn-primary text-sm">
-                    <PlusIcon className="w-4 h-4" />
-                    Log First Reading
-                  </Link>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* Tabs */}
-        <div className="flex gap-1 bg-slate-100 p-1 rounded-xl overflow-x-auto">
-          {(['overview', 'charts', 'tasks', 'livestock', 'feeding', 'journal'] as const).map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={clsx(
-                'shrink-0 flex-1 text-sm font-semibold py-2 px-3 rounded-lg capitalize transition-all',
-                activeTab === tab
-                  ? 'bg-white text-ocean-600 shadow-sm'
-                  : 'text-slate-500 hover:text-slate-700'
-              )}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
+        {tankAlerts.length > 0 && <AlertBanner alerts={tankAlerts} />}
 
         {/* Tab: Overview */}
         {activeTab === 'overview' && (
@@ -425,7 +448,7 @@ export default function TankDetail() {
                         required
                         value={fishForm.speciesId}
                         onChange={(e) => setFishForm((p) => ({ ...p, speciesId: e.target.value }))}
-                        className="input text-sm"
+                        className="input-field text-sm"
                       >
                         <option value="">Select species...</option>
                         {fishDatabase.map((f) => (
@@ -440,7 +463,7 @@ export default function TankDetail() {
                         value={fishForm.nickname}
                         onChange={(e) => setFishForm((p) => ({ ...p, nickname: e.target.value }))}
                         placeholder="e.g. Nemo"
-                        className="input text-sm"
+                        className="input-field text-sm"
                       />
                     </div>
                     <div>
@@ -449,7 +472,7 @@ export default function TankDetail() {
                         type="date"
                         value={fishForm.dateAdded}
                         onChange={(e) => setFishForm((p) => ({ ...p, dateAdded: e.target.value }))}
-                        className="input text-sm"
+                        className="input-field text-sm"
                       />
                     </div>
                     <div>
@@ -457,7 +480,7 @@ export default function TankDetail() {
                       <select
                         value={fishForm.healthStatus}
                         onChange={(e) => setFishForm((p) => ({ ...p, healthStatus: e.target.value as FishHealthStatus }))}
-                        className="input text-sm"
+                        className="input-field text-sm"
                       >
                         <option value="healthy">Healthy</option>
                         <option value="sick">Sick</option>
@@ -472,7 +495,7 @@ export default function TankDetail() {
                         value={fishForm.notes}
                         onChange={(e) => setFishForm((p) => ({ ...p, notes: e.target.value }))}
                         placeholder="Optional"
-                        className="input text-sm"
+                        className="input-field text-sm"
                       />
                     </div>
                   </div>
@@ -642,7 +665,7 @@ export default function TankDetail() {
                         value={scheduleForm.foodType}
                         onChange={(e) => setScheduleForm((p) => ({ ...p, foodType: e.target.value }))}
                         placeholder="e.g. Flake, Pellet, Frozen"
-                        className="input text-sm"
+                        className="input-field text-sm"
                       />
                     </div>
                     <div>
@@ -652,7 +675,7 @@ export default function TankDetail() {
                         value={scheduleForm.amount}
                         onChange={(e) => setScheduleForm((p) => ({ ...p, amount: e.target.value }))}
                         placeholder="e.g. A pinch"
-                        className="input text-sm"
+                        className="input-field text-sm"
                       />
                     </div>
                     <div>
@@ -663,7 +686,7 @@ export default function TankDetail() {
                         max={6}
                         value={scheduleForm.timesPerDay}
                         onChange={(e) => setScheduleForm((p) => ({ ...p, timesPerDay: parseInt(e.target.value) || 1 }))}
-                        className="input text-sm"
+                        className="input-field text-sm"
                       />
                     </div>
                     <div>
@@ -673,7 +696,7 @@ export default function TankDetail() {
                         value={scheduleForm.notes}
                         onChange={(e) => setScheduleForm((p) => ({ ...p, notes: e.target.value }))}
                         placeholder="Optional"
-                        className="input text-sm"
+                        className="input-field text-sm"
                       />
                     </div>
                   </div>
@@ -743,8 +766,8 @@ export default function TankDetail() {
                   (e.target as HTMLFormElement).reset();
                 }}
               >
-                <input name="foodType" type="text" placeholder="Food type" className="input text-sm flex-1" required />
-                <input name="amount" type="text" placeholder="Amount" className="input text-sm w-24" />
+                <input name="foodType" type="text" placeholder="Food type" className="input-field text-sm flex-1" required />
+                <input name="amount" type="text" placeholder="Amount" className="input-field text-sm w-24" />
                 <button type="submit" className="btn-primary text-sm shrink-0">Log</button>
               </form>
             </div>
@@ -807,14 +830,14 @@ export default function TankDetail() {
                 placeholder="Title (optional)"
                 value={journalForm.title}
                 onChange={(e) => setJournalForm((f) => ({ ...f, title: e.target.value }))}
-                className="input text-sm"
+                className="input-field text-sm"
               />
               <textarea
                 placeholder="What's happening with your tank today?"
                 value={journalForm.content}
                 onChange={(e) => setJournalForm((f) => ({ ...f, content: e.target.value }))}
                 rows={3}
-                className="input text-sm resize-none"
+                className="input-field text-sm resize-none"
               />
               <button
                 onClick={() => {

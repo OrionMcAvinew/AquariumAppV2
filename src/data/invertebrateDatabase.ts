@@ -17,6 +17,7 @@ export const INVERTEBRATE_DATABASE: Invertebrate[] = [
       'Hardy and peaceful; suitable with most community fish. Avoid copper-based medications, which are lethal to shrimp. Do not keep with larger fish that may eat them. Cannot breed in fresh water.',
     cleaningRole: 'Exceptional algae eater — consumes hair algae, thread algae, and biofilm.',
     emoji: '🦐',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Caridina_multidentata.jpg/640px-Caridina_multidentata.jpg',
   },
   {
     id: 'cherry-shrimp',
@@ -33,6 +34,7 @@ export const INVERTEBRATE_DATABASE: Invertebrate[] = [
       'Sensitive to copper and ammonia spikes. Breed readily in stable conditions — expect a colony to grow fast. Good with peaceful nano fish but will be eaten by larger species. Feed with dedicated shrimp pellets and blanched vegetables.',
     cleaningRole: 'Grazes on algae, biofilm, and detritus — excellent tank cleaners.',
     emoji: '🍒',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Neocaridina_davidi.jpg/640px-Neocaridina_davidi.jpg',
   },
   {
     id: 'crystal-red-shrimp',
@@ -48,6 +50,7 @@ export const INVERTEBRATE_DATABASE: Invertebrate[] = [
     careNotes:
       'Demanding — requires soft, acidic water (pH 6.0–6.8, TDS 100–150). Very sensitive to ammonia, nitrite, and temperature swings. Breed only in a species-only or nano shrimp tank. Active soil substrate recommended.',
     emoji: '❄️',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Crystal_Red_Shrimp.jpg/640px-Crystal_Red_Shrimp.jpg',
   },
   {
     id: 'peppermint-shrimp',
@@ -64,6 +67,7 @@ export const INVERTEBRATE_DATABASE: Invertebrate[] = [
       'Excellent Aiptasia control. Generally reef-safe, though may pick at small, weak corals when hungry. Keep in groups of 3+ for best results. Avoid keeping with dottybacks or large wrasses that will hunt them.',
     cleaningRole: 'Eats Aiptasia anemones; also scavenges detritus.',
     emoji: '🍬',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Lysmata_wurdemanni.jpg/640px-Lysmata_wurdemanni.jpg',
   },
   {
     id: 'cleaner-shrimp',
@@ -80,6 +84,7 @@ export const INVERTEBRATE_DATABASE: Invertebrate[] = [
       'Reef-safe and extremely peaceful. Will even clean the hands of hobbyists! Sensitive to rapid salinity or pH swings. Provide rocky overhangs for shelter. Acclimate slowly.',
     cleaningRole: 'Removes parasites and dead tissue from fish at cleaning stations.',
     emoji: '✂️',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Lysmata_amboinensis.jpg/640px-Lysmata_amboinensis.jpg',
   },
   // ── Snails ───────────────────────────────────────────────────────────────
   {
@@ -97,6 +102,7 @@ export const INVERTEBRATE_DATABASE: Invertebrate[] = [
       'Cannot breed in fresh water (larvae require brackish), so population stays controlled. Will not eat healthy plants. May escape the tank — keep a tight lid. Sensitive to copper medications.',
     cleaningRole: 'Excellent at removing green spot algae, diatoms, and hair algae from glass and decor.',
     emoji: '🐌',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Neritina_natalensis.jpg/640px-Neritina_natalensis.jpg',
   },
   {
     id: 'mystery-snail',
@@ -113,6 +119,7 @@ export const INVERTEBRATE_DATABASE: Invertebrate[] = [
       'Herbivorous but generally safe with healthy plants; will consume dying or soft leaves. Provide a calcium-rich diet (blanched vegetables, cuttlebone) to maintain shell integrity. Lay egg masses above the waterline — remove if you do not want reproduction.',
     cleaningRole: 'Grazes on algae, leftover food, and detritus.',
     emoji: '🐚',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Pomacea_bridgesii.jpg/640px-Pomacea_bridgesii.jpg',
   },
   {
     id: 'turbo-snail',
@@ -129,6 +136,7 @@ export const INVERTEBRATE_DATABASE: Invertebrate[] = [
       'May knock over frags and smaller corals due to their size and bulldozing movement. Needs stable alkalinity to maintain shell. Avoid overcrowding — they are voracious grazers and will strip a tank of algae quickly.',
     cleaningRole: 'Heavy-duty green hair algae grazer; excellent for larger reef tanks.',
     emoji: '🌀',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Turbo_fluctuosus.jpg/640px-Turbo_fluctuosus.jpg',
   },
   {
     id: 'nassarius-snail',
@@ -162,6 +170,7 @@ export const INVERTEBRATE_DATABASE: Invertebrate[] = [
       'Generally reef-safe. May occasionally kill snails to steal their shells — keep spare empty shells available. Needs stable salinity. Avoid copper-based treatments. Works best in groups of 5 or more.',
     cleaningRole: 'Algae and detritus scavenger; also turns sandbed while foraging.',
     emoji: '🦀',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Clibanarius_tricolor.jpg/640px-Clibanarius_tricolor.jpg',
   },
   {
     id: 'emerald-crab',
@@ -178,6 +187,7 @@ export const INVERTEBRATE_DATABASE: Invertebrate[] = [
       'Generally reef-safe but may pick at small polyps or slow-moving invertebrates when hungry. Provide adequate meaty food to reduce aggression. Nocturnal — rarely seen during the day.',
     cleaningRole: 'One of the only reliable bubble algae (Valonia) eaters.',
     emoji: '💚',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Mithraculus_sculptus.jpg/640px-Mithraculus_sculptus.jpg',
   },
   // ── Urchins ──────────────────────────────────────────────────────────────
   {
@@ -195,6 +205,7 @@ export const INVERTEBRATE_DATABASE: Invertebrate[] = [
       'Reef-safe; will not harm healthy corals but may dislodge frags. Excellent coralline algae grazer. Provide adequate rockwork to graze. Feed nori sheets if algae supply is limited.',
     cleaningRole: 'Grazes coralline algae, turf algae, and encrusting organisms from rock surfaces.',
     emoji: '⭕',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Mespilia_globulus.jpg/640px-Mespilia_globulus.jpg',
   },
   {
     id: 'halloween-hermit',
@@ -227,6 +238,7 @@ export const INVERTEBRATE_DATABASE: Invertebrate[] = [
       'As hardy as cherry shrimp — tolerates a wide range of water parameters. Avoid copper-based medications. Breed readily; eggs are clearly visible through the translucent body. Great for nano planted tanks.',
     cleaningRole: 'Grazes biofilm, algae, and detritus from all surfaces.',
     emoji: '⚪',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Neocaridina_zhangjiajiensis.jpg/640px-Neocaridina_zhangjiajiensis.jpg',
   },
   {
     id: 'vampire-shrimp',
@@ -242,6 +254,7 @@ export const INVERTEBRATE_DATABASE: Invertebrate[] = [
     careNotes:
       'Needs moderate current to position itself and feed from the flow. Requires fine particulate food (powdered foods, phytoplankton) in the water column. Very peaceful — safe with all fish and shrimp. Shy; provide caves or driftwood.',
     emoji: '🦟',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Atya_gabonensis.jpg/640px-Atya_gabonensis.jpg',
   },
   // ── Snails (additional) ───────────────────────────────────────────────────
   {
@@ -291,6 +304,7 @@ export const INVERTEBRATE_DATABASE: Invertebrate[] = [
       'Can reproduce rapidly and become a pest if overfed. Populations are easily controlled by limiting excess food. Assassin snails will keep numbers in check. Safe with plants — prefers algae and decaying matter.',
     cleaningRole: 'Consumes algae, decaying plant matter, and uneaten fish food.',
     emoji: '🐏',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Planorbarius_corneus.jpg/640px-Planorbarius_corneus.jpg',
   },
   {
     id: 'assassin-snail',
@@ -307,6 +321,7 @@ export const INVERTEBRATE_DATABASE: Invertebrate[] = [
       'Will not harm fish or shrimp unless they are molting/dying. Breed slowly — populations stay manageable. Will also scavenge meaty foods and fish food. Can live for 2–3 years. Good burrowers in soft substrate.',
     cleaningRole: 'Pest snail control; also scavenges meaty detritus.',
     emoji: '🗡️',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Anentome_helena.jpg/640px-Anentome_helena.jpg',
   },
   // ── Urchins (additional) ─────────────────────────────────────────────────
   {
@@ -341,6 +356,7 @@ export const INVERTEBRATE_DATABASE: Invertebrate[] = [
       'Largely nocturnal — not often visible. Excellent sandbed scavenger. Acclimate very slowly (drip acclimation for 2+ hours). Avoid exposing to air during handling. Avoid green brittle stars which may catch small fish.',
     cleaningRole: 'Nocturnal sandbed scavenger; cleans detritus from under rocks.',
     emoji: '⭐',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Ophioderma_longicauda.jpg/640px-Ophioderma_longicauda.jpg',
   },
   {
     id: 'tiger-pistol-shrimp',
@@ -356,6 +372,7 @@ export const INVERTEBRATE_DATABASE: Invertebrate[] = [
     careNotes:
       'Best kept with a paired watchman goby (e.g., Yellow Watchman). The symbiotic pair is one of the most entertaining displays in the hobby. Nearly blind — relies on the goby for predator warning. Reef-safe.',
     emoji: '🐯',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Alpheus_bellulus.jpg/640px-Alpheus_bellulus.jpg',
   },
   {
     id: 'sexy-shrimp',
@@ -371,6 +388,7 @@ export const INVERTEBRATE_DATABASE: Invertebrate[] = [
     careNotes:
       'Reef-safe. Best kept in groups of 3 or more for natural behavior. Will associate with anemones, corals, and even large polyp LPS for shelter. Very small — avoid fish large enough to eat them. Feed fine meaty foods.',
     emoji: '💃',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Thor_amboinensis.jpg/640px-Thor_amboinensis.jpg',
   },
   {
     id: 'fire-shrimp',
@@ -387,6 +405,7 @@ export const INVERTEBRATE_DATABASE: Invertebrate[] = [
       'Reef-safe. Shy — provide rocky overhangs and caves. Can be kept with cleaner shrimp. Acclimate slowly. Feed meaty foods a few times a week. Tends to be more reclusive than cleaner shrimp.',
     cleaningRole: 'Establishes cleaning stations; removes parasites and dead tissue from fish.',
     emoji: '❤️',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Lysmata_debelius.jpg/640px-Lysmata_debelius.jpg',
   },
   {
     id: 'blue-velvet-nudibranch',
@@ -445,6 +464,7 @@ export const INVERTEBRATE_DATABASE: Invertebrate[] = [
     careNotes: 'Reef-safe with caution — may nip at small-polyped LPS corals or zoanthids if underfed. Keep well fed with meaty foods to deter coral nipping. Can reproduce in captivity. Comes out mainly at night.',
     cleaningRole: 'Eliminates Aiptasia (glass anemone) infestations; scavenges uneaten food.',
     emoji: '🍬',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Lysmata_wurdemanni.jpg/640px-Lysmata_wurdemanni.jpg',
   },
   {
     id: 'feather-duster',
@@ -458,6 +478,7 @@ export const INVERTEBRATE_DATABASE: Invertebrate[] = [
     description: 'Tube-dwelling worm with a spectacular fan of feathery radioles it extends to filter feed. Available in white, red-brown, and banded morphs. Snaps back into its tube instantly when startled.',
     careNotes: 'Reef-safe and filter feeds on phytoplankton and fine particulates. Does not need targeted feeding if the tank has a healthy zooplankton population; supplement with liquid reef foods in nutrient-poor systems. Avoid aggressive fish that bite the crown.',
     emoji: '🪶',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Sabellastarte_magnifica.jpg/640px-Sabellastarte_magnifica.jpg',
   },
   {
     id: 'mandarin-starfish',
@@ -640,6 +661,7 @@ export const INVERTEBRATE_DATABASE: Invertebrate[] = [
     careNotes: 'Reef-safe — grazes coralline and macroalgae. Will carry shells and debris on its back (camouflage behavior). Needs adequate calcium and alkalinity to maintain its test (shell). Smaller and safer than long-spine urchins.',
     cleaningRole: 'Grazes algae from rocks and glass; turns over detritus in substrate.',
     emoji: '🎩',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Mespilia_globulus.jpg/640px-Mespilia_globulus.jpg',
   },
   {
     id: 'giant-clam',

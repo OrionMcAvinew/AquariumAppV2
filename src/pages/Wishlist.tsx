@@ -75,17 +75,28 @@ export default function Wishlist() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-6 space-y-6">
-      {/* Header */}
-      <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-xl bg-violet-500 flex items-center justify-center">
-          <BookmarkIcon className="w-6 h-6 text-white" />
-        </div>
-        <div>
-          <h1 className="text-2xl font-bold text-slate-900">My Wishlist</h1>
-          <p className="text-sm text-slate-500">Species you're planning to add — {wishlistItems.length} saved</p>
+    <div className="min-h-screen">
+      {/* ── Hero header ─────────────────────────────────────────────── */}
+      <div className="relative overflow-hidden" style={{
+        background: 'linear-gradient(135deg, #4c1d95 0%, #6d28d9 50%, #7c3aed 100%)',
+      }}>
+        <div className="absolute inset-0 opacity-15"
+          style={{ backgroundImage: 'radial-gradient(ellipse at 70% 40%, rgba(255,255,255,0.5) 0%, transparent 55%)' }}
+        />
+        <div className="relative px-6 py-6 max-w-3xl mx-auto">
+          <div className="flex items-center gap-2 mb-1">
+            <BookmarkIcon className="w-5 h-5 text-violet-300" />
+            <h1 className="text-white text-2xl font-bold tracking-tight">My Wishlist</h1>
+          </div>
+          <p className="text-violet-200/80 text-sm">
+            {wishlistItems.length === 0
+              ? 'Save species from the Database to plan your future aquarium'
+              : `${wishlistItems.length} species saved for your future tanks`}
+          </p>
         </div>
       </div>
+
+      <div className="max-w-3xl mx-auto px-4 py-5 space-y-4">
 
       {wishlistItems.length === 0 ? (
         <div className="card text-center py-14">
@@ -153,9 +164,10 @@ export default function Wishlist() {
                 <div key={item.id} className="card flex items-start gap-3">
                   <WikiSpeciesImage
                     scientificName={'scientificName' in species ? species.scientificName : ''}
+                    staticImageUrl={'imageUrl' in species ? species.imageUrl : undefined}
                     emoji={species.emoji}
                     alt={species.name}
-                    className="w-12 h-12 shrink-0"
+                    className="w-16 h-16 shrink-0 rounded-xl"
                   />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-2">
@@ -212,6 +224,7 @@ export default function Wishlist() {
           </div>
         </>
       )}
+      </div>
     </div>
   );
 }

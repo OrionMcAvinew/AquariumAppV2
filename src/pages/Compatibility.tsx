@@ -129,9 +129,10 @@ function FishResultCard({
       <div className="flex items-start gap-3 p-4">
         <WikiSpeciesImage
           scientificName={fish.scientificName}
+          staticImageUrl={fish.imageUrl}
           emoji={fish.emoji}
           alt={fish.name}
-          className="w-12 h-12 shrink-0"
+          className="w-14 h-14 shrink-0 rounded-xl"
         />
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2">
@@ -322,17 +323,51 @@ export default function Compatibility() {
   }, [sortedResults]);
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-6 space-y-6">
-      {/* Header */}
-      <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-xl bg-ocean-500 flex items-center justify-center">
-          <ShieldCheckIcon className="w-6 h-6 text-white" />
-        </div>
-        <div>
-          <h1 className="text-2xl font-bold text-slate-900">Compatibility Checker</h1>
-          <p className="text-sm text-slate-500">See if a new fish will get along with your current stock</p>
+    <div className="min-h-screen">
+      {/* ── Hero header ─────────────────────────────────────────────── */}
+      <div className="relative overflow-hidden" style={{
+        background: 'linear-gradient(135deg, #0f172a 0%, #0c2d48 60%, #0f3460 100%)',
+      }}>
+        <div className="absolute inset-0 opacity-10"
+          style={{ backgroundImage: 'radial-gradient(ellipse at 80% 50%, rgba(14,165,233,0.6) 0%, transparent 60%)' }}
+        />
+        <div className="relative px-6 py-6 max-w-4xl mx-auto">
+          <div className="flex items-center gap-2 mb-1">
+            <ShieldCheckIcon className="w-5 h-5 text-ocean-400" />
+            <h1 className="text-white text-2xl font-bold tracking-tight">Compatibility Checker</h1>
+          </div>
+          <p className="text-slate-400 text-sm">See what fish will thrive alongside your current stock</p>
+
+          {/* Summary badges in hero */}
+          {selectedTank && (
+            <div className="flex gap-2 flex-wrap mt-4">
+              {counts.compatible > 0 && (
+                <span className="bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 px-2.5 py-1 rounded-full text-xs font-semibold">
+                  ✓ {counts.compatible} compatible
+                </span>
+              )}
+              {counts.unknown > 0 && (
+                <span className="bg-white/10 border border-white/20 text-white/60 px-2.5 py-1 rounded-full text-xs font-semibold">
+                  ? {counts.unknown} unknown
+                </span>
+              )}
+              {counts.caution > 0 && (
+                <span className="bg-amber-500/20 border border-amber-400/30 text-amber-300 px-2.5 py-1 rounded-full text-xs font-semibold">
+                  ⚠ {counts.caution} caution
+                </span>
+              )}
+              {counts.incompatible > 0 && (
+                <span className="bg-red-500/20 border border-red-400/30 text-red-300 px-2.5 py-1 rounded-full text-xs font-semibold">
+                  ✗ {counts.incompatible} conflict
+                </span>
+              )}
+            </div>
+          )}
         </div>
       </div>
+
+      {/* ── Body ─────────────────────────────────────────────────────── */}
+      <div className="max-w-4xl mx-auto px-4 py-5 space-y-4">
 
       {/* Tank Selector + Current Stock */}
       <div className="card space-y-4">
@@ -375,57 +410,30 @@ export default function Compatibility() {
         )}
       </div>
 
-      {/* Search + Filter + Summary */}
-      <div className="space-y-3">
-        <div className="flex gap-2">
-          <div className="relative flex-1">
-            <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-            <input
-              type="text"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search fish by name or category…"
-              className="w-full pl-9 pr-4 py-2.5 border border-slate-300 rounded-xl text-sm bg-white focus:outline-none focus:ring-2 focus:ring-ocean-500"
-            />
-          </div>
-          <select
-            value={tankTypeFilter}
-            onChange={(e) => setTankTypeFilter(e.target.value)}
-            className="border border-slate-300 rounded-xl px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-ocean-500"
-          >
-            <option value="all">All types</option>
-            <option value="freshwater">Freshwater</option>
-            <option value="saltwater">Saltwater</option>
-            <option value="reef">Reef</option>
-            <option value="planted">Planted</option>
-            <option value="brackish">Brackish</option>
-          </select>
+      {/* Search + Filter */}
+      <div className="flex gap-2">
+        <div className="relative flex-1">
+          <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search fish by name or category…"
+            className="input-field pl-9"
+          />
         </div>
-
-        {selectedTank && (
-          <div className="flex gap-2 flex-wrap text-sm">
-            {counts.compatible > 0 && (
-              <span className="bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-full font-medium">
-                ✓ {counts.compatible} compatible
-              </span>
-            )}
-            {counts.unknown > 0 && (
-              <span className="bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full font-medium">
-                ? {counts.unknown} unknown
-              </span>
-            )}
-            {counts.caution > 0 && (
-              <span className="bg-amber-100 text-amber-700 px-2.5 py-1 rounded-full font-medium">
-                ⚠ {counts.caution} caution
-              </span>
-            )}
-            {counts.incompatible > 0 && (
-              <span className="bg-red-100 text-red-700 px-2.5 py-1 rounded-full font-medium">
-                ✗ {counts.incompatible} conflict
-              </span>
-            )}
-          </div>
-        )}
+        <select
+          value={tankTypeFilter}
+          onChange={(e) => setTankTypeFilter(e.target.value)}
+          className="input-field w-auto"
+        >
+          <option value="all">All types</option>
+          <option value="freshwater">Freshwater</option>
+          <option value="saltwater">Saltwater</option>
+          <option value="reef">Reef</option>
+          <option value="planted">Planted</option>
+          <option value="brackish">Brackish</option>
+        </select>
       </div>
 
       {/* Results */}
@@ -441,6 +449,7 @@ export default function Compatibility() {
           ))}
         </div>
       )}
+      </div>
     </div>
   );
 }
