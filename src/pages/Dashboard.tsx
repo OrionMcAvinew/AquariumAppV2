@@ -45,6 +45,7 @@ function StatCard({ label, value, icon: Icon, status = 'default' }: StatCardProp
 
 export default function Dashboard() {
   const tanks = useStore((s) => s.tanks);
+  const userName = useStore((s) => s.userName);
   const getLatestReading = useStore((s) => s.getLatestReading);
   const activeAlerts = useStore((s) => s.getActiveAlerts());
   const overdueTasks = useStore((s) => s.getOverdueTasks());
@@ -80,7 +81,7 @@ export default function Dashboard() {
                 {format(new Date(), "EEEE, MMMM d")}
               </p>
               <h1 className="text-white text-2xl font-bold tracking-tight mb-0.5">
-                {greeting} 👋
+                {greeting}{userName ? `, ${userName}` : ''} 👋
               </h1>
               <p className="text-slate-400 text-sm">
                 {tanks.length === 0

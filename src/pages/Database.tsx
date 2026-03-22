@@ -76,7 +76,7 @@ function FishCard({ fish }: { fish: Fish }) {
           staticImageUrl={fish.imageUrl}
           alt={fish.name}
           emoji={fish.emoji}
-          className="w-14 h-14 shrink-0"
+          className="w-16 h-16 shrink-0 rounded-xl"
         />
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2">
@@ -195,7 +195,7 @@ function PlantCard({ plant }: { plant: Plant }) {
           staticImageUrl={plant.imageUrl}
           alt={plant.name}
           emoji={plant.emoji}
-          className="w-14 h-14 shrink-0"
+          className="w-16 h-16 shrink-0 rounded-xl"
         />
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2">
@@ -286,7 +286,7 @@ function CoralCard({ coral }: { coral: Coral }) {
           staticImageUrl={coral.imageUrl}
           alt={coral.name}
           emoji={coral.emoji}
-          className="w-14 h-14 shrink-0"
+          className="w-16 h-16 shrink-0 rounded-xl"
         />
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2">
@@ -359,7 +359,7 @@ function InvertCard({ invert }: { invert: Invertebrate }) {
           staticImageUrl={invert.imageUrl}
           alt={invert.name}
           emoji={invert.emoji}
-          className="w-14 h-14 shrink-0"
+          className="w-16 h-16 shrink-0 rounded-xl"
         />
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2">
@@ -464,38 +464,49 @@ export default function Database() {
   ];
 
   return (
-    <div className="p-6 max-w-3xl mx-auto">
-      {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-center gap-2 mb-1">
-          <BookOpenIcon className="w-6 h-6 text-ocean-500" />
-          <h1 className="page-title">Database</h1>
+    <div className="min-h-screen">
+      {/* ── Hero header ─────────────────────────────────────────────── */}
+      <div className="px-6 pt-6 pb-5" style={{
+        background: 'linear-gradient(135deg, #0f172a 0%, #0c2d48 60%, #0f3460 100%)',
+      }}>
+        <div className="max-w-3xl mx-auto">
+          <div className="flex items-center gap-2 mb-1">
+            <BookOpenIcon className="w-5 h-5 text-ocean-400" />
+            <h1 className="text-white text-2xl font-bold tracking-tight">Species Database</h1>
+          </div>
+          <p className="text-slate-400 text-sm">
+            {FISH_DATABASE.length} fish · {PLANT_DATABASE.length} plants · {CORAL_DATABASE.length} corals · {INVERTEBRATE_DATABASE.length} invertebrates
+          </p>
+
+          {/* Tabs — inside hero */}
+          <div className="flex gap-1 mt-5 p-1 rounded-xl" style={{ background: 'rgba(255,255,255,0.08)' }}>
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={clsx(
+                  'flex-1 py-2.5 rounded-lg text-xs font-semibold transition-all flex items-center justify-center gap-1.5',
+                  activeTab === tab.id
+                    ? 'bg-white text-ocean-700 shadow'
+                    : 'text-white/60 hover:text-white/90 hover:bg-white/10'
+                )}
+              >
+                <span>{tab.icon}</span>
+                <span className="hidden sm:inline">{tab.label}</span>
+                <span className={clsx('text-[10px]', activeTab === tab.id ? 'text-ocean-400 font-bold' : 'opacity-60')}>
+                  {tab.count}
+                </span>
+              </button>
+            ))}
+          </div>
         </div>
-        <p className="text-slate-500 text-sm">
-          {FISH_DATABASE.length} fish · {PLANT_DATABASE.length} plants · {CORAL_DATABASE.length} corals · {INVERTEBRATE_DATABASE.length} invertebrates
-        </p>
       </div>
 
-      {/* Tabs */}
-      <div className="flex gap-1 bg-slate-100 p-1 rounded-xl mb-4">
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
-            className={clsx(
-              'flex-1 text-xs font-semibold py-2 rounded-lg capitalize transition-all flex items-center justify-center gap-1',
-              activeTab === tab.id ? 'bg-white text-ocean-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'
-            )}
-          >
-            <span>{tab.icon}</span>
-            <span className="hidden sm:inline">{tab.label}</span>
-            <span className="text-xs opacity-60">({tab.count})</span>
-          </button>
-        ))}
-      </div>
+      {/* ── Body ──────────────────────────────────────────────────────── */}
+      <div className="px-6 py-4 max-w-3xl mx-auto">
 
       {/* Filters */}
-      <div className="flex gap-2 mb-4 flex-wrap">
+      <div className="flex gap-2 mb-4 flex-wrap mt-0">
         <div className="flex-1 min-w-48 relative">
           <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
@@ -566,6 +577,7 @@ export default function Database() {
             ? <div className="card text-center py-10"><p className="text-slate-400">{INVERTEBRATE_DATABASE.length === 0 ? 'Invertebrate database loading...' : 'No invertebrates match your search.'}</p></div>
             : filteredInverts.map((invert) => <InvertCard key={invert.id} invert={invert} />)
         )}
+      </div>
       </div>
     </div>
   );

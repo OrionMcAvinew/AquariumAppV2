@@ -78,6 +78,10 @@ interface AppState {
   removeFromWishlist: (id: string) => void;
   isInWishlist: (speciesId: string, speciesType: string) => boolean;
 
+  // User profile
+  userName: string;
+  setUserName: (name: string) => void;
+
   // Seeding
   seedData: () => void;
 
@@ -109,6 +113,7 @@ export const useStore = create<AppState>()(
       anthropicApiKey: '',
       journalEntries: [],
       wishlistItems: [],
+      userName: '',
 
       addTank: (tank) => {
         const id = uuidv4();
@@ -351,6 +356,8 @@ export const useStore = create<AppState>()(
         set((state) => ({ wishlistItems: state.wishlistItems.filter((w) => w.id !== id) })),
       isInWishlist: (speciesId, speciesType) =>
         get().wishlistItems.some((w) => w.speciesId === speciesId && w.speciesType === speciesType),
+
+      setUserName: (name) => set({ userName: name }),
 
       seedData: () => {
         if (get().seeded) return;
